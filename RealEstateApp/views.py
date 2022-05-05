@@ -21,3 +21,9 @@ class CreateProperty(CreateView):
         data = form.save(commit=False)
         data.save()
         return redirect('/')
+
+
+class ListProperty(ListView):
+    template_name = 'property/list_property.html'
+    model = Property
+    context_object_name = 'properties'
