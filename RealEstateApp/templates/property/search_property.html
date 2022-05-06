@@ -1,0 +1,44 @@
+{% include 'base.html' %} {% block content %}
+
+<hr />
+<h1 class="text-center">List Of Properties</h1>
+<hr />
+<div class="container justify-content-center mt-4">
+  <div class="row">
+    {% if not properties %}
+    {% if not propertiess %}
+    <h4 class="text-center">No Property found</h4>
+    {% endif %}
+    {% endif %} {% for property in properties %}
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">{{property.property.property_name}}</h5>
+        <p class="card-text">{{property.property.cost}}</p>
+        <p class="card-text">{{property.property.property_status}}</p>
+        <p class="card-text">{{property.property.contact_number}}</p>
+        <p class="card-text">{{property.property.Description}}</p>
+        <p class="card-text">
+          {{property.property.Address.street}},{{property.property.Address.city}},{{property.property.Address.country}}
+          {{property.property.Address.zip_code}}
+        </p>
+      </div>
+    </div>
+    {% endfor %} {% for property in propertiess %}
+    <div class="card me-2" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">{{property.property_name}}</h5>
+        <p class="card-text">{{property.cost}}</p>
+        <p class="card-text">{{property.property_status}}</p>
+        <p class="card-text">{{property.contact_number}}</p>
+        <p class="card-text">{{property.Description}}</p>
+        <p class="card-text">
+          {{property.Address.street}},{{property.Address.city}},{{property.Address.country}}
+          {{property.Address.zip_code}}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,3 +1,52 @@
 <h1>Hello</h1>
 
 <h2>This is home page...</h2>
+<form class="d-flex" action="/searchproperty/">
+  <input
+    name="city"
+    class="form-control"
+    type="text"
+    placeholder="City"
+    style="width: 120%"
+  />
+  <input
+    name="street"
+    class="form-control"
+    type="text"
+    placeholder="Street"
+    style="width: 120%"
+  />
+
+  {% comment %}
+  <input
+    name="country"
+    class="form-control"
+    type="text"
+    placeholder="Country"
+    style="width: 120%"
+  />
+  {% endcomment %}
+
+  <input
+    name="checkintime"
+    class="form-control"
+    type="date"
+    placeholder="Check-In Time"
+    style="width: 120%"
+  />
+  <input
+    name="checkouttime"
+    class="form-control"
+    type="date"
+    placeholder="Check-out-time"
+    style="width: 120%"
+  />
+  <button
+    class="btn btn-lg"
+    type="submit"
+    value="search"
+    style="width: 200px; height: 30px"
+  >
+    Search
+  </button>
+</form>
