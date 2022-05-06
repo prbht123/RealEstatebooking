@@ -1,7 +1,17 @@
-<h1>Hello</h1>
-
+{% extends "base.html" %} {% block content %} {% if request.user.is_staff %}
+<a
+  class="btn btn-outline-primary ml-4 mt-4"
+  type="submit"
+  href="{% url 'admin_user:admin_home' %}"
+  >Go to DashBoard Of Admin</a
+>
+{% else %} {{request.user.username}}
+<h2>User</h2>
+<a class="btn btn-outline-primary ml-4 mt-4" type="submit" href="/"
+  >Go to DashBoard Of User</a
+>
+{% endif %}
 <h2>This is home page...</h2>
-{{request.user.username}}
 <form class="d-flex" action="/searchproperty/">
   <input
     name="city"
@@ -51,3 +61,4 @@
     Search
   </button>
 </form>
+{% endblock %}

@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('RealEstateApp.urls')),
     path('booking/', include('BookingApp.urls', namespace='booking')),
     path('accounts/', include('AccountUser.urls', namespace='account')),
+    path('adminuser/', include('AdminUser.urls', namespace='admin_user')),
 ]
