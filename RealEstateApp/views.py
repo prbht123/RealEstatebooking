@@ -55,12 +55,12 @@ class SearchProperty(ListView):
             if context['booking']:
                 context['booking'] = context['booking'].exclude(
                     date_from__lte=check_in_time, date_until__gte=check_out_time)
-            if city and street and country:
+            if city and street:
                 context['properties'] = context['booking'].filter(
                     property__Address__street=street, property__Address__city=city)
             else:
                 context['properties'] = context['booking']
-        elif city and street and country:
+        elif city and street:
             context['propertiess'] = Property.objects.filter(
                 Address__street=street, Address__city=city)
         else:

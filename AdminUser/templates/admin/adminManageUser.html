@@ -1,0 +1,30 @@
+{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+
+<h3>Manage Admin Users</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in admin_users %}
+
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <a class="text-decoration-none" href="#">Edit</a>
+        <a class="text-decoration-none" href="#">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

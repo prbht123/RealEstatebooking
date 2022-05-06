@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'BookingApp',
     'AccountUser',
     'widget_tweaks',
+    'AdminUser',
 ]
 
 MIDDLEWARE = [
