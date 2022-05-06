@@ -1,4 +1,5 @@
-<!-- <div class="main">
+{% load static %}
+<div class="main">
     
      Specify fields to be displayed
     {{ data.gender }}<br/>
@@ -17,35 +18,47 @@
     {{  data.notes }}<br>
 
 </div> 
- -->
-{% extends 'base.html' %}
-{% load static %}
- <table class="table">
+
+
+
+ <!-- <table class="table">
   <thead>
+    {% for data in dataset %}
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">gender</th>
+      <th scope="col">firstname</th>
+      <th scope="col">lastname</th>
+      <th scope="col">nationality</th>
+      <th scope="col">address</th>
+      <th scope="col">email</th>
+      <th scope="col">mobile_Number</th>
+      <th scope="col">property</th>
+      <th scope="col">date_from</th>
+      <th scope="col">date_until</th>
+      <th scope="col">creation_date</th>
+      <th scope="col">booking_status</th>
+      <th scope="col">booking_status</th>
+      <th scope="col">cost</th>
+      <th scope="col">notes</th>
     </tr>
+    {% endfor %}
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+    <td>{{ data.gender }}</td>
+    <td>{{ data.firstname }}</td>
+    <td>{{  data.lastname }}</td>
+    <td>{{  data.nationality }}</td>
+    <td>{{  data.address }}</td>
+    <td>{{  data.email }}</td>
+    <td>{{  data.mobile_Number }}</td>
+    <td>{{  data.property }}</td>
+    <td>{{  data.date_from }}</td>
+    <td>{{  data.date_until }}</td>
+    <td>{{  data.creation_date }}</td>
+    <td>{{  data.booking_status }}</td>
+    <td>{{  data.cost }}</td>
+    <td>{{  data.notes }}</td> 
     </tr>
   </tbody>
-</table>
+</table> -->

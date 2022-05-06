@@ -30,6 +30,16 @@ def list_view(request):
 
     return render(request, "list_view.html", context)
 
+def detail_view(request, id):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+ 
+    # add the dictionary during initialization
+    context["data"] = Booking.objects.get(id = id)
+         
+    return render(request, "detail_view.html", context)
+
 
 
 
