@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'RealEstateApp',
     'BookingApp',
+    'AccountUser',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
