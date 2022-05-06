@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">gender</th>
+      <th scope="col">firstname</th>
+      <th scope="col">lastname</th>
+      <th scope="col">nationality</th>
+      <th scope="col">address</th>
+      <th scope="col">email</th>
+      <th scope="col">mobile_Number</th>
+      <th scope="col">property</th>
+      <th scope="col">date_from</th>
+      <th scope="col">date_until</th>
+      <th scope="col">creation_date</th>
+      <th scope="col">booking_status</th>
+      <th scope="col">booking_status</th>
+      <th scope="col">cost</th>
+      <th scope="col">notes</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for data in dataset %}
+    <tr>
+	<td>{{ data.gender }}</td>
+	<td>{{ data.firstname }}</td>
+	<td>{{  data.lastname }}</td>
+	<td>{{  data.nationality }}</td>
+	<td>{{  data.address }}</td>
+	<td>{{  data.email }}</td>
+	<td>{{  data.mobile_Number }}</td>
+	<td>{{  data.property }}</td>
+	<td>{{  data.date_from }}</td>
+	<td>{{  data.date_until }}</td>
+	<td>{{  data.creation_date }}</td>
+	<td>{{  data.booking_status }}</td>
+	<td>{{  data.cost }}</td>
+	<td>{{  data.notes }}</td> 
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+<center><a href="/booking/create/" class="btn btn-primary">Add New Record</a></center>
+
+{% endblock %}

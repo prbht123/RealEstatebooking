@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Booking Records</title> 
+</head>  
+<body>  
+    <form>
+<table class="table table-striped table-bordered table-sm">  
+    <thead class="thead-dark">  
+    <tr>
+        <th>gender</th>  
+        <th>firstname</th>
+        <th>lastname</th>  
+        <th>nationality</th>
+        <th>address</th>  
+        <th>email</th>
+        <th>mobile_Number</th>
+        <th>date_from</th>
+        <th>date_until</th>
+        <th>creation_date</th>
+        <th>booking_status</th>
+        <th>cost</th>
+        <th>notes</th>
+        <th>Actions</th>  
+    </tr>  
+    </thead>  
+    <body>  
+
+{% for data in dataset %}
+    <tr>  
+        <td>{{ data.gender }}</td>  
+        <td>{{ data.firstname }}</td>  
+        <td>{{ data.lastname }}</td>  
+        <td>{{ data.nationality }}</td> 
+        <td>{{ data.address }}</td> 
+        <td>{{ data.email }}</td> 
+        <td>{{ data.mobile_Number }}</td>
+        <td>{{ data.date_from }}</td> 
+        <td>{{ data.date_until }}</td> 
+        <td>{{ data.creation_date }}</td> 
+        <td>{{ data.booking_status }}</td> 
+        <td>{{ data.cost }}</td> 
+        <td>{{ data.notes }}</td>
+        <td>  
+            <a href="/edit/{{ book.id }}"><span class="glyphicon glyphicon-pencil">Edit</span></a>  
+            <a href="/delete/{{ book.id }}">Delete</a>  
+        </td>  
+    </tr>  
+{% endfor %} 
+<</form> 
+    </body>  
+</table>  
+<br>  
+<br>  
+<center><a href="/booking/" class="btn btn-primary">Add New Record</a></center>  
+</body>  
+</html>  
