@@ -1,0 +1,23 @@
+
+{% include 'base.html' %} {% load widget_tweaks %} {% block content %}
+<h1 class="text-center">Add The Property</h1>
+<hr />
+<div class="container col-sm-6">
+<form method="post">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+  <div class="form-group mt-1">
+    {% comment %} <label for="{{ field.id_for_label }}">{{ field.label }}</label> {% endcomment %}
+     {% comment %} {{ field|add_class:'form-control' | }} {% endcomment %}
+     {% comment %} {{ field|append_attr:"class:form-control"|append_attr:"placeholder:field.label" }} {% endcomment %}
+    {% render_field field class="form-control" placeholder=field.label %}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+ 
+  <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+</form>
+</div>
+{% endblock %}

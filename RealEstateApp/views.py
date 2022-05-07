@@ -7,6 +7,7 @@ from RealEstateApp.forms import PropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.forms.formsets import formset_factory
 from django.db.models import Q
+from django.urls import reverse
 # Create your views here.
 
 
@@ -67,3 +68,24 @@ class SearchProperty(ListView):
             context['propertiess'] = Property.objects.all()
 
         return context
+
+
+class PropertyUpdateView(UpdateView):
+    """
+        This class is used for updating of a particular property.
+    """
+    model = Property
+    form_class = PropertyForm
+    template_name = 'property/property_update.html'
+    success_url = '/'
+
+    def get_form_kwargs(self):
+        kwargs = super(PropertyUpdateView, self).get_form_kwargs()
+        kwargs.update()
+        return kwargs
+
+
+class PropertyDeleteView(DeleteView):
+    model = Property
+    template_name = 'property/property_delete.html'
+    success_url = '/'
