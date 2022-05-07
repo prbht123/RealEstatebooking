@@ -83,3 +83,9 @@ class PropertyUpdateView(UpdateView):
         kwargs = super(PropertyUpdateView, self).get_form_kwargs()
         kwargs.update()
         return kwargs
+
+
+class PropertyDeleteView(DeleteView):
+    model = Property
+    template_name = 'property/property_delete.html'
+    success_url = '/'
