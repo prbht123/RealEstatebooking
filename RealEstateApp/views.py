@@ -3,7 +3,7 @@ from telnetlib import DET
 from django.shortcuts import render, redirect
 from .models import Property, Address, Room
 from BookingApp.models import Booking
-from RealEstateApp.forms import PropertyForm, PropertyAddressInlineFormset, PropertyFormAddress
+from RealEstateApp.forms import PropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.forms.formsets import formset_factory
 from django.db.models import Q
@@ -16,12 +16,18 @@ def home(request):
 
 
 class CreateProperty(CreateView):
-    #model = Property
+    model = Property
     form_class = PropertyForm
     template_name = 'property/create_property.html'
 
     def form_valid(self, form):
         data = form.save(commit=False)
+        data.author = self.request.user
+        print(data.author)
+        print("00000000000000000")
+        print(self.request.FILES)
+        print(self.request.FILES['myFile'])
+        data.image = self.request.FILES['myFile']
         data.save()
         return redirect('/')
 
