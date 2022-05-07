@@ -2,6 +2,7 @@ from django import forms
 from .models import Property, Address, Room
 from django.forms import modelformset_factory
 from django.forms.formsets import formset_factory
+from django.forms import inlineformset_factory
 
 
 class PropertyForm(forms.ModelForm):
