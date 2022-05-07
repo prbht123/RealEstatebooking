@@ -2,9 +2,10 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import BookingForm
 from .models import Booking,Address
-# from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-
-
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.shortcuts import (get_object_or_404,render,HttpResponseRedirect)
+ 
 
 
 
@@ -41,7 +42,28 @@ def detail_view(request, id):
     return render(request, "detail_view.html", context)
 
 
+def update_view(request, id):
+    context ={}
+    obj = get_object_or_404(Booking, id = id)
+    form = BookingForm(request.POST or None, instance = obj)
+    form = BookingForm(request.POST, instance = obj )
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/"+id)
+        context["form"] = form
+    return render(request, "update_view.html", context)
 
+
+def delete_view(request, id):
+    
+    context ={}
+    obj = get_object_or_404(Booking, id = id)
+ 
+    if request.method =="POST":
+        obj.delete()
+        return HttpResponseRedirect("/")
+ 
+    return render(request, "delete_view.html", context)
 
 
 
