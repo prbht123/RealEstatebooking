@@ -1,9 +1,9 @@
 from django.forms.models import inlineformset_factory
 from telnetlib import DET
 from django.shortcuts import render, redirect
-from .models import Property, Address, Room, MostViewed
+from .models import FeedBackProperty, Property, Address, Room, MostViewed
 from BookingApp.models import Booking
-from RealEstateApp.forms import PropertyForm
+from RealEstateApp.forms import FeedbackForm, PropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.forms.formsets import formset_factory
 from django.db.models import Q
@@ -134,3 +134,17 @@ class MosetViewdProperties(ListView):
         context['properties'] = MostViewed.objects.all().order_by('-viewed')
         print(context['properties'])
         return context
+
+
+class CreateFeedbackView(CreateView):
+    model = FeedBackProperty
+    form_class = FeedbackForm
+    template_name = 'feedback/create_feedback_property.html'
+
+    def form_valid(self, form):
+        data = form.save(commit=False)
+        data.user = self.request.user
+        property = Property.objects.get(slug=self.kwargs['slug'])
+        data.property = property
+        data.save()
+        return redirect('/')
