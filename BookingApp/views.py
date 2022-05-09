@@ -73,6 +73,10 @@ def homepage(request):
     return render(request, 'bookingpage/home1.html')
 
 
+def contactus(request):
+    return render(request, 'bookingpage/contactus.html')
+
+
 
 
 
