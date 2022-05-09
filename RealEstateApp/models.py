@@ -20,7 +20,7 @@ class Address(models.Model):
     id = models.AutoField(primary_key=True)
     street = models.CharField(max_length=100)
     slug = models.SlugField(max_length=250)
-    landmark = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     country = CountryField()
     zip_code = models.CharField(max_length=100)
