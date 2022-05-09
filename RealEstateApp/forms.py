@@ -1,5 +1,5 @@
 from django import forms
-from .models import Property, Address, Room, FeedBackProperty
+from .models import Property, Address, Room, FeedBackProperty, RankingProperty
 from django.forms import modelformset_factory
 from django.forms.formsets import formset_factory
 from django.forms import inlineformset_factory
@@ -16,3 +16,9 @@ class FeedbackForm(forms.ModelForm):
     class Meta:
         model = FeedBackProperty
         fields = ['feedback']
+
+
+class RankingPropertyForm(forms.ModelForm):
+    class Meta:
+        model = RankingProperty
+        fields = ['rank']

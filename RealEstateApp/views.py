@@ -1,9 +1,9 @@
 from django.forms.models import inlineformset_factory
 from telnetlib import DET
 from django.shortcuts import render, redirect
-from .models import FeedBackProperty, Property, Address, Room, MostViewed
+from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed
 from BookingApp.models import Booking
-from RealEstateApp.forms import FeedbackForm, PropertyForm
+from RealEstateApp.forms import FeedbackForm, PropertyForm, RankingPropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.forms.formsets import formset_factory
 from django.db.models import Q
@@ -147,4 +147,25 @@ class CreateFeedbackView(CreateView):
         property = Property.objects.get(slug=self.kwargs['slug'])
         data.property = property
         data.save()
+        return redirect('/')
+
+
+class CreateRankingView(CreateView):
+    model = RankingProperty
+    form_class = RankingPropertyForm
+    template_name = 'ranking/create_ranking_property.html'
+
+    def form_valid(self, form):
+        data = form.save(commit=False)
+        print(self.kwargs['slug'])
+        property = RankingProperty.objects.filter(
+            user=self.request.user, property__slug=self.kwargs['slug'])
+        if not property:
+            if data.rank > 5:
+                return redirect('create_ranking_property', slug=self.kwargs['slug'])
+            data.user = self.request.user
+            property = Property.objects.get(slug=self.kwargs['slug'])
+            data.property = property
+            data.save()
+
         return redirect('/')

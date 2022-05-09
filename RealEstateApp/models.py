@@ -103,3 +103,20 @@ class FeedBackProperty(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property.property_name)
         super(FeedBackProperty, self).save(*args, **kwargs)
+
+
+class RankingProperty(models.Model):
+    id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=250)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='ranking')
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE)
+    rank = models.IntegerField(default=1, blank=True, null=True)
+
+    def __str__(self):
+        return self.slug
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.property.property_name)
+        super(RankingProperty, self).save(*args, **kwargs)
