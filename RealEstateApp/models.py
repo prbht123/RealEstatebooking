@@ -47,7 +47,7 @@ class Property(models.Model):
     property_name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=250)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='blog_posts')
+        User, on_delete=models.CASCADE, related_name='property_posts')
     image = models.ImageField(
         upload_to='property/images/', blank=True, null=True)
     room_type = models.ForeignKey(
@@ -76,3 +76,13 @@ class Property(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property_name)
         super(Property, self).save(*args, **kwargs)
+
+
+class MostViewed(models.Model):
+    id = models.AutoField(primary_key=True)
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, related_name='view_property')
+    viewed = models.BigIntegerField()
+
+    def __str__(self):
+        return self.property.property_name

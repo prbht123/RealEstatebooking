@@ -17,9 +17,9 @@ def AdminHome(request):
     last_month_count_users = User.objects.filter(
         date_joined__gte=month_from).count()
     last_day_count_property = Property.objects.filter(
-        created__gte=date_from).count()
+        created_date__gte=date_from).count()
     last_month_count_property = Property.objects.filter(
-        created__gte=month_from).count()
+        created_date__gte=month_from).count()
     last_day_count_booking = Booking.objects.filter(
         creation_date__gte=date_from).count()
     last_month_count_booking = Booking.objects.filter(

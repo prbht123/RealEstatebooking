@@ -1,7 +1,7 @@
 from django.forms.models import inlineformset_factory
 from telnetlib import DET
 from django.shortcuts import render, redirect
-from .models import Property, Address, Room
+from .models import Property, Address, Room, MostViewed
 from BookingApp.models import Booking
 from RealEstateApp.forms import PropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -23,12 +23,10 @@ class CreateProperty(CreateView):
     def form_valid(self, form):
         data = form.save(commit=False)
         data.author = self.request.user
-        print(data.author)
-        print("00000000000000000")
-        print(self.request.FILES)
-        print(self.request.FILES['myFile'])
         data.image = self.request.FILES['myFile']
         data.save()
+        count = MostViewed.objects.create(property=data, viewed=0)
+        count.save()
         return redirect('/')
 
 
@@ -44,7 +42,7 @@ class SearchProperty(ListView):
     """
     template_name = 'property/search_property.html'
     model = Property
-    #context_object_name = 'posts'
+    # context_object_name = 'posts'
 
     def get_context_data(self, **kwargs):
         city = self.request.GET.get('city')
@@ -95,3 +93,44 @@ class PropertyDeleteView(DeleteView):
     model = Property
     template_name = 'property/property_delete.html'
     success_url = '/'
+
+
+class PropertyDetailView(DetailView):
+    """
+        This class is used for showing a particular blog's detail.
+    """
+    model = Property
+    template_name = 'property/property_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['property'] = Property.objects.filter(slug=self.object.slug)[0]
+        count = MostViewed.objects.get(
+            property__slug=context['property'].slug)
+        count.viewed = count.viewed + 1
+        count.save()
+        return context
+
+
+class MosetViewdProperty(ListView):
+    template_name = 'property/most_viewed_property.html'
+    model = Property
+    context_object_name = 'properties'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
+        print(context['properties'])
+        return context
+
+
+class MosetViewdProperties(ListView):
+    template_name = 'property/most_viewed_all_properties.html'
+    model = Property
+    context_object_name = 'properties'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['properties'] = MostViewed.objects.all().order_by('-viewed')
+        print(context['properties'])
+        return context
