@@ -16,5 +16,7 @@ urlpatterns = [
          name="most_viewed_property"),
     path('mostviewedproperties/', views.MosetViewdProperties.as_view(),
          name="most_viewed_properties"),
+    path('createfeedback/<slug:slug>',
+         views.CreateFeedbackView.as_view(), name="create_feedback")
 
 ]

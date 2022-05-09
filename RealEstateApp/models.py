@@ -65,7 +65,7 @@ class Property(models.Model):
     contact_number = models.BigIntegerField()
     cancellation = models.CharField(
         max_length=10, choices=STATUS_CANCELLATION, default='free')
-    Description = models.CharField(max_length=1000)
+    Description = models.TextField()
     # features=TaggableManager()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
@@ -86,3 +86,20 @@ class MostViewed(models.Model):
 
     def __str__(self):
         return self.property.property_name
+
+
+class FeedBackProperty(models.Model):
+    id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=250)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='feedback')
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE)
+    feedback = models.TextField()
+
+    def __str__(self):
+        return self.slug
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.property.property_name)
+        super(FeedBackProperty, self).save(*args, **kwargs)
