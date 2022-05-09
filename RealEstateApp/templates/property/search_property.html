@@ -8,7 +8,8 @@
     {% if not properties %} {% if not propertiess %}
     <h4 class="text-center">No Property found</h4>
     {% endif %} {% endif %} {% for property in properties %}
-    <div class="card" style="width: 12rem">
+    <div class="card mt-4" style="width: 12rem">
+    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
       <div class="card-body">
         <p class="card-text text-danger" style="font-size: 0.6rem">
           &nbsp;&nbsp;{{property.property.room_type}} -
@@ -22,7 +23,9 @@
       </div>
     </div>
     {% endfor %} {% for property in propertiess %}
-    <div class="card me-2" style="width: 12rem">
+    <div class="card me-2 mt-4" style="width: 12rem">
+    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+    
       <div class="card-body">
         <p class="card-text text-danger" style="font-size: 0.6rem">
           {{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}

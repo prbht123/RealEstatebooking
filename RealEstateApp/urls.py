@@ -10,5 +10,11 @@ urlpatterns = [
          views.PropertyUpdateView.as_view(), name='Update_property'),
     path('deleteproperty/<slug:slug>',
          views.PropertyDeleteView.as_view(), name='delete_property'),
+    path('detailproperty/<slug:slug>',
+         views.PropertyDetailView.as_view(), name="detail_property"),
+    path('mostviewed/', views.MosetViewdProperty.as_view(),
+         name="most_viewed_property"),
+    path('mostviewedproperties/', views.MosetViewdProperties.as_view(),
+         name="most_viewed_properties"),
 
 ]
