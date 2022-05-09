@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'AccountUser',
     'widget_tweaks',
     'AdminUser',
+    'paypal.standard.ipn',
+    'payment'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,7 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+PAYPAL_RECEIVER_EMAIL = config('EMAIL_HOST_USER')
+PAYPAL_TEST = True

@@ -1,57 +1,40 @@
-{% extends "base.html" %} {% block content %} {% if request.user.is_staff %}
-<a
-  class="btn btn-outline-primary ml-4 mt-4"
-  type="submit"
-  href="{% url 'admin_user:admin_home' %}"
-  >Go to DashBoard Of Admin</a
->
-{% else %} {{request.user.username}}
-<h2>User</h2>
-<a class="btn btn-outline-primary ml-4 mt-4" type="submit" href="/"
-  >Go to DashBoard Of User</a
->
-{% endif %}
-<h2>This is home page...</h2>
+{% extends "base.html" %} {% block content %} 
+<div class="container">
 <form class="d-flex" action="/searchproperty/">
+<div class="row ">
+<div class="col-ms-4">
   <input
     name="city"
-    class="form-control"
+    class=" mt-2"
     type="text"
     placeholder="City"
-    style="width: 120%"
+    style="width: 40%"
   />
   <input
     name="street"
-    class="form-control"
+    class=" mt-2"
     type="text"
     placeholder="Street"
-    style="width: 120%"
+    style="width: 40%"
   />
-  <br />
-  {% comment %}
-  <input
-    name="country"
-    class="form-control"
-    type="text"
-    placeholder="Country"
-    style="width: 120%"
-  />
-  {% endcomment %}
-
+  </div>
+ <div class="col-ms-6">
   <input
     name="checkintime"
-    class="form-control"
+    class=" mt-2"
     type="date"
     placeholder="Check-In Time"
-    style="width: 120%"
+    style="width: 40%"
   />
   <input
     name="checkouttime"
-    class="form-control"
+    class=" mt-2"
     type="date"
     placeholder="Check-out-time"
-    style="width: 120%"
+    style="width: 40%"
   />
+  </div>
+ </div>
   <button
     class="btn btn-lg"
     type="submit"
@@ -60,5 +43,7 @@
   >
     Search
   </button>
+
 </form>
+</div>
 {% endblock %}
