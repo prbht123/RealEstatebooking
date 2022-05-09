@@ -4,7 +4,7 @@ from .models import UserProfile
 from RealEstateApp.models import Address
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 # Create your views here.
 
 
@@ -56,3 +56,32 @@ class CreateUserProfileView(CreateView):
         data.image = self.request.FILES['myFile']
         data.save()
         return redirect('/')
+
+
+class UpdateProfileView(UpdateView):
+    model = UserProfile
+    form_class = UserProfileForm
+    template_name = 'user/update_user_profile.html'
+    success_url = '/'
+
+    def get_form_kwargs(self, **kwargs):
+        print(self.request.POST.get('first_name'))
+        kwargs = super(UpdateProfileView, self).get_form_kwargs()
+        address = Address.objects.get(id=kwargs['instance'].address.id)
+        address.city = self.request.POST.get('city')
+        address.street = self.request.POST.get('street')
+        address.state = self.request.POST.get('state')
+        address.country = self.request.POST.get('country')
+        address.zip_code = self.request.POST.get('zip_code')
+        address.save()
+        user = User.objects.get(id=kwargs['instance'].user.id)
+        # user.first_name = self.request.POST.get('first_name')
+        # user.last_name = self.request.POST.get('last_name')
+        # user.save()
+        kwargs['instance'].user = user
+        kwargs['instance'].address = address
+        if self.request.FILES:
+            kwargs['instance'].image = self.request.FILES['myFile']
+        # kwargs['instance'].address.save()
+        kwargs.update()
+        return kwargs

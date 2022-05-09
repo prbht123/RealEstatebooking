@@ -9,7 +9,7 @@ from RealEstateApp.models import Address
 class UserProfile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='user_profile')
+        User, on_delete=models.CASCADE, null=True, related_name='user_profile')
     slug = models.SlugField(max_length=250)
     contact_number = models.BigIntegerField()
     address = models.ForeignKey(
