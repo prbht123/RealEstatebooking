@@ -5,6 +5,7 @@ from django.db.models import DateTimeField
 from django.utils import timezone
 import uuid
 from RealEstateApp.models import Address, Property
+from django.utils.text import slugify
 #from RealEstate_App.models import Address, Property
 
 
@@ -40,6 +41,7 @@ GENDER_CHOICES = (
 class Booking(models.Model):
 
     id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=250)
     gender = models.CharField(
         max_length=100, choices=GENDER_CHOICES, default='M')
     firstname = models.CharField(max_length=100)
@@ -51,9 +53,15 @@ class Booking(models.Model):
     date_from = models.DateTimeField()
     date_until = models.DateTimeField()
     creation_date = models.DateTimeField(default=timezone.now, null=True)
+    updated_date = models.DateTimeField(auto_now=True)
     #created_date = models.DateTimeField(auto_now_add=True)
     booking_status = models.CharField(
         max_length=100, choices=STATUS_BOOKING, default='initiated')
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     cost = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    paid = models.BooleanField(default=False)
     notes = models.TextField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.property.property_name)
+        super(Booking, self).save(*args, **kwargs)
