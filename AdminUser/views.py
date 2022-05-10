@@ -1,11 +1,13 @@
 from audioop import reverse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 import datetime
 from BookingApp.models import Booking
 from RealEstateApp.models import Property
-from .forms import AdminUserRegistrationForm
-from django.views.generic import UpdateView
+from .forms import AdminUserRegistrationForm, AdminUserRolesForm
+from django.views.generic import UpdateView, CreateView
+from django.contrib.auth.models import Permission
 # Create your views here.
 
 
@@ -80,3 +82,31 @@ def DeleteAdminUser(request, pk):
         return redirect('admin_user:manage_users')
     except Exception as e:
         raise e
+
+
+class CreateRoleAdmin(CreateView):
+    form_class = AdminUserRolesForm
+    template_name = 'admin/roles/create_role_admin_user.html'
+
+    # def get_context_data(self, **kwargs):
+    #     print(self.kwargs)
+    #     user = User.objects.get(id=self.kwargs['pk'])
+    #     return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        data = form.save(commit=False)
+        print(self.kwargs['pk'])
+        user = User.objects.get(id=self.kwargs['pk'])
+        data.user = user
+        data.save()
+        return redirect('/')
+
+
+def Display(request):
+    user = User.objects.get(is_staff=True, username='user14')
+    # print(user.user_permissions)
+    permissionsss = Permission.objects.all()
+    user.user_permissions.add(permissionsss[0].id)
+    print(user.user_permissions)
+    print(permissionsss)
+    return HttpResponse(user)
