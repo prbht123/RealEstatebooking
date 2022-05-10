@@ -6,8 +6,8 @@ import datetime
 from BookingApp.models import Booking
 from RealEstateApp.models import Property
 from .forms import AdminUserRegistrationForm, AdminUserRolesForm
-from django.views.generic import UpdateView, CreateView
-from django.contrib.auth.models import Permission
+from .models import AdminUserRoles
+from django.views.generic import UpdateView, CreateView, ListView, DeleteView
 # Create your views here.
 
 
@@ -88,25 +88,33 @@ class CreateRoleAdmin(CreateView):
     form_class = AdminUserRolesForm
     template_name = 'admin/roles/create_role_admin_user.html'
 
-    # def get_context_data(self, **kwargs):
-    #     print(self.kwargs)
-    #     user = User.objects.get(id=self.kwargs['pk'])
-    #     return super().get_context_data(**kwargs)
-
     def form_valid(self, form):
         data = form.save(commit=False)
-        print(self.kwargs['pk'])
         user = User.objects.get(id=self.kwargs['pk'])
         data.user = user
         data.save()
         return redirect('/')
 
 
-def Display(request):
-    user = User.objects.get(is_staff=True, username='user14')
-    # print(user.user_permissions)
-    permissionsss = Permission.objects.all()
-    user.user_permissions.add(permissionsss[0].id)
-    print(user.user_permissions)
-    print(permissionsss)
-    return HttpResponse(user)
+class RoleUpdateView(UpdateView):
+    model = AdminUserRoles
+    form_class = AdminUserRolesForm
+    template_name = 'admin/roles/create_role_admin_user.html'
+    success_url = '/adminuser/manageuser'
+
+    def get_form_kwargs(self):
+        kwargs = super(RoleUpdateView, self).get_form_kwargs()
+        kwargs.update()
+        return kwargs
+
+
+class AdminManageUsersRoles(ListView):
+    template_name = 'admin/roles/manage_admin_user_roles.html'
+    model = AdminUserRoles
+    context_object_name = 'adminuserroles'
+
+
+class DeleteAdminUserRoles(DeleteView):
+    model = AdminUserRoles
+    template_name = 'admin/roles/delete_admin_user_roles.html'
+    success_url = '/adminuser/manageuser'

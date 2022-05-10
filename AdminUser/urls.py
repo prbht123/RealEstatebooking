@@ -10,5 +10,10 @@ urlpatterns = [
     path('delete/<int:pk>', views.DeleteAdminUser,
          name="delete_admin_user"),
     path('createrole/<int:pk>', views.CreateRoleAdmin.as_view(), name='create_role'),
-    path('display/', views.Display)
+    path('manageuserrole/', views.AdminManageUsersRoles.as_view(),
+         name="manage_admin_role"),
+    path('editrole/<slug:slug>', views.RoleUpdateView.as_view(),
+         name="edit_role_admin_user"),
+    path('deleterole/<slug:slug>', views.DeleteAdminUserRoles.as_view(),
+         name="delete_role_admin_user")
 ]

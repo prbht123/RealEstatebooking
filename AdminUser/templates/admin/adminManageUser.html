@@ -19,7 +19,7 @@
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
       <td>
-        <a class="text-decoration-none" href="#">Edit</a>
+        {% comment %} <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' pk=user.id %}">Edit</a> {% endcomment %}
         <a class="text-decoration-none" href="{% url 'admin_user:delete_admin_user' pk=user.id %}">Delete</a>
       </td>
     </tr>

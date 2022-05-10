@@ -117,7 +117,7 @@ class PropertyDetailView(DetailView):
         return context
 
 
-class MosetViewdProperty(ListView):
+class MosetViewedProperty(ListView):
     template_name = 'property/most_viewed_property.html'
     model = Property
     context_object_name = 'properties'
@@ -129,7 +129,7 @@ class MosetViewdProperty(ListView):
         return context
 
 
-class MosetViewdProperties(ListView):
+class MosetViewedProperties(ListView):
     template_name = 'property/most_viewed_all_properties.html'
     model = Property
     context_object_name = 'properties'
