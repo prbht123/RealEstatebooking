@@ -21,8 +21,19 @@
      
       <p><h5>  Cost : {{property.cost}} </h5></p>
     
-   
+    <div class="container">
+      <h4>Ranking - {{ranking.rank__avg}}  </h4>
+    </div>
  
+  <div class="container">
+    <h4>Feedback of {{property.property_name}} </h4>
+     {% for feedback_item in feedback %}
+        <div class="card-body">
+             <p>{{ feedback_item.feedback }}</p>
+        </div>
+
+     {% endfor %}
+  </div> 
       
 
 
