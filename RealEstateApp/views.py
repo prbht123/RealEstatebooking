@@ -8,6 +8,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.forms.formsets import formset_factory
 from django.db.models import Q
 from django.urls import reverse
+from django.db.models import Avg
 # Create your views here.
 
 
@@ -105,6 +106,10 @@ class PropertyDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['property'] = Property.objects.filter(slug=self.object.slug)[0]
+        context['ranking'] = RankingProperty.objects.filter(
+            property__slug=self.object.slug).aggregate(Avg('rank'))
+        context['feedback'] = FeedBackProperty.objects.filter(
+            property__slug=self.object.slug)
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
         count.viewed = count.viewed + 1
