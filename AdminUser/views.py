@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import datetime
 from BookingApp.models import Booking
 from RealEstateApp.models import Property
+from .forms import AdminUserRegistrationForm
 # Create your views here.
 
 
@@ -46,3 +47,24 @@ def AdminManageUsers(request):
         'admin_users': admin_users
     }
     return render(request, 'admin/adminManageUser.html', context)
+
+
+def AdminRegisterUser(request):
+    if request.method == 'POST':
+        user_form = AdminUserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.is_staff = True
+            # Save the User object
+            new_user.save()
+        else:
+            error = "This user is already exist"
+            return render(request, 'registration/create_admin_register_user.html', {'user_form': user_form, 'error': error})
+
+        return render(request, 'registration/admin_register_user_done.html', {'new_user': new_user})
+    else:
+        user_form = AdminUserRegistrationForm()
+        return render(request, 'registration/create_admin_register_user.html', {'user_form': user_form})
