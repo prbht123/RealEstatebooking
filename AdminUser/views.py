@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from audioop import reverse
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 import datetime
 from BookingApp.models import Booking
 from RealEstateApp.models import Property
 from .forms import AdminUserRegistrationForm
+from django.views.generic import UpdateView
 # Create your views here.
 
 
@@ -68,3 +70,13 @@ def AdminRegisterUser(request):
     else:
         user_form = AdminUserRegistrationForm()
         return render(request, 'registration/create_admin_register_user.html', {'user_form': user_form})
+
+
+def DeleteAdminUser(request, pk):
+    try:
+        user = User.objects.get(id=pk)
+        user.is_staff = False
+        user.save()
+        return redirect('admin_user:manage_users')
+    except Exception as e:
+        raise e
