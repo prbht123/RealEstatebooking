@@ -16,12 +16,12 @@ li {
 
 /* NAVBAR STYLING STARTS */
 .navbar {
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 20px;
- background-color: teal;
- color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: teal;
+    color: #fff;
 }
 .nav-links a {
  color: #fff;

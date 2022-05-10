@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from .import views
 
 
 app_name = 'booking'
@@ -10,6 +10,7 @@ urlpatterns = [
     path('update/<int:id>/',views.update_view ),
     path('delete/<int:id>/',views.delete_view ),
     path('home1/', views.homepage),
+    path('contact/',views.Contact.as_view()),
     ]
 
 

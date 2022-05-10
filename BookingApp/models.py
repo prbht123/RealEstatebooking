@@ -57,3 +57,12 @@ class Booking(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     cost = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     notes = models.TextField()
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100, null=True, verbose_name='Name')
+    email = models.EmailField(null=True)
+    mobile_number = models.BigIntegerField(null=True)
+    messages = models.TextField(null=True)
+    def __str__(self):
+        return f"{ self.name }" 
+

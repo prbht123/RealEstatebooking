@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import BookingForm
-from .models import Booking,Address
+from .models import Booking,Address,Contact
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.shortcuts import (get_object_or_404,render,HttpResponseRedirect)
+from django.views.generic import TemplateView
  
 
 
@@ -72,9 +73,26 @@ def delete_view(request, id):
 def homepage(request):
     return render(request, 'bookingpage/home1.html')
 
+class Contact(TemplateView):
+    template_name = 'bookingpage/contact.html'
+    def ContactUpload(request):
+        if request.method == 'POST':
+            obj = ContactDetail(
+            name = request.POST.get('name'),
+            email = request.POST.get('email'),
+            mobile_number = request.POST.get('mobile'),
+            messages = request.POST.get('message')
+            )
+            obj.save()
+            cd={
+            'to':'Admin123@YOPmail.com'
+            }
+            msg=request.POST.get('message')
+            send_mail("subject",msg,request.POST.get('email'),[cd['to']])
+            messages.success(request,"Contact sent successfully")
+            return redirect('/bookingpage/contact/')
 
-def contactus(request):
-    return render(request, 'bookingpage/contactus.html')
+
 
 
 
