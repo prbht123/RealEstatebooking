@@ -2,6 +2,6 @@
 <h1>Welcome {{ new_user.username }}!</h1>
 <p>
   Your account has been successfully created. Now you can :
-  <a href="{% url 'admin_user:admin_home' %}">Goto Dashboard of admin</a>.
+  <a href="{% url 'admin_user:create_role' pk=new_user.id %}">Add roles</a>.
 </p>
 {% endblock %}
