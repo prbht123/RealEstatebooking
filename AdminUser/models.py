@@ -11,11 +11,11 @@ class AdminUserRoles(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="admin_user_role")
     roles = models.ForeignKey(
-        Permission, on_delete=models.CASCADE, related_name='roles')
+        Permission, on_delete=models.CASCADE, null=True, related_name='roles')
 
     def __str__(self):
         return self.slug
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.roles)
+        self.slug = slugify(self.user.username)
         super(AdminUserRoles, self).save(*args, **kwargs)
