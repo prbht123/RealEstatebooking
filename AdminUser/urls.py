@@ -7,4 +7,6 @@ urlpatterns = [
     path('', views.AdminHome, name="admin_home"),
     path('manageuser', views.AdminManageUsers, name="manage_users"),
     path('register/', views.AdminRegisterUser, name='admin_register_user'),
+    path('delete/<int:pk>', views.DeleteAdminUser,
+         name="delete_admin_user")
 ]
