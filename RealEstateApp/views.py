@@ -16,7 +16,10 @@ def home(request):
     return render(request, 'home.html')
 
 
-class CreateProperty(CreateView):
+class createProperty(CreateView):
+    """
+        Creted property functionality.
+    """
     model = Property
     form_class = PropertyForm
     template_name = 'property/create_property.html'
@@ -31,15 +34,18 @@ class CreateProperty(CreateView):
         return redirect('/')
 
 
-class ListProperty(ListView):
+class listProperty(ListView):
+    """
+        List out the all properties.
+    """
     template_name = 'property/list_property.html'
     model = Property
     context_object_name = 'properties'
 
 
-class SearchProperty(ListView):
+class searchProperty(ListView):
     """
-    Class view functon to handle search
+    Class view functon to handle search as location,check-in and check-out wise.
     """
     template_name = 'property/search_property.html'
     model = Property
@@ -75,7 +81,7 @@ class SearchProperty(ListView):
         return context
 
 
-class PropertyUpdateView(UpdateView):
+class propertyUpdateView(UpdateView):
     """
         This class is used for updating of a particular property.
     """
@@ -85,20 +91,23 @@ class PropertyUpdateView(UpdateView):
     success_url = '/'
 
     def get_form_kwargs(self):
-        kwargs = super(PropertyUpdateView, self).get_form_kwargs()
+        kwargs = super(propertyUpdateView, self).get_form_kwargs()
         kwargs.update()
         return kwargs
 
 
-class PropertyDeleteView(DeleteView):
+class propertyDeleteView(DeleteView):
+    """
+        Delete view function for particular property.
+    """
     model = Property
     template_name = 'property/property_delete.html'
     success_url = '/'
 
 
-class PropertyDetailView(DetailView):
+class propertyDetailView(DetailView):
     """
-        This class is used for showing a particular blog's detail.
+        This class is used for showing a particular property's detail.
     """
     model = Property
     template_name = 'property/property_detail.html'
@@ -117,19 +126,25 @@ class PropertyDetailView(DetailView):
         return context
 
 
-class MosetViewedProperty(ListView):
+class mosetViewedProperty(ListView):
+    """
+        Top 5 Mostviewed property functionality.
+    """
     template_name = 'property/most_viewed_property.html'
     model = Property
     context_object_name = 'properties'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
+        context['properties'] = MostViewed.objects.all().order_by('-viewed')[:5]
         print(context['properties'])
         return context
 
 
-class MosetViewedProperties(ListView):
+class mosetViewedProperties(ListView):
+    """
+        List out the all properties as mostviewed. 
+    """
     template_name = 'property/most_viewed_all_properties.html'
     model = Property
     context_object_name = 'properties'
@@ -141,7 +156,10 @@ class MosetViewedProperties(ListView):
         return context
 
 
-class CreateFeedbackView(CreateView):
+class createFeedbackView(CreateView):
+    """
+        Created feedback for a particular property.
+    """
     model = FeedBackProperty
     form_class = FeedbackForm
     template_name = 'feedback/create_feedback_property.html'
@@ -155,7 +173,10 @@ class CreateFeedbackView(CreateView):
         return redirect('/')
 
 
-class CreateRankingView(CreateView):
+class createRankingView(CreateView):
+    """
+        Give the ranck to a property.
+    """
     model = RankingProperty
     form_class = RankingPropertyForm
     template_name = 'ranking/create_ranking_property.html'

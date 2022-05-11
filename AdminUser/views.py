@@ -11,7 +11,10 @@ from django.views.generic import UpdateView, CreateView, ListView, DeleteView
 # Create your views here.
 
 
-def AdminHome(request):
+def adminHome(request):
+    """
+        Admin dashboard page.
+    """
     count_users = User.objects.all().count()
     date_from = datetime.datetime.now() - datetime.timedelta(days=1)
     month_from = datetime.datetime.now() - datetime.timedelta(days=30)
@@ -44,7 +47,10 @@ def AdminHome(request):
     return render(request, 'admin/adminDashboard.html', context)
 
 
-def AdminManageUsers(request):
+def adminManageUsers(request):
+    """
+        List out the all admin users.
+    """
     admin_users = User.objects.filter(is_staff=True)
     print(admin_users[0].email)
     context = {
@@ -53,7 +59,10 @@ def AdminManageUsers(request):
     return render(request, 'admin/adminManageUser.html', context)
 
 
-def AdminRegisterUser(request):
+def adminRegisterUser(request):
+    """
+        Admin user can register new admin users.
+    """
     if request.method == 'POST':
         user_form = AdminUserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -74,7 +83,10 @@ def AdminRegisterUser(request):
         return render(request, 'registration/create_admin_register_user.html', {'user_form': user_form})
 
 
-def DeleteAdminUser(request, pk):
+def deleteAdminUser(request, pk):
+    """
+        Admin user can remove admin users and add as a normal user.
+    """
     try:
         user = User.objects.get(id=pk)
         user.is_staff = False
@@ -84,7 +96,10 @@ def DeleteAdminUser(request, pk):
         raise e
 
 
-class CreateRoleAdmin(CreateView):
+class createRoleAdmin(CreateView):
+    """
+        Admin user can add the roles to particular admin users.
+    """
     form_class = AdminUserRolesForm
     template_name = 'admin/roles/create_role_admin_user.html'
 
@@ -96,25 +111,34 @@ class CreateRoleAdmin(CreateView):
         return redirect('/')
 
 
-class RoleUpdateView(UpdateView):
+class roleUpdateView(UpdateView):
+    """
+        Admin users can update the roles of admin users.
+    """
     model = AdminUserRoles
     form_class = AdminUserRolesForm
     template_name = 'admin/roles/create_role_admin_user.html'
     success_url = '/adminuser/manageuser'
 
     def get_form_kwargs(self):
-        kwargs = super(RoleUpdateView, self).get_form_kwargs()
+        kwargs = super(roleUpdateView, self).get_form_kwargs()
         kwargs.update()
         return kwargs
 
 
-class AdminManageUsersRoles(ListView):
+class adminManageUsersRoles(ListView):
+    """
+        Admin users can see the all roles with admin users.
+    """
     template_name = 'admin/roles/manage_admin_user_roles.html'
     model = AdminUserRoles
     context_object_name = 'adminuserroles'
 
 
-class DeleteAdminUserRoles(DeleteView):
+class deleteAdminUserRoles(DeleteView):
+    """
+        Admin users can delete the roles of admin users.
+    """
     model = AdminUserRoles
     template_name = 'admin/roles/delete_admin_user_roles.html'
     success_url = '/adminuser/manageuser'
