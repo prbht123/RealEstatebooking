@@ -174,3 +174,18 @@ class CreateRankingView(CreateView):
             data.save()
 
         return redirect('/')
+
+
+class propertyNameSearchView(ListView):
+    """
+        Property wise search bar functionality.
+    """
+    template_name = 'property/search_with_property_name.html'
+    model = Property
+
+    def get_context_data(self, **kwargs):
+        property = self.request.GET.get('property')
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Property.objects.filter(
+            property_name__icontains=property)
+        return context

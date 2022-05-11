@@ -19,8 +19,9 @@ urlpatterns = [
     path('createfeedback/<slug:slug>',
          views.CreateFeedbackView.as_view(), name="create_feedback_property"),
     path('createranking/<slug:slug>',
-         views.CreateRankingView.as_view(), name="create_ranking_property")
+         views.CreateRankingView.as_view(), name="create_ranking_property"),
     #  path('listrankfeedbackproperty/<slug:slug>',
     #      views.ListRankFeedbackProperty.as_view(), name="list_rank_feedback_property")
-
+    path('searchpropertyname/', views.propertyNameSearchView.as_view(),
+         name='search_with_property_name'),
 ]
