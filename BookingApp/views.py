@@ -73,6 +73,9 @@ def delete_view(request, id):
 def homepage(request):
     return render(request, 'bookingpage/home1.html')
 
+def why_us(request):
+    return render(request, 'bookingpage/why_us.html')
+
 class Contact(TemplateView):
     template_name = 'bookingpage/contact.html'
     def ContactUpload(request):

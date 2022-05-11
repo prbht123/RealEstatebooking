@@ -10,6 +10,7 @@ urlpatterns = [
     path('update/<int:id>/',views.update_view ),
     path('delete/<int:id>/',views.delete_view ),
     path('home1/', views.homepage),
+    path('why_us/',views.why_us),
     path('contact/',views.Contact.as_view()),
     ]
 
