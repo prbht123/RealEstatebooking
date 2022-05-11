@@ -189,3 +189,19 @@ class propertyNameSearchView(ListView):
         context['properties'] = Property.objects.filter(
             property_name__icontains=property)
         return context
+
+
+class imagesRecentPropertiesSliderView(ListView):
+    """
+        Get images from recent added properties functionality.
+    """
+    template_name = 'property/list_property.html'
+    model = Property
+
+    def get_context_data(self, **kwargs):
+        property = self.request.GET.get('property')
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Property.objects.all().order_by(
+            '-created_date')[:8]
+        print(context['properties'])
+        return context
