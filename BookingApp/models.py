@@ -69,7 +69,7 @@ class Contact(models.Model):
     mobile_number = models.BigIntegerField(null=True)
     messages = models.TextField(null=True)
     def __str__(self):
-        return f"{ self.name }" 
+        return f"{ self.email }" 
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property.property_name)

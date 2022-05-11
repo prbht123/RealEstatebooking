@@ -76,7 +76,7 @@ def homepage(request):
 def why_us(request):
     return render(request, 'bookingpage/why_us.html')
 
-class Contact(TemplateView):
+class ContactView(TemplateView):
     template_name = 'bookingpage/contact.html'
     def ContactUpload(request):
         if request.method == 'POST':
@@ -88,7 +88,7 @@ class Contact(TemplateView):
             )
             obj.save()
             cd={
-            'to':'Admin123@YOPmail.com'
+            'to':'saumyaranjan.webkrone@gmail.com'
             }
             msg=request.POST.get('message')
             send_mail("subject",msg,request.POST.get('email'),[cd['to']])
