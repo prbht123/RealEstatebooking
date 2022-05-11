@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %} 
-<div class="container">
+{% comment %} <div class="container">
 <form class="d-flex" action="/searchproperty/">
 <div class="row ">
 <div class="col-ms-4">
@@ -65,5 +65,7 @@
     Search
   </button>
   </form>
-</div>
+</div> {% endcomment %}
+ {% include 'booking/booking_table.html' %}
+   {% include 'home/footer.html' %} 
 {% endblock %}
