@@ -1,0 +1,17 @@
+{% include 'base.html' %}{% load widget_tweaks %} 
+<div class="container col-sm-6">
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+  <div class="form-group mt-1">
+   <p>Roles...</p>
+    {% render_field field class="form-control mb-2" placeholder=field.label %}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+  <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+</form>
+</div>

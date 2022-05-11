@@ -1,10 +1,13 @@
+
 {% extends 'bookingpage/base.html'%}
 {% load static %}
 {% block content %}
-<h1>Add The Property</h1>
-
+<h1>Add The Booking</h1>
+<div>
 <form method="post" action="/booking/list_view/">
   {% csrf_token %} {{form.as_p}}
   <button type="submit" class="btn btn-primary">Submit</button>
+
 </form>
+</div>
 {% endblock %}

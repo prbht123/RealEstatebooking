@@ -9,7 +9,6 @@
    <link rel="stylesheet" href="{% static 'css/img_slider.css' %}"/>
    <link rel="stylesheet" href="{% static 'css/booking_table.css' %}"/>
    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
-   <link rel="stylesheet" href="{% static 'css/contact.css' %}"/>
    <link rel="stylesheet" href="{% static 'css/recommended.css' %}"/>
    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
@@ -23,6 +22,7 @@
    <title>Document</title>
  </head>
  <body>
+  <div>
    <nav class="navbar">
      <!-- LOGO -->
      <div class="logo">Hotel Booking</div>
@@ -43,7 +43,9 @@
        </div>
      </ul>
    </nav>
+ </div>
    {% block content %}
+   
    {% endblock %}
    {% include 'bookingpage/img_slider.html'%}
    {% include 'bookingpage/booking_table.html'%}

@@ -93,16 +93,13 @@ class Contact(TemplateView):
             return redirect('/bookingpage/contact/')
 
 
-
-
-
-
-
-
-
-
-
-
- 
-
+    def form_valid(self, form):
+        data = form.save(commit=False)
+        data.paid = False
+        data.save()
+        print(data)
+        print(data)
+        print(data.property)
+        print(data.property.slug)
+        return redirect('payment:process', slug=data.property.slug)
 

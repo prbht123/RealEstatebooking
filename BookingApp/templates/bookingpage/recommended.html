@@ -46,20 +46,29 @@
             <div class="col-12">
                 <h2 class="mb-3 text-danger">Most Viewed</h2>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card my-3">
-                    <div class="card-thumbnail">
-                        <img src="https://www.markuptag.com/images/image-four.jpg" class="img-fluid" alt="thumbnail">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="#" class="text-secondary">What is Lorem Ipsum?</a></h3>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
-                        <a href="#" class="btn btn-danger">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
+            <div class="container justify-content-center mt-4">
+  <div class="row">
+    {% for property in properties %}
+    <div class="card me-2 mt-4" style="width: 12rem">
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+      <div class="card-body">
+        <p class="card-text text-danger" style="font-size: 0.6rem">
+          {{property.property.room_type}} - {{property.property.beds}} {% if property.property.beds == 1 %}
+          Bed {% else %} Beds {% endif %}
+        </p>
+        <p class="card-title h6">{{property.property.property_name}}</p>
+        <p class="card-text" style="font-size: 0.6rem">
+          R${{property.property.cost}} Per Night
+        </p>
+      </div>
+    </div>
+    {% if forloop.counter == 4 %}
+       <a href="/mostviewedproperties/" >Read More...</a>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+            <!-- <div class="col-md-6 col-lg-4">
                 <div class="card my-3">
                     <div class="card-thumbnail">
                         <img src="https://www.markuptag.com/images/image-five.jpg" class="img-fluid" alt="thumbnail">
@@ -85,5 +94,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </section>

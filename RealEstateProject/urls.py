@@ -15,9 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('paypal/', include('paypal.standard.ipn.urls')),
     path('', include('RealEstateApp.urls')),
     path('booking/', include('BookingApp.urls', namespace='booking')),
+    path('accounts/', include('AccountUser.urls', namespace='account')),
+    path('adminuser/', include('AdminUser.urls', namespace='admin_user')),
+    # path('payment/', include('payment.urls', namespace="payment")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

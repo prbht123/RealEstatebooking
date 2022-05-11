@@ -4,11 +4,13 @@ body {font-family: Verdana, sans-serif;}
 img {vertical-align: middle;}
 
 /* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
+/*.slideshow-container {
+  max-width: 1900px;
   position: relative;
   margin: auto;
-}
+}*/
+
+
 
 /* Caption text */
 .text {
