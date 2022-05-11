@@ -18,7 +18,7 @@
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
       <td>
-         <a class="text-decoration-none" href="">Add admin</a> 
+         <a class="text-decoration-none" href="{% url 'admin_user:convert_admin_from_normal_user' pk=user.id %}">Add admin</a> 
         <a class="text-decoration-none" href="">Delete Users</a>
       </td>
     </tr>

@@ -155,3 +155,14 @@ class listAllUsersView(ListView):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.filter(is_staff=False)
         return context
+
+
+def convertNormalUserToAdmin(request, pk):
+    """
+        Admin users can make admin user from normal user.
+    """
+    if request.user.is_staff == True:
+        user = User.objects.get(id=pk)
+        user.is_staff = True
+        user.save()
+        return redirect('admin_user:normal_users')
