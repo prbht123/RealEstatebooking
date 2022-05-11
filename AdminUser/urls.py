@@ -16,5 +16,7 @@ urlpatterns = [
          name="edit_role_admin_user"),
     path('deleterole/<slug:slug>', views.deleteAdminUserRoles.as_view(),
          name="delete_role_admin_user"),
-    path('normalusers/', views.listAllUsersView.as_view(), name='normal_user'),
+    path('normalusers/', views.listAllUsersView.as_view(), name='normal_users'),
+    path('convertadmin/<int:pk>', views.convertNormalUserToAdmin,
+         name='convert_admin_from_normal_user'),
 ]
