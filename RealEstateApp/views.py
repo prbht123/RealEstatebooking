@@ -13,7 +13,9 @@ from django.db.models import Avg
 
 
 def home(request):
-    return render(request, 'home.html')
+    context = {}
+    context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
+    return render(request, 'home.html', context)
 
 
 class createProperty(CreateView):
