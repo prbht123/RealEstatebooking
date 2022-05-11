@@ -6,4 +6,6 @@ urlpatterns = [
     path('create/', views.createBooking.as_view(), name='create_booking'),
     path('update/<slug:slug>/',
          views.bookingUpdateView.as_view(), name='Update_booking'),
+    path('delete/<slug:slug>',
+         views.bookingDeleteView.as_view(), name='delete_booking'),
 ]

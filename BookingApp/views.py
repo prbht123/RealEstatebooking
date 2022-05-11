@@ -34,3 +34,12 @@ class bookingUpdateView(UpdateView):
         print(kwargs['instance'])
         kwargs.update()
         return kwargs
+
+
+class bookingDeleteView(DeleteView):
+    """
+        Delete view function for particular booking.
+    """
+    model = Booking
+    template_name = 'booking/delete_booking.html'
+    success_url = '/'
