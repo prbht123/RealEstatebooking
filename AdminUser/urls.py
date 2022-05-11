@@ -19,4 +19,6 @@ urlpatterns = [
     path('normalusers/', views.listAllUsersView.as_view(), name='normal_users'),
     path('convertadmin/<int:pk>', views.convertNormalUserToAdmin,
          name='convert_admin_from_normal_user'),
+    path('deleteuser/<int:pk>/', views.deleteUsersByAdminUsers.as_view(),
+         name='delete_users_by_admin')
 ]

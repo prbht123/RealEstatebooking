@@ -166,3 +166,12 @@ def convertNormalUserToAdmin(request, pk):
         user.is_staff = True
         user.save()
         return redirect('admin_user:normal_users')
+
+
+class deleteUsersByAdminUsers(DeleteView):
+    """
+        Deleted user by admin users functionality.
+    """
+    model = User
+    template_name = 'admin/users/user_delete_by_admin.html'
+    success_url = '/adminuser/normalusers/'
