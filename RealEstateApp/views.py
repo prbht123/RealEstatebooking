@@ -61,20 +61,25 @@ class searchProperty(ListView):
         if check_in_time and check_out_time:
             context['booking'] = Booking.objects.filter(
                 Q(date_until__lt=check_in_time) | Q(date_from__gt=check_out_time))
-            if context['booking']:
-                context['booking'] = context['booking'].exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
+            if not context['booking']:
+                context['booking'] = Booking.objects.all().exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
                     date_from__lte=check_out_time, date_until__gte=check_out_time))
-            if context['booking']:
-                context['booking'] = context['booking'].exclude(
-                    date_from__lte=check_in_time, date_until__gte=check_out_time)
+                if not context['booking']:
+                    context['booking'] = Booking.objects.filter(
+                        date_from__lte=check_in_time, date_until__gte=check_out_time)
+
             if city and street:
-                context['properties'] = context['booking'].filter(
-                    property__Address__street=street, property__Address__city=city)
+                context['propertiess'] = Property.objects.filter(
+                    Address__street=street, Address__city=city)
+                if context['booking']:
+                    for book in context['booking']:
+                        context['propertiess'] = context['propertiess'].exclude(
+                            slug=book.property.slug)
             else:
                 context['properties'] = context['booking']
         elif city and street:
             context['propertiess'] = Property.objects.filter(
-                Address__street=street, Address__city=city)
+                Address__city=city, Address__street=street)
         else:
             context['propertiess'] = Property.objects.all()
 
