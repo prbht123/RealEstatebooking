@@ -15,5 +15,6 @@ urlpatterns = [
     path('editrole/<slug:slug>', views.roleUpdateView.as_view(),
          name="edit_role_admin_user"),
     path('deleterole/<slug:slug>', views.deleteAdminUserRoles.as_view(),
-         name="delete_role_admin_user")
+         name="delete_role_admin_user"),
+    path('normalusers/', views.listAllUsersView.as_view(), name='normal_user'),
 ]

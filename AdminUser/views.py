@@ -142,3 +142,16 @@ class deleteAdminUserRoles(DeleteView):
     model = AdminUserRoles
     template_name = 'admin/roles/delete_admin_user_roles.html'
     success_url = '/adminuser/manageuser'
+
+
+class listAllUsersView(ListView):
+    """
+        List out the all normal users which is registered.
+    """
+    template_name = 'admin/users/list_users.html'
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.filter(is_staff=False)
+        return context
