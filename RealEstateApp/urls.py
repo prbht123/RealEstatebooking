@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+app_name = 'realestateapp'
 urlpatterns = [
     path('', views.home, name='home'),
     path('createproperty/', views.createProperty.as_view(), name='create_property'),
