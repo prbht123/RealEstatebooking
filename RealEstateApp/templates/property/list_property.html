@@ -5,6 +5,7 @@
   <div class="row">
     {% for property in properties %}
     <div class="card me-2 mt-4" style="width: 12rem">
+    <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
     <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
       <div class="card-body">
         <p class="card-text text-danger" style="font-size: 0.6rem">
@@ -15,9 +16,10 @@
         <p class="card-text" style="font-size: 0.6rem">
           R${{property.cost}} Per Night
         </p>
-        <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >Read more...</a>
+       
       
       </div>
+      </a>
     </div>
     {% endfor %}
   </div>

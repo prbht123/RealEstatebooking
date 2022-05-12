@@ -126,6 +126,7 @@ class propertyDetailView(DetailView):
             property__slug=self.object.slug).aggregate(Avg('rank'))
         context['feedback'] = FeedBackProperty.objects.filter(
             property__slug=self.object.slug)
+        context['booking'] = list(Booking.objects.all())
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
         count.viewed = count.viewed + 1
