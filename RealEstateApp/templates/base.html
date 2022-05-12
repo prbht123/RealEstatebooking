@@ -31,7 +31,7 @@
        <!-- <label for="checkbox_toggle" class="hamburger">&#9776;</label> -->
        <!-- NAVIGATION MENUS -->
        <div class="menu">
-         <li><a href="/booking/home1/">Home</a></li>
+         <li><a href="/">Home</a></li>
          <li><a href="/">About</a></li>
          <li class="services">
            <a href="/">Services</a>
@@ -40,6 +40,15 @@
          </li>
          <li><a href="/">Hotel list</a></li>
          <li><a href="/booking/contact/">Contact</a></li>
+         {% if user.is_staff %}
+           <li><a href="/adminuser/">Admin Dashboard</a></li>
+         {% endif %}
+         {% if user.username %}
+          <li><a href="">{{user.username}}</a></li>
+           <li><a href="/accounts/logout/">Signout</a></li>
+          {% else %}
+          <li><a href="/accounts/login/">Signin</a></li>
+         {% endif %}
        </div>
      </ul>
    </nav>
