@@ -20,5 +20,6 @@ urlpatterns = [
          views.bookingUpdateView.as_view(), name='Update_booking'),
     path('delete/<slug:slug>',
          views.bookingDeleteView.as_view(), name='delete_booking'),
+    path('faq/',views.faq),
 ]
 

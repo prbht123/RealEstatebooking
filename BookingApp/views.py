@@ -134,9 +134,11 @@ class bookingUpdateView(UpdateView):
 
 
 class bookingDeleteView(DeleteView):
-    """
-        Delete view function for particular booking.
-    """
     model = Booking
     template_name = 'booking/delete_booking.html'
     success_url = '/'
+
+
+def faq(request):
+    return render(request, 'bookingpage/faq.html')
+
