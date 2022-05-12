@@ -1,7 +1,6 @@
 {% extends 'admin/adminPanel.html' %} {% block adminContent %}
 
-<h3>Manage Admin Users</h3>
-<a class="btn btn-primary" href="{% url 'admin_user:admin_register_user' %}">Add New Admin User</a>
+<h3>Manage normal Users</h3>
 <table class="table">
   <thead>
     <tr>
@@ -12,15 +11,15 @@
     </tr>
   </thead>
   <tbody>
-    {% for user in admin_users %}
+    {% for user in users %}
 
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
       <td>
-        {% comment %} <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' pk=user.id %}">Edit</a> {% endcomment %}
-        <a class="text-decoration-none" href="{% url 'admin_user:delete_admin_user' pk=user.id %}">Delete</a>
+         <a class="text-decoration-none" href="{% url 'admin_user:convert_admin_from_normal_user' pk=user.id %}">Add admin</a> 
+        <a class="text-decoration-none" href="{% url 'admin_user:delete_users_by_admin' pk=user.id %}">Delete</a>
       </td>
     </tr>
     {% endfor %}

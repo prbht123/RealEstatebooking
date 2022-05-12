@@ -14,9 +14,16 @@ from django.db.models import Avg
 
 def home(request):
     return render(request, 'bookingpage/home1.html')
+    context = {}
+    context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
+    return render(request, 'home.html', context)
 
 
-class CreateProperty(CreateView):
+
+class createProperty(CreateView):
+    """
+        Creted property functionality.
+    """
     model = Property
     form_class = PropertyForm
     template_name = 'property/create_property.html'
@@ -31,15 +38,18 @@ class CreateProperty(CreateView):
         return redirect('/')
 
 
-class ListProperty(ListView):
+class listProperty(ListView):
+    """
+        List out the all properties.
+    """
     template_name = 'property/list_property.html'
     model = Property
     context_object_name = 'properties'
 
 
-class SearchProperty(ListView):
+class searchProperty(ListView):
     """
-    Class view functon to handle search
+    Class view functon to handle search as location,check-in and check-out wise.
     """
     template_name = 'property/search_property.html'
     model = Property
@@ -55,27 +65,32 @@ class SearchProperty(ListView):
         if check_in_time and check_out_time:
             context['booking'] = Booking.objects.filter(
                 Q(date_until__lt=check_in_time) | Q(date_from__gt=check_out_time))
-            if context['booking']:
-                context['booking'] = context['booking'].exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
+            if not context['booking']:
+                context['booking'] = Booking.objects.all().exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
                     date_from__lte=check_out_time, date_until__gte=check_out_time))
-            if context['booking']:
-                context['booking'] = context['booking'].exclude(
-                    date_from__lte=check_in_time, date_until__gte=check_out_time)
+                if not context['booking']:
+                    context['booking'] = Booking.objects.filter(
+                        date_from__lte=check_in_time, date_until__gte=check_out_time)
+
             if city and street:
-                context['properties'] = context['booking'].filter(
-                    property__Address__street=street, property__Address__city=city)
+                context['propertiess'] = Property.objects.filter(
+                    Address__street=street, Address__city=city)
+                if context['booking']:
+                    for book in context['booking']:
+                        context['propertiess'] = context['propertiess'].exclude(
+                            slug=book.property.slug)
             else:
                 context['properties'] = context['booking']
         elif city and street:
             context['propertiess'] = Property.objects.filter(
-                Address__street=street, Address__city=city)
+                Address__city=city, Address__street=street)
         else:
             context['propertiess'] = Property.objects.all()
 
         return context
 
 
-class PropertyUpdateView(UpdateView):
+class propertyUpdateView(UpdateView):
     """
         This class is used for updating of a particular property.
     """
@@ -85,20 +100,23 @@ class PropertyUpdateView(UpdateView):
     success_url = '/'
 
     def get_form_kwargs(self):
-        kwargs = super(PropertyUpdateView, self).get_form_kwargs()
+        kwargs = super(propertyUpdateView, self).get_form_kwargs()
         kwargs.update()
         return kwargs
 
 
-class PropertyDeleteView(DeleteView):
+class propertyDeleteView(DeleteView):
+    """
+        Delete view function for particular property.
+    """
     model = Property
     template_name = 'property/property_delete.html'
     success_url = '/'
 
 
-class PropertyDetailView(DetailView):
+class propertyDetailView(DetailView):
     """
-        This class is used for showing a particular blog's detail.
+        This class is used for showing a particular property's detail.
     """
     model = Property
     template_name = 'property/property_detail.html'
@@ -117,19 +135,25 @@ class PropertyDetailView(DetailView):
         return context
 
 
-class MosetViewdProperty(ListView):
+class mosetViewedProperty(ListView):
+    """
+        Top 5 Mostviewed property functionality.
+    """
     template_name = 'property/most_viewed_property.html'
     model = Property
     context_object_name = 'properties'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
+        context['properties'] = MostViewed.objects.all().order_by('-viewed')[:5]
         print(context['properties'])
         return context
 
 
-class MosetViewdProperties(ListView):
+class mosetViewedProperties(ListView):
+    """
+        List out the all properties as mostviewed. 
+    """
     template_name = 'property/most_viewed_all_properties.html'
     model = Property
     context_object_name = 'properties'
@@ -141,7 +165,10 @@ class MosetViewdProperties(ListView):
         return context
 
 
-class CreateFeedbackView(CreateView):
+class createFeedbackView(CreateView):
+    """
+        Created feedback for a particular property.
+    """
     model = FeedBackProperty
     form_class = FeedbackForm
     template_name = 'feedback/create_feedback_property.html'
@@ -155,7 +182,10 @@ class CreateFeedbackView(CreateView):
         return redirect('/')
 
 
-class CreateRankingView(CreateView):
+class createRankingView(CreateView):
+    """
+        Give the ranck to a property.
+    """
     model = RankingProperty
     form_class = RankingPropertyForm
     template_name = 'ranking/create_ranking_property.html'
@@ -174,3 +204,34 @@ class CreateRankingView(CreateView):
             data.save()
 
         return redirect('/')
+
+
+class propertyNameSearchView(ListView):
+    """
+        Property wise search bar functionality.
+    """
+    template_name = 'property/search_with_property_name.html'
+    model = Property
+
+    def get_context_data(self, **kwargs):
+        property = self.request.GET.get('property')
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Property.objects.filter(
+            property_name__icontains=property)
+        return context
+
+
+class imagesRecentPropertiesSliderView(ListView):
+    """
+        Get images from recent added properties functionality.
+    """
+    template_name = 'property/list_property.html'
+    model = Property
+
+    def get_context_data(self, **kwargs):
+        property = self.request.GET.get('property')
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Property.objects.all().order_by(
+            '-created_date')[:8]
+        print(context['properties'])
+        return context

@@ -1,49 +1,14 @@
 {% extends "base.html" %} {% block content %} 
-<div class="container">
-<form class="d-flex" action="/searchproperty/">
-<div class="row ">
-<div class="col-ms-4">
-  <input
-    name="city"
-    class=" mt-2"
-    type="text"
-    placeholder="City"
-    style="width: 40%"
-  />
-  <input
-    name="street"
-    class=" mt-2"
-    type="text"
-    placeholder="Street"
-    style="width: 40%"
-  />
-  </div>
- <div class="col-ms-6">
-  <input
-    name="checkintime"
-    class=" mt-2"
-    type="date"
-    placeholder="Check-In Time"
-    style="width: 40%"
-  />
-  <input
-    name="checkouttime"
-    class=" mt-2"
-    type="date"
-    placeholder="Check-out-time"
-    style="width: 40%"
-  />
-  </div>
- </div>
-  <button
-    class="btn btn-lg"
-    type="submit"
-    value="search"
-    style="width: 200px; height: 30px"
-  >
-    Search
-  </button>
-
-</form>
-</div>
+ {% include 'booking/booking_table.html' %}
+ <section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-3 text-danger">Most Viewed </h2>
+                 {% include 'property/most_viewed_property.html' %}
+            </div>
+          </div>
+        </div>
+</section>
+   {% include 'home/footer.html' %} 
 {% endblock %}

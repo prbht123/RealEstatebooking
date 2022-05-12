@@ -6,12 +6,15 @@ import datetime
 from BookingApp.models import Booking
 from RealEstateApp.models import Property
 from .forms import AdminUserRegistrationForm, AdminUserRolesForm
-from django.views.generic import UpdateView, CreateView
-from django.contrib.auth.models import Permission
+from .models import AdminUserRoles
+from django.views.generic import UpdateView, CreateView, ListView, DeleteView
 # Create your views here.
 
 
-def AdminHome(request):
+def adminHome(request):
+    """
+        Admin dashboard page.
+    """
     count_users = User.objects.all().count()
     date_from = datetime.datetime.now() - datetime.timedelta(days=1)
     month_from = datetime.datetime.now() - datetime.timedelta(days=30)
@@ -44,7 +47,10 @@ def AdminHome(request):
     return render(request, 'admin/adminDashboard.html', context)
 
 
-def AdminManageUsers(request):
+def adminManageUsers(request):
+    """
+        List out the all admin users.
+    """
     admin_users = User.objects.filter(is_staff=True)
     print(admin_users[0].email)
     context = {
@@ -53,7 +59,10 @@ def AdminManageUsers(request):
     return render(request, 'admin/adminManageUser.html', context)
 
 
-def AdminRegisterUser(request):
+def adminRegisterUser(request):
+    """
+        Admin user can register new admin users.
+    """
     if request.method == 'POST':
         user_form = AdminUserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -74,7 +83,10 @@ def AdminRegisterUser(request):
         return render(request, 'registration/create_admin_register_user.html', {'user_form': user_form})
 
 
-def DeleteAdminUser(request, pk):
+def deleteAdminUser(request, pk):
+    """
+        Admin user can remove admin users and add as a normal user.
+    """
     try:
         user = User.objects.get(id=pk)
         user.is_staff = False
@@ -84,29 +96,82 @@ def DeleteAdminUser(request, pk):
         raise e
 
 
-class CreateRoleAdmin(CreateView):
+class createRoleAdmin(CreateView):
+    """
+        Admin user can add the roles to particular admin users.
+    """
     form_class = AdminUserRolesForm
     template_name = 'admin/roles/create_role_admin_user.html'
 
-    # def get_context_data(self, **kwargs):
-    #     print(self.kwargs)
-    #     user = User.objects.get(id=self.kwargs['pk'])
-    #     return super().get_context_data(**kwargs)
-
     def form_valid(self, form):
         data = form.save(commit=False)
-        print(self.kwargs['pk'])
         user = User.objects.get(id=self.kwargs['pk'])
         data.user = user
         data.save()
         return redirect('/')
 
 
-def Display(request):
-    user = User.objects.get(is_staff=True, username='user14')
-    # print(user.user_permissions)
-    permissionsss = Permission.objects.all()
-    user.user_permissions.add(permissionsss[0].id)
-    print(user.user_permissions)
-    print(permissionsss)
-    return HttpResponse(user)
+class roleUpdateView(UpdateView):
+    """
+        Admin users can update the roles of admin users.
+    """
+    model = AdminUserRoles
+    form_class = AdminUserRolesForm
+    template_name = 'admin/roles/create_role_admin_user.html'
+    success_url = '/adminuser/manageuser'
+
+    def get_form_kwargs(self):
+        kwargs = super(roleUpdateView, self).get_form_kwargs()
+        kwargs.update()
+        return kwargs
+
+
+class adminManageUsersRoles(ListView):
+    """
+        Admin users can see the all roles with admin users.
+    """
+    template_name = 'admin/roles/manage_admin_user_roles.html'
+    model = AdminUserRoles
+    context_object_name = 'adminuserroles'
+
+
+class deleteAdminUserRoles(DeleteView):
+    """
+        Admin users can delete the roles of admin users.
+    """
+    model = AdminUserRoles
+    template_name = 'admin/roles/delete_admin_user_roles.html'
+    success_url = '/adminuser/manageuser'
+
+
+class listAllUsersView(ListView):
+    """
+        List out the all normal users which is registered.
+    """
+    template_name = 'admin/users/list_users.html'
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.filter(is_staff=False)
+        return context
+
+
+def convertNormalUserToAdmin(request, pk):
+    """
+        Admin users can make admin user from normal user.
+    """
+    if request.user.is_staff == True:
+        user = User.objects.get(id=pk)
+        user.is_staff = True
+        user.save()
+        return redirect('admin_user:normal_users')
+
+
+class deleteUsersByAdminUsers(DeleteView):
+    """
+        Deleted user by admin users functionality.
+    """
+    model = User
+    template_name = 'admin/users/user_delete_by_admin.html'
+    success_url = '/adminuser/normalusers/'
