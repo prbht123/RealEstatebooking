@@ -21,9 +21,6 @@ def home(request):
 
 
 class createProperty(CreateView):
-    """
-        Creted property functionality.
-    """
     model = Property
     form_class = PropertyForm
     template_name = 'property/create_property.html'
@@ -39,18 +36,12 @@ class createProperty(CreateView):
 
 
 class listProperty(ListView):
-    """
-        List out the all properties.
-    """
     template_name = 'property/list_property.html'
     model = Property
     context_object_name = 'properties'
 
 
 class searchProperty(ListView):
-    """
-    Class view functon to handle search as location,check-in and check-out wise.
-    """
     template_name = 'property/search_property.html'
     model = Property
     # context_object_name = 'posts'
@@ -91,9 +82,6 @@ class searchProperty(ListView):
 
 
 class propertyUpdateView(UpdateView):
-    """
-        This class is used for updating of a particular property.
-    """
     model = Property
     form_class = PropertyForm
     template_name = 'property/property_update.html'
@@ -106,18 +94,12 @@ class propertyUpdateView(UpdateView):
 
 
 class propertyDeleteView(DeleteView):
-    """
-        Delete view function for particular property.
-    """
     model = Property
     template_name = 'property/property_delete.html'
     success_url = '/'
 
 
 class propertyDetailView(DetailView):
-    """
-        This class is used for showing a particular property's detail.
-    """
     model = Property
     template_name = 'property/property_detail.html'
 
@@ -136,9 +118,6 @@ class propertyDetailView(DetailView):
 
 
 class mosetViewedProperty(ListView):
-    """
-        Top 5 Mostviewed property functionality.
-    """
     template_name = 'property/most_viewed_property.html'
     model = Property
     context_object_name = 'properties'
@@ -151,9 +130,6 @@ class mosetViewedProperty(ListView):
 
 
 class mosetViewedProperties(ListView):
-    """
-        List out the all properties as mostviewed. 
-    """
     template_name = 'property/most_viewed_all_properties.html'
     model = Property
     context_object_name = 'properties'
@@ -166,9 +142,6 @@ class mosetViewedProperties(ListView):
 
 
 class createFeedbackView(CreateView):
-    """
-        Created feedback for a particular property.
-    """
     model = FeedBackProperty
     form_class = FeedbackForm
     template_name = 'feedback/create_feedback_property.html'
@@ -183,9 +156,6 @@ class createFeedbackView(CreateView):
 
 
 class createRankingView(CreateView):
-    """
-        Give the ranck to a property.
-    """
     model = RankingProperty
     form_class = RankingPropertyForm
     template_name = 'ranking/create_ranking_property.html'
@@ -207,9 +177,6 @@ class createRankingView(CreateView):
 
 
 class propertyNameSearchView(ListView):
-    """
-        Property wise search bar functionality.
-    """
     template_name = 'property/search_with_property_name.html'
     model = Property
 
@@ -222,9 +189,6 @@ class propertyNameSearchView(ListView):
 
 
 class imagesRecentPropertiesSliderView(ListView):
-    """
-        Get images from recent added properties functionality.
-    """
     template_name = 'property/list_property.html'
     model = Property
 
