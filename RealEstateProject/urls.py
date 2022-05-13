@@ -20,9 +20,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     # path('paypal/', include('paypal.standard.ipn.urls')),
     path('', include('RealEstateApp.urls')),
     # path('paypal/', include('paypal.standard.ipn.urls')),
+=======
+    path('paypal/', include('paypal.standard.ipn.urls')),
+>>>>>>> a36200f1191d20047996739b8c335b3b913e9321
     path('', include('RealEstateApp.urls', namespace="realestateapp")),
     path('booking/', include('BookingApp.urls', namespace='booking')),
     path('accounts/', include('AccountUser.urls', namespace='account')),

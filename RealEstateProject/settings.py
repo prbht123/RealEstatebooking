@@ -133,6 +133,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # PAYPAL_RECEIVER_EMAIL = "saumyaranjan.webkrone@gmail.com"
 # PAYPAL_TEST = True
 
+<<<<<<< HEAD
 
 # contact email send
 
@@ -141,6 +142,8 @@ EMAIL_HOST_USER = 'saumyaranjan.webkrone@gmail.com'
 EMAIL_HOST_PASSWORD = 'saumyawebkrone9090'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+=======
+>>>>>>> a36200f1191d20047996739b8c335b3b913e9321
 PAYPAL_RECEIVER_EMAIL = "prabhat.webkrone@gmail.com"
 PAYPAL_TEST = True
 
