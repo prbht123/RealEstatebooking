@@ -71,6 +71,6 @@ class Contact(models.Model):
     def __str__(self):
         return f"{ self.email }" 
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.property.property_name)
-        super(Booking, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.property.property_name)
+    #     super(Booking, self).save(*args, **kwargs)

@@ -6,13 +6,12 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.shortcuts import (get_object_or_404,render,HttpResponseRedirect)
 from django.views.generic import TemplateView
- 
 
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import Booking
 from BookingApp.forms import BookingForm
-
+from django.core.mail import send_mail
 
 
 def create_view(request):
@@ -95,6 +94,7 @@ class ContactView(TemplateView):
             cd={
             'to':'saumyaranjan.webkrone@gmail.com'
             }
+            print("111111111111111111")
             msg=request.POST.get('message')
             send_mail("subject",msg,request.POST.get('email'),[cd['to']])
             messages.success(request,"Contact sent successfully")
