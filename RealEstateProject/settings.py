@@ -130,5 +130,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-PAYPAL_RECEIVER_EMAIL = config('EMAIL_HOST_USER')
+PAYPAL_RECEIVER_EMAIL = "prabhat.webkrone@gmail.com"
 PAYPAL_TEST = True
