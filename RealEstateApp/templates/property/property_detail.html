@@ -24,6 +24,12 @@
             <p>{{property.Description}}</p>
     </div>
     <div class="col-5 ">
+     {% if property.author == user %}
+       <a class="btn btn-outline float-left" href="{% url 'realestateapp:Update_property' slug=property.slug %}">Update</a>
+       <a class="btn btn-outline float-right" href="{% url 'realestateapp:delete_property' slug=property.slug %}">Delete</a>
+       <br>
+       <hr>
+       {% endif %}
         <p>  Cost : {{property.cost}} </p>
         <label>Check-In</label>
         <label class="float-right">Check-Out</label>

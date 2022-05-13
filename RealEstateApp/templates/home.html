@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %} 
  {% include 'home/img_slider.html' %}
+ <div> <a class="float-right" href="{% url 'realestateapp:create_property' %}">Add Hotels</a></div>
  {% include 'booking/booking_table.html' %}
  <section class="bg-light py-4 my-5">
     <div class="container">
