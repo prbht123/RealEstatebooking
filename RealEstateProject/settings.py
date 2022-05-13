@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'AdminUser',
     'paypal.standard.ipn',
+    'stripe',
     'payment'
 ]
 
@@ -132,3 +133,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 PAYPAL_RECEIVER_EMAIL = "prabhat.webkrone@gmail.com"
 PAYPAL_TEST = True
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51KyrvaSEP5SNlSqvNEGiS6lmydRJRifXj1WchAuroGIgaQvELvToedvsYxLEE8MmamShKmqQEFIgbkmGzarFialh00h0N4t4Kn'
+STRIPE_SECRET_KEY = 'sk_test_51KyrvaSEP5SNlSqvIbEM4fOt6nWxJ7LTT4tJwNaoFMmsHGB33Vq9wcqpYDzE5RxD9CWilFg6Lra4PRF0ZyPeF5R200I9vJwDAD'
