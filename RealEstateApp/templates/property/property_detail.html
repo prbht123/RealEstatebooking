@@ -1,31 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <img class="mt-4" style="height:450px;width:100%;" src="{% if property.image %}{{ property.image.url }}{% endif %}">
+    <img class="" style="height:550px;width:100%;" src="{% if property.image %}{{ property.image.url }}{% endif %}">
    
-    <div class="container mt-4 ">
-        <h3>{{property.property_name}}</h3>  
-        <br/>
-        <div class ="container">
-           <p> Room Type : {{property.room_type}}</p>
+  <div class="container mt-4">
+  <h3>{{property.property_name}}</h3>  
+  <div class="row align-items-start mb-b">
+    <div class="col-md-7">
+    <div class="row">
+    <div class="col">
+      <p> Room Type : {{property.room_type}}</p>
             <p>Bedroom : {{property.bed_room}}</p>
             <p> Guest : {{property.guest}}</p>
             <p>Bed : {{property.beds}}</p>
-        </div>
-        <div class="col-12">
+      </div>
+      <div class="col">
+      {% if ranking.rank__avg %}
+      Ranking : {{ranking.rank__avg}}
+      {% endif %}
+      </div>
+    </div>
             <h5>Abbout this Listing</h5>
             <p>{{property.Description}}</p>
-        </div>
-        <br/>
-      </div>
-     
-      <p><h5>  Cost : {{property.cost}} </h5></p>
-    
-    <div class="container">
-      <h4>Ranking - {{ranking.rank__avg}}  </h4>
     </div>
- 
-  <div class="container">
+    <div class="col-5 ">
+        <p>  Cost : {{property.cost}} </p>
+        <label>Check-In</label>
+        <label class="float-right">Check-Out</label>
+  <form class="mb-4">
+        <div class="input-group">
+        
+    <input type="date" id="check_in" class="form-control" >
+    <div class="input-group-prepend">
+        <span class="input-group-text">-</span>
+    </div>
+    <input type="date" id="check_out" class="form-control">
+</div>
+<div class="col-auto">
+    <input type="button" class="btn btn-primary mt-2 mb-4 float-right" onclick="showDiv()" value="Search">
+  </div>
+</form>
+ <input class="d-none" type="text" value='{{property.cost}}' id="price">
+ <input class="d-none" type="text" value='{{booking}}' id="booked">
+    <div class="mt-8" style="display:none;" id="welcomeDiv">
+    <div class="card">
+    Booking Details-</br>
+    <p>cost :<span id="cost"> </span></p>
+    </div>
+    </div>
+    </div>
+    <div class="card">
+    {% if feedback %}
     <h4>Feedback of {{property.property_name}} </h4>
      {% for feedback_item in feedback %}
         <div class="card-body">
@@ -33,10 +58,33 @@
         </div>
 
      {% endfor %}
-  </div> 
-      
+     {% endif %}
+    </div>
+  </div>
 
-
-    
-
+</div>
+<hr>
+{% include 'home/footer.html' %}
+<script >
+function showDiv() {
+  var checkin = document.getElementById('check_in').value;
+  var checkout = document.getElementById('check_out').value;
+  date1 = new Date(checkin);
+  date2 = new Date(checkout);
+  date1time = date1.getTime();
+  date2time = date2.getTime();
+  day = date2time-date1time;
+  day = day/(1000 * 60 * 60 * 24) + 1;
+   price = document.getElementById('price').value;
+   cost = day*price;
+   document.getElementById('cost').innerHTML = cost;
+   book = document.getElementById('booked').value;
+   var booked = "{{booking}}";
+  console.log(booked)
+   
+   console.log("99999999999")
+ 
+   document.getElementById('welcomeDiv').style.display = "block";
+}
+</script>
 {% endblock %}

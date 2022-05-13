@@ -8,7 +8,10 @@ from paypal.standard.forms import PayPalPaymentsForm
 
 
 @csrf_exempt
-def payment_done(request):
+def payment_done(request, **kwargs):
+    booked = Booking.objects.get(slug=kwargs['slug'])
+    booked.paid = True
+    booked.save()
     return render(request, 'payment/done.html')
 
 
@@ -28,10 +31,8 @@ def payment_process(request, slug):
         'invoice': str(booked.id),
         'currency_code': 'USD',
         'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
-        'return_url': 'http://{}{}'.format(host, reverse('payment:done')),
+        'return_url': 'http://{}{}'.format(host, reverse('payment:done', kwargs={'slug': booked.slug})),
         'cancel_return': 'http://{}{}'.format(host, reverse('payment:canceled')),
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
-    booked.paid = True
-    booked.save()
     return render(request, 'payment/process.html', {'order': booked, 'form': form})

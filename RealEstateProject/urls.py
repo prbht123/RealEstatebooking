@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('paypal/', include('paypal.standard.ipn.urls')),
     path('', include('RealEstateApp.urls')),
+    # path('paypal/', include('paypal.standard.ipn.urls')),
+    path('', include('RealEstateApp.urls', namespace="realestateapp")),
     path('booking/', include('BookingApp.urls', namespace='booking')),
     path('accounts/', include('AccountUser.urls', namespace='account')),
     path('adminuser/', include('AdminUser.urls', namespace='admin_user')),

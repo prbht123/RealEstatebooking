@@ -13,9 +13,11 @@ from django.db.models import Avg
 
 
 def home(request):
-    return render(request, 'bookingpage/home1.html')
+    return render(request, 'home.html')
     context = {}
     context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
+    print(context)
+    print("0000000000000000000000000000000000000000")
     return render(request, 'home.html', context)
 
 
@@ -110,6 +112,7 @@ class propertyDetailView(DetailView):
             property__slug=self.object.slug).aggregate(Avg('rank'))
         context['feedback'] = FeedBackProperty.objects.filter(
             property__slug=self.object.slug)
+        context['booking'] = list(Booking.objects.all())
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
         count.viewed = count.viewed + 1

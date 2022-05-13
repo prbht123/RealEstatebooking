@@ -14,64 +14,64 @@ from BookingApp.forms import BookingForm
 from django.core.mail import send_mail
 
 
-def create_view(request):
+# def create_view(request):
    
-    context ={}
+#     context ={}
  
-    # add the dictionary during initialization
-    form = BookingForm(request.POST )
-    if form.is_valid():
-        form.save()
-    context['form']= form
-    return render(request, "create_booking.html",context)
+#     # add the dictionary during initialization
+#     form = BookingForm(request.POST )
+#     if form.is_valid():
+#         form.save()
+#     context['form']= form
+#     return render(request, "create_booking.html",context)
 
 
-def list_view(request):
-    context ={}
-    # add the dictionary during initialization
-    context['dataset'] = Booking.objects.all()
+# def list_view(request):
+#     context ={}
+#     # add the dictionary during initialization
+#     context['dataset'] = Booking.objects.all()
     
-    return render(request, "list_view.html", context)
+#     return render(request, "list_view.html", context)
 
-def detail_view(request, id):
+# def detail_view(request, id):
    
-    context ={}
-    print("000000000000000000000000")
-    context["data"] = Booking.objects.get(id = id)
-    print(context["data"])
-    return render(request, "detail_view.html", context)
+#     context ={}
+#     print("000000000000000000000000")
+#     context["data"] = Booking.objects.get(id = id)
+#     print(context["data"])
+#     return render(request, "detail_view.html", context)
 
 
-def update_view(request, id):
-    context ={}
-    obj = get_object_or_404(Booking, id = id)
-    if request.method == 'POST':
-        form = BookingForm(request.POST or None, instance = obj)
-        #form = BookingForm(request.POST, instance = obj )
-        print(form.is_valid())
-        if form.is_valid():
-            form.save()
-            return redirect('list_view')
-            context["form"] = form
-    else:
-        form = BookingForm()
-        context["form"] = form
-    return render(request, "update_view.html", context)
+# def update_view(request, id):
+#     context ={}
+#     obj = get_object_or_404(Booking, id = id)
+#     if request.method == 'POST':
+#         form = BookingForm(request.POST or None, instance = obj)
+#         #form = BookingForm(request.POST, instance = obj )
+#         print(form.is_valid())
+#         if form.is_valid():
+#             form.save()
+#             return redirect('list_view')
+#             context["form"] = form
+#     else:
+#         form = BookingForm()
+#         context["form"] = form
+#     return render(request, "update_view.html", context)
 
 
 
 
 
-def delete_view(request, id):
+# def delete_view(request, id):
     
-    context ={}
-    obj = get_object_or_404(Booking, id = id)
+#     context ={}
+#     obj = get_object_or_404(Booking, id = id)
  
-    if request.method =="POST":
-        obj.delete()
-        return HttpResponseRedirect("/")
+#     if request.method =="POST":
+#         obj.delete()
+#         return HttpResponseRedirect("/")
  
-    return render(request, "delete_view.html", context)
+#     return render(request, "delete_view.html", context)
 
 
 def homepage(request):

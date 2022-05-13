@@ -44,7 +44,10 @@ def adminHome(request):
         'last_day_count_booking': last_day_count_booking,
         'last_month_count_booking': last_month_count_booking
     }
-    return render(request, 'admin/adminDashboard.html', context)
+    if request.user.is_staff:
+        return render(request, 'admin/adminDashboard.html', context)
+    else:
+        return render(request, 'home.html')
 
 
 def adminManageUsers(request):
