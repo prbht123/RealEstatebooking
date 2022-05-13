@@ -6,10 +6,10 @@
   {% csrf_token %} 
    {% for field in form.visible_fields %}
   <div class="form-group mt-1">
-    {% comment %} <label for="{{ field.id_for_label }}">{{ field.label }}</label> {% endcomment %}
+     <label class="fw-bold" for="{{ field.id_for_label }}">{{ field.label }}</label> 
      {% comment %} {{ field|add_class:'form-control' | }} {% endcomment %}
-     {% comment %} {{ field|append_attr:"class:form-control"|append_attr:"placeholder:field.label" }} {% endcomment %}
-    {% render_field field class="form-control" placeholder=field.label %}
+     {{ field|append_attr:"class:form-control"|append_attr:"placeholder:field.label" }} 
+    {% comment %} {% render_field field class="form-control" placeholder=field.label %} {% endcomment %}
     {% for error in field.errors %}
       <span class="help-block">{{ error }}</span>
     {% endfor %}
