@@ -3,7 +3,7 @@ from . import views
 app_name = 'realestateapp'
 urlpatterns = [
 
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('createproperty/', views.createProperty.as_view(), name='create_property'),
     path('listproperty/', views.listProperty.as_view(), name='list_property'),
     path('searchproperty/', views.searchProperty.as_view(), name='search_property'),

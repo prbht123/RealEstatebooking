@@ -102,11 +102,8 @@ class ContactView(TemplateView):
 
 
 class createBooking(CreateView):
-    """
-        Functionality for booking to the property.
-    """
     form_class = BookingForm
-    template_name = 'booking/create_booking.html'
+    template_name = 'create_booking.html'
 
 
     def form_valid(self, form):
@@ -118,9 +115,6 @@ class createBooking(CreateView):
 
 
 class bookingUpdateView(UpdateView):
-    """
-        This class is used for updating of a particular property.
-    """
     model = Booking
     form_class = BookingForm
     template_name = 'booking/update_booking.html'

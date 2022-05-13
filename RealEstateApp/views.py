@@ -13,11 +13,10 @@ from django.db.models import Avg
 
 
 def home(request):
-    return render(request, 'home.html')
+    print("0000")
     context = {}
     context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
     print(context)
-    print("0000000000000000000000000000000000000000")
     return render(request, 'home.html', context)
 
 
