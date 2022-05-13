@@ -178,3 +178,30 @@ class deleteUsersByAdminUsers(DeleteView):
     model = User
     template_name = 'admin/users/user_delete_by_admin.html'
     success_url = '/adminuser/normalusers/'
+
+
+class listAllPropertyView(ListView):
+    """
+        Approving functionality of property.
+    """
+    model = Property
+    template_name = "admin/approving_property/list_draft_property.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print("946969436943")
+        context['properties'] = Property.objects.filter(
+            property_status='draft')
+        print(context['properties'])
+        return context
+
+
+def approvedPropertyView(request, slug):
+    try:
+        property = Property.objects.get(slug=slug)
+        property.property_status = 'published'
+        property.save()
+        print("hello0000")
+        return redirect('admin_user:approving_property_list')
+    except Exception as e:
+        raise e
