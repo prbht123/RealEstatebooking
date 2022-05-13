@@ -20,5 +20,9 @@ urlpatterns = [
     path('convertadmin/<int:pk>', views.convertNormalUserToAdmin,
          name='convert_admin_from_normal_user'),
     path('deleteuser/<int:pk>/', views.deleteUsersByAdminUsers.as_view(),
-         name='delete_users_by_admin')
+         name='delete_users_by_admin'),
+    path('approvingpropertylist/', views.listAllPropertyView.as_view(),
+         name='approving_property_list'),
+    path('approvingproperty/<slug:slug>', views.approvedPropertyView,
+         name='approved_property'),
 ]
