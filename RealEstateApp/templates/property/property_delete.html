@@ -1,28 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container pt-5">
+<div class="container pt-5 d-flex justify-content-center ">
     <form method="post" novalidate action="">
-        {% csrf_token %}
-       
-     
- 
- 
-            <p>Are you sure you want to delete "{{ property }}"?</p>
+        {% csrf_token %}    
+             <p class="text-center">Are you sure you want to delete "{{ property }}"?</p>
              
-             
-             
-              
-          
-      
         <div>
             <button type="submit" class="btn btn-success">Submit</button>
-            <a href="{% url 'home' %}" class="btn btn-default">Cancel</a>
+            <a href="{% url 'realestateapp:home' %}" class="btn btn-default">Cancel</a>
         </div>
     </form>
 </div>
-
-  
-
 
 {% endblock %}

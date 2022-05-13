@@ -1,4 +1,4 @@
-<h1>"787"</h1>
+<h1>Pay using Stripe</h1>
 <form method="post" action="{% url 'payment:stripe_done' %}">
 {% csrf_token %} 
 <script src ="https://checkout.stripe.com/checkout.js" class="stripe-button"
