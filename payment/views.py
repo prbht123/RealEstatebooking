@@ -3,6 +3,8 @@ from BookingApp.models import Booking
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.urls import reverse
+from django.views.generic import TemplateView
+import stripe
 from paypal.standard.forms import PayPalPaymentsForm
 # Create your views here.
 
@@ -36,3 +38,32 @@ def payment_process(request, slug):
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, 'payment/process.html', {'order': booked, 'form': form})
+
+    key = settings.STRIPE_PUBLISHABLE_KEY
+    return render(request, 'payment/stripe/process.html', {'order': booked, 'form': form, 'key': key})
+
+
+class PaymentWithStripe(TemplateView):
+    template_name = 'payment/stripe/process.html'
+
+    def get_context_data(self, **kwargs):
+        booked = get_object_or_404(Booking, property__slug=kwargs['slug'])
+        context = super().get_context_data(**kwargs)
+        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
+        context['booked'] = booked
+        return context
+
+
+def charge(request):
+    if request.method == 'POST':
+        charge = stripe.Charge.create(
+            amount="0.01",
+            currency="Inr",
+            description="payment by stripe",
+            source=request.POST['stripetoken']
+        )
+        return render(request, 'payment/done.html')
+
+
+def payment_done_strip(request):
+    return render(request, 'payment/done.html')
