@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Address, Property, Room, MostViewed, FeedBackProperty, RankingProperty
+from .models import Address, Property, Room, MostViewed, FeedBackProperty, RankingProperty, ImagesProperty
 # Register your models here.
 
 
@@ -9,3 +9,4 @@ admin.site.register(Address)
 admin.site.register(MostViewed)
 admin.site.register(FeedBackProperty)
 admin.site.register(RankingProperty)
+admin.site.register(ImagesProperty)

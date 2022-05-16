@@ -1,7 +1,8 @@
+from tkinter import Image
 from django.forms.models import inlineformset_factory
 from telnetlib import DET
 from django.shortcuts import render, redirect
-from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed
+from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed, ImagesProperty
 from BookingApp.models import Booking
 from RealEstateApp.forms import FeedbackForm, PropertyForm, RankingPropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -258,3 +259,16 @@ class ListPropertyRankingWiseView(ListView):
             data = Property.objects.get(id=item['property'])
             context['properties'].append(data)
         return context
+
+
+def createPropertyImages(request, slug):
+    property = Property.objects.get(slug=slug)
+    if request.method == "POST":
+        images = ImagesProperty.objects.create(
+            image=request.FILES['myFile'], property=property)
+        images.save()
+        return redirect(reverse('realestateapp:detail_property', kwargs={'slug': property.slug}))
+    else:
+        context = {}
+        context['property'] = property
+        return render(request, 'property/create_property_images.html', context)

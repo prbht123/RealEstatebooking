@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
     <img class="" style="height:550px;width:100%;" src="{% if property.image %}{{ property.image.url }}{% endif %}">
    
+
+
+   <hr>
   <div class="container mt-4">
   <h3>{{property.property_name}}</h3>  
-  <div class="row align-items-start mb-b">
+  
+  <div class="row align-items-start mb-b" style="height:50%;">
     <div class="col-md-7">
     <div class="row">
     <div class="col">
@@ -23,13 +28,23 @@
             <h5>Abbout this Listing</h5>
             <p>{{property.Description}}</p>
     </div>
+
     <div class="col-5 ">
      {% if property.author == user %}
-       <a class="btn btn-outline float-left" href="{% url 'realestateapp:Update_property' slug=property.slug %}">Update</a>
+       <a class="btn btn-outline float-left" href="{% url 'realestateapp:create_property_images' slug=property.slug %}">Add Images</a>
+       
+       <a class="btn btn-outline float-center" href="{% url 'realestateapp:Update_property' slug=property.slug %}">Update</a>
        <a class="btn btn-outline float-right" href="{% url 'realestateapp:delete_property' slug=property.slug %}">Delete</a>
+       
        <br>
-       <hr>
+       <br>
+            
+<hr>
+       
        {% endif %}
+       <hr>
+
+
         <p>  Cost : {{property.cost}} </p>
         <label>Check-In</label>
         <label class="float-right">Check-Out</label>

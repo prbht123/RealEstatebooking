@@ -120,3 +120,19 @@ class RankingProperty(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property.property_name)
         super(RankingProperty, self).save(*args, **kwargs)
+
+
+class ImagesProperty(models.Model):
+    id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=250)
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE)
+    image = models.ImageField(
+        upload_to='property/item/images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.property.slug
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.property.property_name)
+        super(ImagesProperty, self).save(*args, **kwargs)
