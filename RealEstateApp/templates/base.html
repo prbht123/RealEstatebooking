@@ -50,7 +50,7 @@
            <li><a href="/adminuser/" class="text-decoration-none">Admin Dashboard</a></li>
          {% endif %}
          {% if user.username %}
-          <li><a href="" class="text-decoration-none">{{user.username}}</a></li>
+          <li><a href="{% url 'account:user_profile' pk=user.id %}" class="text-decoration-none">{{user.username}}</a></li>
            <li><a href="/accounts/logout/" class="text-decoration-none">Signout</a></li>
           {% else %}
           <li><a href="/accounts/login/" class="text-decoration-none">Signin</a></li>

@@ -129,6 +129,9 @@ class propertyDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['property'] = Property.objects.filter(slug=self.object.slug)[0]
+        context['images'] = ImagesProperty.objects.filter(
+            property__slug=self.object.slug)
+        print(context['images'])
         context['ranking'] = RankingProperty.objects.filter(
             property__slug=self.object.slug).aggregate(Avg('rank'))
         context['feedback'] = FeedBackProperty.objects.filter(
@@ -141,7 +144,7 @@ class propertyDetailView(DetailView):
         return context
 
 
-class mosetViewedProperty(ListView):
+class mostViewedProperty(ListView):
     """
         Top 5 Mostviewed property functionality.
     """
@@ -156,7 +159,7 @@ class mosetViewedProperty(ListView):
         return context
 
 
-class mosetViewedProperties(ListView):
+class mostViewedProperties(ListView):
     """
         List out the all properties as mostviewed. 
     """
