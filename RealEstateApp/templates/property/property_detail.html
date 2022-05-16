@@ -39,7 +39,7 @@
        <br>
        <br>
             
-<hr>
+
        
        {% endif %}
        <hr>
@@ -73,15 +73,33 @@
     </div>
     </div>
     </div>
+     <div class="card">
+    {% if request.user.username %}
+      {% if property.author.username == request.user.username %}
+      {% else %}
+      <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:create_ranking_property' slug=property.slug %}" >
+        Add ranks
+        </a>
+        {% endif %}
+     {% endif %}
+    </div>
     <div class="card">
     {% if feedback %}
     <h4>Feedback of {{property.property_name}} </h4>
      {% for feedback_item in feedback %}
         <div class="card-body">
+             <label > {{feedback_item.user.username}} </label>
              <p>{{ feedback_item.feedback }}</p>
         </div>
 
      {% endfor %}
+     {% endif %}
+    </div>
+    <div class="card">
+    {% if request.user.username %}
+      <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:create_feedback_property' slug=property.slug %}" >
+        Give Feedback
+        </a>
      {% endif %}
     </div>
   </div>
