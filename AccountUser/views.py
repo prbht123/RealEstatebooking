@@ -1,3 +1,4 @@
+from multiprocessing import get_context
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm, UserProfileForm
 from .models import UserProfile
@@ -25,8 +26,17 @@ def register(request):
         return render(request, 'registration/register.html', {'user_form': user_form})
 
 
-def UserProfileView(request):
-    return render(request, 'home.html')
+def homeView(request):
+    user = UserProfile.objects.get(user=request.user)
+    print(request.user)
+    return redirect('/')
+    # return render(request, 'user/user_profile.html', {'user': user})
+
+
+class UserProfileView(DetailView):
+    template_name = 'user/userprofile_list.html'
+    model = UserProfile
+    context_object_name = 'userprofile'
 
 
 class CreateUserProfileView(CreateView):

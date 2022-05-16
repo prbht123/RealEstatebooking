@@ -1,0 +1,36 @@
+{% include 'base.html' %}{% load widget_tweaks %} {% block content %}
+<h1 class="text-center">{{userprofile.user.username}}</h1>
+<hr/>
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+   <img src="{% if userprofile.image %}{{userprofile.image.url}}{% endif %}" style="height:100%;width:100%;">
+</div>
+<div class="col-sm-8">
+ {% if userprofile.user.first_name %}
+ <lable class="fw-bold"> First name : </lable>
+     {{userprofile.user.first_name}}<br>
+ {% endif %}
+ {% if userprofile.user.last_name %}
+ <lable class="fw-bold"> Last name : </lable>
+ {{userprofile.user.last_name}}<br>
+ {% endif %}
+ {% if userprofile.user.email %}
+ <lable class="fw-bold"> Email : </lable>
+ {{userprofile.user.email}}<br>
+ {% endif %}
+ {% if userprofile.contact_number %}
+ <lable class="fw-bold"> Contact Number : </lable>
+     {{userprofile.contact_number}}<br>
+ {% endif %}
+ {% if userprofile.address %}
+ <lable class="fw-bold"> Address : </lable>
+     {{userprofile.address.street}} {{userprofile.address.city}} {{userprofile.address.state}} {{userprofile.address.zip_code}} {{userprofile.address.country}}
+ {% endif %}
+
+</div>
+</div>
+</div>
+<hr>
+{% include 'home/footer.html' %} 
+{% endblock %}
