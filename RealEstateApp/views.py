@@ -147,8 +147,11 @@ class propertyDetailView(DetailView):
         context['booking'] = list(Booking.objects.all())
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
-        count.viewed = count.viewed + 1
-        count.save()
+        if count.property.author == self.request.user:
+            pass
+        else:
+            count.viewed = count.viewed + 1
+            count.save()
         return context
 
 
@@ -199,7 +202,7 @@ class createFeedbackView(CreateView):
             slug=self.kwargs['slug'], property_status='published')
         data.property = property
         data.save()
-        return redirect('/')
+        return redirect(reverse('realestateapp:detail_property', kwargs={'slug': data.property.slug}))
 
 
 class createRankingView(CreateView):
@@ -224,7 +227,7 @@ class createRankingView(CreateView):
             data.property = property
             data.save()
 
-        return redirect('/')
+        return redirect(reverse('realestateapp:detail_property', kwargs={'slug': self.kwargs['slug']}))
 
 
 class propertyNameSearchView(ListView):

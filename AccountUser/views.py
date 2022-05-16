@@ -27,16 +27,18 @@ def register(request):
 
 
 def homeView(request):
-    user = UserProfile.objects.get(user=request.user)
+    user = UserProfile.objects.filter(user=request.user)
     print(request.user)
     return redirect('/')
     # return render(request, 'user/user_profile.html', {'user': user})
 
 
-class UserProfileView(DetailView):
-    template_name = 'user/userprofile_list.html'
-    model = UserProfile
-    context_object_name = 'userprofile'
+def UserProfileView(request, pk):
+    userprofile = UserProfile.objects.filter(user=request.user)[0]
+    if userprofile:
+        return render(request, 'user/userprofile_list.html', {'userprofile': userprofile})
+    else:
+        return redirect('account:create_user_profile')
 
 
 class CreateUserProfileView(CreateView):
