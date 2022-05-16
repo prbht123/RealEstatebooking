@@ -15,8 +15,9 @@ from django.db.models import Avg
 
 def home(request):
     context = {}
-    context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
-    context['ranking'] = RankingProperty.objects.all().values(
+    context['properties'] = MostViewed.objects.filter(
+        property__property_status='published').order_by('-viewed')[:4]
+    context['ranking'] = RankingProperty.objects.filter(property__property_status='published').values(
         'property').annotate(avg=Avg('rank')).order_by('-avg')
     context['propertiesr'] = []
     for item in context['ranking']:
@@ -49,7 +50,13 @@ class listProperty(ListView):
     """
     template_name = 'property/list_property.html'
     model = Property
-    context_object_name = 'properties'
+    #context_object_name = 'properties'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Property.objects.filter(
+            property_status='published')
+        return context
 
 
 class searchProperty(ListView):
@@ -79,7 +86,7 @@ class searchProperty(ListView):
 
             if city and street:
                 context['propertiess'] = Property.objects.filter(
-                    Address__street=street, Address__city=city)
+                    Address__street=street, Address__city=city, property_status='published')
                 if context['booking']:
                     for book in context['booking']:
                         context['propertiess'] = context['propertiess'].exclude(
@@ -87,10 +94,11 @@ class searchProperty(ListView):
             else:
                 context['properties'] = context['booking']
         elif city and street:
-            context['propertiess'] = Property.objects.filter(
-                Address__city=city, Address__street=street)
+            context['propertiess'] = Property.objects.filter(property_status='published',
+                                                             Address__city=city, Address__street=street)
         else:
-            context['propertiess'] = Property.objects.all()
+            context['propertiess'] = Property.objects.filter(
+                property_status='published')
 
         return context
 
@@ -154,7 +162,8 @@ class mostViewedProperty(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['properties'] = MostViewed.objects.all().order_by('-viewed')[:5]
+        context['properties'] = MostViewed.objects.filter(
+            property__property_status='published').order_by('-viewed')[:5]
         print(context['properties'])
         return context
 
@@ -169,7 +178,8 @@ class mostViewedProperties(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['properties'] = MostViewed.objects.all().order_by('-viewed')
+        context['properties'] = MostViewed.objects.filter(
+            property__property_status='published').order_by('-viewed')
         print(context['properties'])
         return context
 
@@ -185,7 +195,8 @@ class createFeedbackView(CreateView):
     def form_valid(self, form):
         data = form.save(commit=False)
         data.user = self.request.user
-        property = Property.objects.get(slug=self.kwargs['slug'])
+        property = Property.objects.get(
+            slug=self.kwargs['slug'], property_status='published')
         data.property = property
         data.save()
         return redirect('/')
@@ -203,12 +214,13 @@ class createRankingView(CreateView):
         data = form.save(commit=False)
         print(self.kwargs['slug'])
         property = RankingProperty.objects.filter(
-            user=self.request.user, property__slug=self.kwargs['slug'])
+            user=self.request.user, property__slug=self.kwargs['slug'], property__property_status='published')
         if not property:
             if data.rank > 5:
                 return redirect('create_ranking_property', slug=self.kwargs['slug'])
             data.user = self.request.user
-            property = Property.objects.get(slug=self.kwargs['slug'])
+            property = Property.objects.get(
+                slug=self.kwargs['slug'], property_status='published')
             data.property = property
             data.save()
 
@@ -226,7 +238,7 @@ class propertyNameSearchView(ListView):
         property = self.request.GET.get('property')
         context = super().get_context_data(**kwargs)
         context['properties'] = Property.objects.filter(
-            property_name__icontains=property)
+            property_name__icontains=property, property_status='published')
         return context
 
 
@@ -240,7 +252,7 @@ class imagesRecentPropertiesSliderView(ListView):
     def get_context_data(self, **kwargs):
         property = self.request.GET.get('property')
         context = super().get_context_data(**kwargs)
-        context['properties'] = Property.objects.all().order_by(
+        context['properties'] = Property.objects.filter(property_status='published').order_by(
             '-created_date')[:8]
         print(context['properties'])
         return context
@@ -255,11 +267,12 @@ class ListPropertyRankingWiseView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['ranking'] = RankingProperty.objects.all().values(
+        context['ranking'] = RankingProperty.objects.filter(property__property_status='published').values(
             'property').annotate(avg=Avg('rank')).order_by('-avg')
         context['properties'] = []
         for item in context['ranking']:
-            data = Property.objects.get(id=item['property'])
+            data = Property.objects.get(
+                id=item['property'], property_status='published')
             context['properties'].append(data)
         return context
 
