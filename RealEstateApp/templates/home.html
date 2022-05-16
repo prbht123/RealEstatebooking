@@ -2,12 +2,22 @@
  {% include 'home/img_slider.html' %}
  <div> <a class="float-right" href="{% url 'realestateapp:create_property' %}">Add Hotels</a></div>
  {% include 'booking/booking_table.html' %}
- <section class="bg-light py-4 my-5">
+  <section class="bg-light py-4 my-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <h2 class="mb-3 text-danger">Most Viewed </h2>
                  {% include 'property/most_viewed_property.html' %}
+            </div>
+          </div>
+        </div>
+</section>
+ <section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-3 text-danger">Ranking Wise Hotels </h2>
+                 {% include 'property/list_property_ranking_wise.html' %}
             </div>
           </div>
         </div>

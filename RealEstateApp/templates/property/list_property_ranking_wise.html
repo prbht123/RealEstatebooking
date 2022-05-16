@@ -1,9 +1,7 @@
-{% include 'base.html' %} {% block content %}
-<h3 class="text-center mt-4">List The Property</h3>
-<hr />
+
 <div class="container justify-content-center mt-4 mb-4">
   <div class="row">
-    {% for property in properties %}
+    {% for property in propertiesr %}
     <div class="card me-2 mt-4" style="width: 12rem">
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
     <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
@@ -27,5 +25,4 @@
     {% endfor %}
   </div>
 </div>
-{% include 'home/footer.html' %}
-{% endblock %}
+
