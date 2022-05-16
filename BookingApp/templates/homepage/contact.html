@@ -227,8 +227,9 @@ textarea:valid+label {
       </div>
     </div>
     <div class="contact-form-wrapper">
+
       <form method="post">
-               {% csrf_token %}
+         {% csrf_token %}
         <div class="form-item">
           <input type="text" name="sender" required>
           <label>Name:</label>

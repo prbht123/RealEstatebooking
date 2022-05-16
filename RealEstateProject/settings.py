@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+# import environ
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,8 +44,10 @@ INSTALLED_APPS = [
     'AccountUser',
     'widget_tweaks',
     'AdminUser',
+
     # 'paypal.standard.ipn',
     # 'payment'
+
 ]
 
 MIDDLEWARE = [
@@ -112,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -137,10 +139,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # contact email send
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'saumyaranjan.webkrone@gmail.com'
+EMAIL_HOST_USER = 'Saumyaranjan.webkrone@gmail.com'
 EMAIL_HOST_PASSWORD = 'saumyawebkrone9090'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-PAYPAL_RECEIVER_EMAIL = "prabhat.webkrone@gmail.com"
-PAYPAL_TEST = True
+# PAYPAL_RECEIVER_EMAIL = "prabhat.webkrone@gmail.com"
+# PAYPAL_TEST = True
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51KyrvaSEP5SNlSqvNEGiS6lmydRJRifXj1WchAuroGIgaQvELvToedvsYxLEE8MmamShKmqQEFIgbkmGzarFialh00h0N4t4Kn'
+STRIPE_SECRET_KEY = 'sk_test_51KyrvaSEP5SNlSqvIbEM4fOt6nWxJ7LTT4tJwNaoFMmsHGB33Vq9wcqpYDzE5RxD9CWilFg6Lra4PRF0ZyPeF5R200I9vJwDAD'
 

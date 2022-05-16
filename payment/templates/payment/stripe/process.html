@@ -1,0 +1,11 @@
+<h1>Pay using Stripe</h1>
+<form method="post" action="{% url 'payment:stripe_done' %}">
+{% csrf_token %} 
+<script src ="https://checkout.stripe.com/checkout.js" class="stripe-button"
+data-key = "{{key}}"
+data.description="jgfjgewiuagiwa"
+data-amount="0.01"
+data-locale = "auto"
+>
+</script>
+</form>

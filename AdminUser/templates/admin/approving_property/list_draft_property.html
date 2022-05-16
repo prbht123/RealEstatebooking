@@ -1,12 +1,14 @@
-{% include 'base.html' %} {% block content %}
-<h3 class="text-center mt-4">List The Property</h3>
-<hr />
-<div class="container justify-content-center mt-4 mb-4">
-  <div class="row">
+{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+
+<h3>List Draft Properties for Approving</h3>
+
+    {% if not properties %}
+        <p> No data found </p>
+    {% endif %}
     {% for property in properties %}
-    <div class="card me-2 mt-4" style="width: 12rem">
+    <div class="card me-2 mt-4" style="width: 40rem;">
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
-    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:250px;width:100%;">
       <div class="card-body">
         <p class="card-text text-danger" style="font-size: 0.6rem">
           {{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}
@@ -20,12 +22,10 @@
       
       </div>
       </a>
-      <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'booking:create_booking' %}" >
-        Book
-        </a>
+       <a class="btn btn-outline" href="{% url 'admin_user:approved_property' slug=property.slug %}"> Approving</a>
     </div>
+   
     {% endfor %}
-  </div>
-</div>
-{% include 'home/footer.html' %}
+
+
 {% endblock %}

@@ -1,13 +1,25 @@
 {% extends "base.html" %} {% block content %} 
  {% include 'home/img_slider.html' %}
+ <div class="text-center"> <a href="{% url 'realestateapp:create_property' %}"><button class="btn btn-outline-primary">Add Hotels</button></a></div>
  {% include 'booking/booking_table.html' %}
- <section class="bg-light py-4 my-5">
+ 
+  <section class="bg-light py-4 my-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <h2 class="mb-3 text-danger">Most Viewed </h2>
                  {% include 'property/most_viewed_property.html' %}
                  {% include 'propertyrank.html' %}
+            </div>
+          </div>
+        </div>
+</section>
+ <section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-3 text-danger">Ranking Wise Hotels </h2>
+                 {% include 'property/list_property_ranking_wise.html' %}
             </div>
           </div>
         </div>

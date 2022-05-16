@@ -16,7 +16,12 @@ def home(request):
     print("0000")
     context = {}
     context['properties'] = MostViewed.objects.all().order_by('-viewed')[:4]
-    print(context)
+    context['ranking'] = RankingProperty.objects.all().values(
+        'property').annotate(avg=Avg('rank')).order_by('-avg')
+    context['propertiesr'] = []
+    for item in context['ranking']:
+        data = Property.objects.get(id=item['property'])
+        context['propertiesr'].append(data)
     return render(request, 'home.html', context)
 
 
@@ -200,4 +205,22 @@ class imagesRecentPropertiesSliderView(ListView):
         context['properties'] = Property.objects.all().order_by(
             '-created_date')[:8]
         print(context['properties'])
+        return context
+
+
+class ListPropertyRankingWiseView(ListView):
+    """
+        Ranking wise hotels will be shown from this functions.
+    """
+    model = RankingProperty
+    template_name = 'property/list_property_ranking_wise.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ranking'] = RankingProperty.objects.all().values(
+            'property').annotate(avg=Avg('rank')).order_by('-avg')
+        context['properties'] = []
+        for item in context['ranking']:
+            data = Property.objects.get(id=item['property'])
+            context['properties'].append(data)
         return context

@@ -31,4 +31,6 @@ urlpatterns = [
          name='search_with_property_name'),
     path('imagesrecentproperty/', views.imagesRecentPropertiesSliderView.as_view(),
          name='images_recent_property'),
+    path('rankingwiseproperty/', views.ListPropertyRankingWiseView.as_view(),
+         name='list_property_ranking_wise'),
 ]

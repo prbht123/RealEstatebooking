@@ -21,7 +21,8 @@ li {
     justify-content: space-between;
     padding: 15px;
     background-color:green;
-    color: #fff;
+    color: white;
+
 }
 .nav-links a {
  color: #fff;
@@ -45,17 +46,27 @@ li {
 /* NAVBAR MENU */
 .menu {
  display: flex;
- gap: 3em;
+ gap: 1em;
  font-size: 25px;
- text-tranceform: uppercase;
+ font-family: cursive;
+ margin-top: 7px;
+ /*text-tranceform: uppercase;*/
+
 }
-.menu li:hover {
- background-color: #FFFF00;
+.menu li a:hover {
+ background-color: yellow;
+ color: blueviolet;
  border-radius: 20px;
- transition: 0.2s ease;
+ transition: 0.1s ease;
+ color: maroon;
+ padding: 7px;
 }
 .menu li {
  padding: 5px 30px;
  }
+
+.menu li a{
+  color: white;
 }
+
 

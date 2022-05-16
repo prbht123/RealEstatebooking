@@ -5,7 +5,7 @@
    <meta charset="UTF-8" />
    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="stylesheet" href="{% static 'css/navbar.css' %}"/>
+   <link rel="stylesheet" href="{% static 'css/navbar1.css' %}"/>
    <link rel="stylesheet" href="{% static 'css/img_slider.css' %}"/>
    <link rel="stylesheet" href="{% static 'css/booking_table.css' %}"/>
    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
@@ -25,7 +25,9 @@
   <div>
    <nav class="navbar">
      <!-- LOGO -->
-     <div class="logo">Hotel Booking</div>
+     <div class="logo">
+      <a href="/" style="color: #fff;font-family: cursive;text-decoration: none;">Hotel Booking</a>
+    </div>
      <!-- NAVIGATION MENU -->
      <ul class="nav-links">
        <!-- <label for="checkbox_toggle" class="hamburger">&#9776;</label> -->
@@ -34,7 +36,8 @@
          <li><a href="/" class="text-decoration-none">Home</a></li>
            <!-- DROPDOWN MENU -->  
          </li>
-         <li><a href="/listproperty/" class="text-decoration-none">Hotel List</a></li>
+         
+         <li><a href="/listproperty/" class="text-decoration-none" >Hotel List</a></li>
          <li><a href="/booking/why_us" class="text-decoration-none">Why Us</a></li>
          <li><a href="/booking/contact/" class="text-decoration-none">Contact</a></li>
          {% if user.is_staff %}
