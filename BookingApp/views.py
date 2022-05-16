@@ -12,6 +12,8 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from .models import Booking
 from BookingApp.forms import BookingForm
 from django.core.mail import send_mail
+from RealEstateApp.models import Property
+from RealEstateApp.forms import PropertyForm
 
 
 # def create_view(request):
@@ -136,3 +138,14 @@ class bookingDeleteView(DeleteView):
 def faq(request):
     return render(request, 'bookingpage/faq.html')
 
+
+# class property_ranking(ListView):
+#     template_name = 'propertyrank.htm'
+#     model = Property
+#     context_object_name = 'properties'
+
+#     def get_context_data(self, *args, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['properties'] = RankingProperty.objects.all().order_by('-viewed')[:5]
+#         print(context['properties'])
+#         return context

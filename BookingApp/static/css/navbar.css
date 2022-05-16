@@ -19,8 +19,8 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
-    background-color: teal;
+    padding: 15px;
+    background-color:green;
     color: #fff;
 }
 .nav-links a {
@@ -28,45 +28,34 @@ li {
 }
 /* LOGO */
 .logo {
- font-size: 32px;
+ font-size: 20px;
+ border: 0.1rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.4em;
+  box-shadow: 0 0 .7rem #fff,
+              0 0 .7rem #fff,
+              0 0 2rem #bc13fe,
+              0 0 0.8rem #bc13fe,
+              0 0 2.8rem #bc13fe,
+              inset 0 0 6.3rem #bc13fe;
+  
+  
+  
 }
 /* NAVBAR MENU */
 .menu {
  display: flex;
- gap: 1em;
- font-size: 18px;
+ gap: 3em;
+ font-size: 25px;
+ text-tranceform: uppercase;
 }
 .menu li:hover {
- background-color: #4c9e9e;
- border-radius: 5px;
- transition: 0.3s ease;
+ background-color: #FFFF00;
+ border-radius: 20px;
+ transition: 0.2s ease;
 }
 .menu li {
- padding: 5px 14px;
+ padding: 5px 30px;
+ }
 }
-/* DROPDOWN MENU */
-.services {
- position: relative; 
-}
-.dropdown {
- background-color: rgb(1, 139, 139);
- padding: 1em 0;
- position: absolute; /*WITH RESPECT TO PARENT*/
- display: none;
- border-radius: 8px;
- top: 35px;
-}
-.dropdown li + li {
- margin-top: 10px;
-}
-.dropdown li {
- padding: 0.5em 1em;
- width: 8em;
- text-align: center;
-}
-.dropdown li:hover {
- background-color: #4c9e9e;
-}
-.services:hover .dropdown {
- display: block;
-}
+

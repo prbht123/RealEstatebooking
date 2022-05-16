@@ -17,5 +17,6 @@ urlpatterns = [
     path('update/<slug:slug>/',views.bookingUpdateView.as_view(), name='Update_booking'),
     path('delete/<slug:slug>',views.bookingDeleteView.as_view(), name='delete_booking'),
     path('faq/',views.faq),
+    # path('propertyrank/', views.property_ranking.as_view(),name="property"),
 ]
 
