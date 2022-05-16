@@ -43,3 +43,10 @@ class bookingDeleteView(DeleteView):
     model = Booking
     template_name = 'booking/delete_booking.html'
     success_url = '/'
+
+
+def why_us(request):
+    """
+        Why Us page Implementations.
+    """
+    return render(request, 'homepage/why_us.html')
