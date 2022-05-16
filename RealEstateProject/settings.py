@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import environ
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,3 +137,10 @@ PAYPAL_TEST = True
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51KyrvaSEP5SNlSqvNEGiS6lmydRJRifXj1WchAuroGIgaQvELvToedvsYxLEE8MmamShKmqQEFIgbkmGzarFialh00h0N4t4Kn'
 STRIPE_SECRET_KEY = 'sk_test_51KyrvaSEP5SNlSqvIbEM4fOt6nWxJ7LTT4tJwNaoFMmsHGB33Vq9wcqpYDzE5RxD9CWilFg6Lra4PRF0ZyPeF5R200I9vJwDAD'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

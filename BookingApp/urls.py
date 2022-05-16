@@ -9,4 +9,5 @@ urlpatterns = [
     path('delete/<slug:slug>',
          views.bookingDeleteView.as_view(), name='delete_booking'),
     path('why_us/', views.why_us),
+    path('contact/', views.ContactUpload),
 ]

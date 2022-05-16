@@ -65,3 +65,13 @@ class Booking(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property.property_name)
         super(Booking, self).save(*args, **kwargs)
+
+
+class ContactDetails(models.Model):
+    name = models.CharField(max_length=100, null=True, verbose_name='Name')
+    email = models.EmailField(null=True)
+    mobile_number = models.BigIntegerField(null=True)
+    messages = models.TextField(null=True)
+
+    def __str__(self):
+        return f"{ self.email }"
