@@ -8,7 +8,7 @@ urlpatterns = [
          views.bookingUpdateView.as_view(), name='Update_booking'),
     path('delete/<slug:slug>',
          views.bookingDeleteView.as_view(), name='delete_booking'),
-    path('why_us/', views.why_us),
+    path('why_us/', views.why_us, name='why_us'),
     path('contact/', views.ContactUpload),
     path('faq/', views.faq),
 ]
