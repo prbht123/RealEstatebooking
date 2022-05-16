@@ -10,4 +10,5 @@ urlpatterns = [
          views.bookingDeleteView.as_view(), name='delete_booking'),
     path('why_us/', views.why_us),
     path('contact/', views.ContactUpload),
+    path('faq/', views.faq),
 ]

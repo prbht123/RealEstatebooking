@@ -78,3 +78,10 @@ def ContactUpload(request):
     else:
         print(settings.EMAIL_HOST_USER)
         return render(request, 'homepage/contact.html')
+
+
+def faq(request):
+    """
+        FAQ page implementation.
+    """
+    return render(request, 'homepage/faq.html')
