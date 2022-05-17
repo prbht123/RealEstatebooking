@@ -1,9 +1,9 @@
 {% load static %}
 
-<div class="slideshow-container" style="">
+<div class="slideshow-container">
   {% for property in properties %}
 <div class="mySlides fade">
-  <img src="{% if property.property.image %}{{property.property.image.url}}{% endif %}" style="width:100%">
+  <img src="{% if property.property.image %}{{property.property.image.url}}{% endif %}" style="">
   <div class="text"></div>
 </div>
 {% endfor %}
