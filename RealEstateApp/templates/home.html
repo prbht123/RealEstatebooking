@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block content %} 
  {% include 'home/img_slider.html' %}
- <div class="text-center"> <a href="{% url 'realestateapp:create_property' %}"><button class="btn btn-outline-primary">Add Hotels</button></a></div>
+ 
  {% include 'booking/booking_table.html' %}
+ <div class="text-right" style="margin: 60px; width: 80%;" > <a href="{% url 'realestateapp:create_property' %}"><button class="btn btn-outline-primary">Add Hotels</button></a></div>
  
   <section class="bg-light py-4 my-5">
     <div class="container">
