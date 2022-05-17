@@ -39,8 +39,8 @@ def payment_process(request, slug):
     form = PayPalPaymentsForm(initial=paypal_dict)
     return render(request, 'payment/process.html', {'order': booked, 'form': form})
 
-    key = settings.STRIPE_PUBLISHABLE_KEY
-    return render(request, 'payment/stripe/process.html', {'order': booked, 'form': form, 'key': key})
+    # key = settings.STRIPE_PUBLISHABLE_KEY
+    # return render(request, 'payment/stripe/process.html', {'order': booked, 'form': form, 'key': key})
 
 
 class PaymentWithStripe(TemplateView):
@@ -65,5 +65,8 @@ def charge(request):
         return render(request, 'payment/done.html')
 
 
-def payment_done_strip(request):
+def payment_done_strip(request, **kwargs):
+    booked = Booking.objects.get(slug=kwargs['slug'])
+    booked.paid = True
+    booked.save()
     return render(request, 'payment/done.html')

@@ -1,5 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container card mt-4 d-flex align-items-center">
 <h1>Pay using Stripe</h1>
-<form method="post" action="{% url 'payment:stripe_done' %}">
+<form method="post" action="{% url 'payment:stripe_done' slug=booked.slug %}">
 {% csrf_token %} 
 <script src ="https://checkout.stripe.com/checkout.js" class="stripe-button"
 data-key = "{{key}}"
@@ -9,3 +12,5 @@ data-locale = "auto"
 >
 </script>
 </form>
+</div>
+{% endblock %}
