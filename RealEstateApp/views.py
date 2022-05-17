@@ -139,7 +139,7 @@ class propertyDetailView(DetailView):
         context['property'] = Property.objects.filter(slug=self.object.slug)[0]
         context['images'] = ImagesProperty.objects.filter(
             property__slug=self.object.slug)
-        print(context['images'])
+        print(context['images'][0].image.url)
         context['ranking'] = RankingProperty.objects.filter(
             property__slug=self.object.slug).aggregate(Avg('rank'))
         context['feedback'] = FeedBackProperty.objects.filter(

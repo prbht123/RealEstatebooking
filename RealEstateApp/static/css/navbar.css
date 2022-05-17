@@ -22,7 +22,7 @@ li {
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: rgb(128, 0, 4);
+    background-color: rgb(1, 139, 139);
     color: #fff;
 }
 
@@ -46,6 +46,10 @@ li {
     background-color: #4c9e9e;
     border-radius: 5px;
     transition: 0.3s ease;
+}
+
+.menu li a {
+    color: #fff;
 }
 
 .menu li {
