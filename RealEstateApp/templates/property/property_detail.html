@@ -92,7 +92,8 @@
     <div class="card">
     Booking Details-</br>
     <p>cost :<span id="cost"> </span></p>
-    <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'booking:create_booking' %}" >
+    <p>Availability : <span id="booking"> </span></p>
+    <a id="book_property" class="card-text float-right text-decoration-none" style="font-size: 0.9rem;display:none;" href="{% url 'booking:create_booking' %}" >
         Book
         </a>
     </div>
@@ -132,10 +133,13 @@
 </div>
 <hr>
 {% include 'home/footer.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/
+jquery.min.js"></script>
 <script >
 function showDiv() {
   var checkin = document.getElementById('check_in').value;
   var checkout = document.getElementById('check_out').value;
+  console.log(checkin)
   date1 = new Date(checkin);
   date2 = new Date(checkout);
   date1time = date1.getTime();
@@ -147,10 +151,31 @@ function showDiv() {
    document.getElementById('cost').innerHTML = cost;
    book = document.getElementById('booked').value;
    var booked = "{{booking}}";
-  console.log(booked)
+   mydata = {
+     'checkin':checkin,
+      'checkout':checkout,
+      'property_slug':'{{property.slug}}',
+   }
+   console.log(mydata);
+   $.ajax({
+     url : "{% url 'booking:booking_search' %}",
+     method:"GET",
+     data :mydata,
+      success:function(data){
+       console.log("success")
+       if(data.status == 1){
+         document.getElementById('booking').innerHTML = "Available Property, Now Book it...";
+         document.getElementById('book_property').style.display = "block";
+       }
+       else{
+         document.getElementById('booking').innerHTML = "Already Booked Hotel,Please try another date...";
+       }
+       
+      },
+     
+     
+   })
    
-   console.log("99999999999")
- 
    document.getElementById('welcomeDiv').style.display = "block";
 }
 </script>

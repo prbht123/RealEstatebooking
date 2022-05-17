@@ -10,6 +10,7 @@ from django.forms.formsets import formset_factory
 from django.db.models import Q
 from django.urls import reverse
 from django.db.models import Avg
+import json
 # Create your views here.
 
 
@@ -139,12 +140,14 @@ class propertyDetailView(DetailView):
         context['property'] = Property.objects.filter(slug=self.object.slug)[0]
         context['images'] = ImagesProperty.objects.filter(
             property__slug=self.object.slug)
-        print(context['images'][0].image.url)
         context['ranking'] = RankingProperty.objects.filter(
             property__slug=self.object.slug).aggregate(Avg('rank'))
         context['feedback'] = FeedBackProperty.objects.filter(
             property__slug=self.object.slug)
-        context['booking'] = list(Booking.objects.all())
+        context['booking'] = list(Booking.objects.filter(
+            property__slug=self.object.slug))
+        print(context['booking'])
+
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
         if count.property.author == self.request.user:

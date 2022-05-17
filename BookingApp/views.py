@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import Booking, ContactDetails
@@ -7,6 +8,9 @@ from django.shortcuts import (get_object_or_404, render, HttpResponseRedirect)
 from django.views.generic import TemplateView
 from django.contrib import messages
 from django.conf import settings
+from django.db.models import Q
+from datetime import datetime
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -85,3 +89,27 @@ def faq(request):
         FAQ page implementation.
     """
     return render(request, 'homepage/faq.html')
+
+
+def SearchBookingView(request):
+    check_in_time = request.GET.get('checkin')
+    check_in_time = datetime.strptime(check_in_time, "%Y-%m-%d").date()
+    check_out_time = request.GET.get('checkout')
+    check_out_time = datetime.strptime(check_out_time, "%Y-%m-%d").date()
+    property_slug = request.GET.get('property_slug')
+    context = {}
+    if check_in_time and check_out_time:
+        context['booking'] = Booking.objects.filter(
+            Q(date_until__lt=check_in_time) | Q(date_from__gt=check_out_time))
+        if not context['booking']:
+            context['booking'] = Booking.objects.all().exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
+                date_from__lte=check_out_time, date_until__gte=check_out_time))
+            if not context['booking']:
+                context['booking'] = Booking.objects.filter(
+                    date_from__lte=check_in_time, date_until__gte=check_out_time)
+
+    if context['booking']:
+        context['booking'] = context['booking'].filter(
+            property__slug=property_slug)
+        return JsonResponse({'status': 1})
+    return JsonResponse({'status': 0})
