@@ -1,33 +1,32 @@
 {% extends 'admin/adminHome.html' %} {% block Dashboard %}
 <div class="row">
   <div class="col-sm-3" style="background-color: DodgerBlue">
-    <h6>Welcome, Admin</h6>
+    <h3 style="color: #fff; height: 30px; text-align: center;" >WELCOME ADMIN</h3>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
         <a class="text-decoration-none" href="{% url 'admin_user:admin_home' %}"
-          >Dashboard</a
-        >
+          ><button style="color: green; width: 250px;  margin-left: 90px; ">Dashboard</button></a>
       </li>
        <li class="list-group-item">
         <a class="text-decoration-none" href="{% url 'admin_user:approving_property_list' %}"
-          >Approved Property</a
+          ><button style="color: green; width: 250px; margin-left: 90px; ">Approved Property</button></a
         >
       </li>
       <li class="list-group-item">
         <a
           class="text-decoration-none"
           href="{% url 'admin_user:manage_users' %}"
-          >Manage Admin Users</a
+          ><button style="color: green; width: 250px; margin-left: 90px;">Manage Admin Users</button></a
         >
       </li>
       <li class="list-group-item"><a
           class="text-decoration-none"
           href="{% url 'admin_user:manage_admin_role' %}"
-          >Manage Admin Roles</a></li>
+          ><button style="color: green; width: 250px; margin-left: 90px; ">Manage Admin Roles</button></a></li>
       <li class="list-group-item"><a
           class="text-decoration-none"
           href="{% url 'admin_user:normal_users' %}"
-          >Normal users</a></li>
+          ><button style="color: green; width: 250px; margin-left: 90px; ">Normal users</button></a></li>
     </ul>
   </div>
   <div class="col-sm-9" style="background-color: #ffe6e6">

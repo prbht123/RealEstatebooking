@@ -3,7 +3,7 @@
 <div class="slideshow-container">
   {% for property in properties %}
 <div class="mySlides fade">
-  <img src="{% if property.property.image %}{{property.property.image.url}}{% endif %}" style="">
+  <img src="{% if property.property.image %}{{property.property.image.url}}{% endif %}" >
   <div class="text"></div>
 </div>
 {% endfor %}
