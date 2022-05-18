@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/property_details.css' %}"/>
+{% endblock %}
 {% block content %}
 <div class="container-fluid">
  <div class="row">
@@ -33,9 +36,10 @@
 </div>
   </div>
   <div class="container mt-4">
-  <h3>{{property.property_name}}</h3>  
+  <p id="property">{{property.property_name}}</p>  
+  <hr style="width: 15%;"> 
   
-  <div class="row align-items-start mb-b" style="height:50%;">
+  <div class="row align-items-start mb-4" style="height:50%;">
     <div class="col-md-7">
     <div class="row">
     <div class="col">
@@ -56,10 +60,10 @@
 
     <div class="col-5 ">
      {% if property.author == user %}
-       <a class="btn btn-outline float-left" href="{% url 'realestateapp:create_property_images' slug=property.slug %}">Add Images</a>
+       <a class="btn btn-outline-primary float-left me-4" href="{% url 'realestateapp:create_property_images' slug=property.slug %}">Add Images</a>
        
-       <a class="btn btn-outline float-center" href="{% url 'realestateapp:Update_property' slug=property.slug %}">Update</a>
-       <a class="btn btn-outline float-right" href="{% url 'realestateapp:delete_property' slug=property.slug %}">Delete</a>
+       <a class="btn btn-outline-primary float-center" href="{% url 'realestateapp:Update_property' slug=property.slug %}">Update</a>
+       <a class="btn btn-outline-danger float-right" href="{% url 'realestateapp:delete_property' slug=property.slug %}">Delete</a>
        
        <br>
        <br>

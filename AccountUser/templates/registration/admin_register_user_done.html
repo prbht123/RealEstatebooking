@@ -1,7 +1,10 @@
-{% extends "base.html" %} {% block content %}
+{% extends 'admin/adminHome.html' %}  {% load widget_tweaks %} {% block title %} Create an
+account {% endblock %}{% block Dashboard %}
+<div class="col-sm-4 offset-sm-4">
 <h1>Welcome {{ new_user.username }}!</h1>
 <p>
   Your account has been successfully created. Now you can :
   <a href="{% url 'admin_user:create_role' pk=new_user.id %}">Add roles</a>.
 </p>
+</div>
 {% endblock %}

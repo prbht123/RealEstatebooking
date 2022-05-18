@@ -1,4 +1,5 @@
-{% include 'base.html' %}{% load widget_tweaks %} 
+{% extends 'admin/adminHome.html' %}  {% load widget_tweaks %} {% block title %} Create an
+roles {% endblock %}{% block Dashboard %} 
 <div class="container col-sm-6">
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -15,3 +16,4 @@
   <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
 </form>
 </div>
+{% endblock %}

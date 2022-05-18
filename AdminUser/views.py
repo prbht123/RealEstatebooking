@@ -82,6 +82,7 @@ def adminRegisterUser(request):
 
         return render(request, 'registration/admin_register_user_done.html', {'new_user': new_user})
     else:
+        print("9999999999999999999999999")
         user_form = AdminUserRegistrationForm()
         return render(request, 'registration/create_admin_register_user.html', {'user_form': user_form})
 
@@ -111,7 +112,7 @@ class createRoleAdmin(CreateView):
         user = User.objects.get(id=self.kwargs['pk'])
         data.user = user
         data.save()
-        return redirect('/')
+        return redirect('admin_user:manage_users')
 
 
 class roleUpdateView(UpdateView):
