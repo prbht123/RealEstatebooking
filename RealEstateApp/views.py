@@ -1,6 +1,7 @@
 from tkinter import Image
 from django.forms.models import inlineformset_factory
 from telnetlib import DET
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from AdminUser.models import PopularLocations
@@ -163,7 +164,7 @@ class propertyDetailView(DetailView):
         context['booking'] = list(Booking.objects.filter(
             property__slug=self.object.slug))
         print(context['booking'])
-
+        context['feedbackform'] = FeedbackForm
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
         if count.property.author == self.request.user:
@@ -212,7 +213,7 @@ class createFeedbackView(CreateView):
     """
     model = FeedBackProperty
     form_class = FeedbackForm
-    template_name = 'feedback/create_feedback_property.html'
+    #template_name = 'feedback/create_feedback_property.html'
 
     def form_valid(self, form):
         data = form.save(commit=False)

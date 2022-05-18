@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/property_details.css' %}"/>
@@ -133,11 +134,20 @@
      {% endfor %}
      {% endif %}
     </div>
-    <div class="card">
+    <div class="card mt-1">
     {% if request.user.username %}
-      <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:create_feedback_property' slug=property.slug %}" >
-        Give Feedback
-        </a>
+    <form action="{% url 'realestateapp:create_feedback_property' slug=property.slug %}" method="post">
+    {% csrf_token %}
+    {% for field in feedbackform.visible_fields %}
+  <div class="form-group mt-2">
+    {% render_field field class="form-control" rows="3" placeholder=field.label %}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+  <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+  </form>
      {% endif %}
     </div>
   </div>
@@ -198,5 +208,7 @@ function showDiv() {
    
    document.getElementById('welcomeDiv').style.display = "block";
 }
+
+
 </script>
 {% endblock %}
