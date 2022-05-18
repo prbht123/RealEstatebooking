@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import AdminUserRoles
+from .models import AdminUserRoles, PopularLocations
 
 
 class AdminUserRegistrationForm(forms.ModelForm):
@@ -15,3 +15,9 @@ class AdminUserRolesForm(forms.ModelForm):
     class Meta:
         model = AdminUserRoles
         fields = ['roles']
+
+
+class PopularLocationsForms(forms.ModelForm):
+    class Meta:
+        model = PopularLocations
+        fields = ['city', 'state', 'country', 'popular_rank']

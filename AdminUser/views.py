@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 import datetime
 from BookingApp.models import Booking
 from RealEstateApp.models import Property
-from .forms import AdminUserRegistrationForm, AdminUserRolesForm
-from .models import AdminUserRoles
+from .forms import AdminUserRegistrationForm, AdminUserRolesForm, PopularLocationsForms
+from .models import AdminUserRoles, PopularLocations
 from django.views.generic import UpdateView, CreateView, ListView, DeleteView
 # Create your views here.
 
@@ -206,3 +206,21 @@ def approvedPropertyView(request, slug):
         return redirect('admin_user:approving_property_list')
     except Exception as e:
         raise e
+
+
+class CreatePopularLocationView(CreateView):
+    """
+        Admin user can add the popular locations.
+    """
+    model = PopularLocations
+    form_class = PopularLocationsForms
+    template_name = 'admin/approving_property/create_popular_locations.html'
+
+    def form_valid(self, form):
+        print("000000000000000000000")
+        data = form.save(commit=False)
+        user = User.objects.get(id=self.request.user.id, is_staff=True)
+        if user:
+            data.save()
+            return redirect('admin_user:admin_home')
+        return redirect('/')

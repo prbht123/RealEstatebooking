@@ -25,4 +25,6 @@ urlpatterns = [
          name='approving_property_list'),
     path('approvingproperty/<slug:slug>', views.approvedPropertyView,
          name='approved_property'),
+    path('addpopularlocation', views.CreatePopularLocationView.as_view(),
+         name="add_popular_location"),
 ]

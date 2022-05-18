@@ -1,0 +1,18 @@
+{% extends 'admin/adminHome.html' %}  {% load widget_tweaks %} {% block title %} Add Popular Location {% endblock %}{% block Dashboard %} 
+<div class="container col-sm-6">
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+  <div class="form-group mt-1">
+   <p><label>{{field_label}}</label></p>
+    {% render_field field class="form-control mb-2" placeholder=field.label %}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+  <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+</form>
+</div>
+{% endblock %}

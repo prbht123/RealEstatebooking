@@ -8,11 +8,7 @@
           >Dashboard</a
         >
       </li>
-       <li class="list-group-item">
-        <a class="text-decoration-none" href="{% url 'admin_user:approving_property_list' %}"
-          >Approved Property</a
-        >
-      </li>
+       
       <li class="list-group-item">
         <a
           class="text-decoration-none"
@@ -28,6 +24,16 @@
           class="text-decoration-none"
           href="{% url 'admin_user:normal_users' %}"
           >Normal users</a></li>
+        <li class="list-group-item">
+        <a class="text-decoration-none" href="{% url 'admin_user:approving_property_list' %}"
+          >Approved Property</a
+        >
+      </li>
+       <li class="list-group-item">
+        <a class="text-decoration-none" href="{% url 'admin_user:add_popular_location' %}"
+          >Add Popular Location</a
+        >
+      </li>
     </ul>
   </div>
   <div class="col-sm-9" style="background-color: #ffe6e6">
