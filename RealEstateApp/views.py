@@ -2,6 +2,8 @@ from tkinter import Image
 from django.forms.models import inlineformset_factory
 from telnetlib import DET
 from django.shortcuts import render, redirect
+
+from AdminUser.models import PopularLocations
 from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed, ImagesProperty
 from BookingApp.models import Booking
 from RealEstateApp.forms import FeedbackForm, PropertyForm, RankingPropertyForm
@@ -24,6 +26,20 @@ def home(request):
     for item in context['ranking']:
         data = Property.objects.get(id=item['property'])
         context['propertiesr'].append(data)
+    popular_locations = PopularLocations.objects.all()
+    context['popular_location_property'] = []
+    for popular in popular_locations:
+        city = (popular.city).lower()
+        state = (popular.state).lower()
+        ranking_property = RankingProperty.objects.filter(
+            property__property_status='published', property__Address__city=city, property__Address__state=state, property__Address__country=popular.country)
+        if ranking_property:
+            popular_location_property = ranking_property.values(
+                'property').annotate(avg=Avg('rank')).order_by('-avg')[0]
+            data = Property.objects.get(
+                id=popular_location_property['property'])
+            context['popular_location_property'].append(data)
+
     return render(request, 'home.html', context)
 
 
@@ -284,6 +300,9 @@ class ListPropertyRankingWiseView(ListView):
 
 
 def createPropertyImages(request, slug):
+    """
+        This functionality for adding images of a particular property.
+    """
     property = Property.objects.get(slug=slug)
     if request.method == "POST":
         images = ImagesProperty.objects.create(
