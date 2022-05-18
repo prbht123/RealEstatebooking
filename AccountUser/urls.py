@@ -15,5 +15,5 @@ urlpatterns = [
          name="create_user_profile"),
     path('edituserprofile/<slug:slug>', views.UpdateProfileView.as_view(),
          name='update_user_profile'),
-
+    path('deleteuser/<slug:slug>', views.UserDeleteView, name='delete_user'),
 ]

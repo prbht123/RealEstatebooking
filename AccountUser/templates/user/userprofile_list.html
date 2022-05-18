@@ -7,6 +7,15 @@
    <img src="{% if userprofile.image %}{{userprofile.image.url}}{% endif %}" style="height:100%;width:100%;">
 </div>
 <div class="col-sm-8">
+<nav class="navbar navbar-light bg-light">
+
+  <form class="container-fluid justify-content-start">
+   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline-success me-2" type="button">Edit Profile</button></a>
+   <a href="{% url 'account:delete_user' slug=userprofile.slug %}"> <button class="btn btn-outline-success  me-2" type="button">Delete Profile</button></a>
+   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline-success  me-2" type="button">Add Hotels</button></a>
+  </form>
+</nav>
+<hr>
  {% if userprofile.user.first_name %}
  <lable class="fw-bold"> First name : </lable>
      {{userprofile.user.first_name}}<br>

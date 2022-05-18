@@ -34,9 +34,9 @@ def homeView(request):
 
 
 def UserProfileView(request, pk):
-    userprofile = UserProfile.objects.filter(user=request.user)[0]
+    userprofile = UserProfile.objects.filter(user=request.user)
     if userprofile:
-        return render(request, 'user/userprofile_list.html', {'userprofile': userprofile})
+        return render(request, 'user/userprofile_list.html', {'userprofile': userprofile[0]})
     else:
         return redirect('account:create_user_profile')
 
@@ -97,3 +97,10 @@ class UpdateProfileView(UpdateView):
         # kwargs['instance'].address.save()
         kwargs.update()
         return kwargs
+
+
+def UserDeleteView(request, slug):
+    userprofile = UserProfile.objects.get(slug=slug)
+    user = User.objects.get(id=userprofile.user.id)
+    user.delete()
+    return redirect('/')
