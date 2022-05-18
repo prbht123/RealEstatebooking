@@ -28,6 +28,10 @@ class Address(models.Model):
     def __str__(self):
         return self.city
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.street)
+        super(Address, self).save(*args, **kwargs)
+
 
 class Property(models.Model):
     STATUS_BED_TYPE = (
