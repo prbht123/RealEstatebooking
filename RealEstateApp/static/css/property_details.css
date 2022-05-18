@@ -1,0 +1,25 @@
+.property_img {
+    height: 550px;
+    width: 100%;
+    /*width="400" 
+     height="500"*/
+}
+
+.col-5 p {
+    color: green;
+}
+
+.col-5 label {
+    color: rebeccapurple;
+
+}
+
+.col-md-7 p {
+    color: #000;
+}
+
+#property {
+    font-weight: 700;
+    color: orangered;
+    font-size: 30px;
+}
