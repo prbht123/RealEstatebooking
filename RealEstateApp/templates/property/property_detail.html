@@ -2,6 +2,8 @@
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/property_details.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/star_ranking.css' %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
@@ -50,8 +52,14 @@
       </div>
       <div class="col">
       {% if ranking.rank__avg %}
-      Ranking : {{ranking.rank__avg}}
+      Ranking : 
       {% endif %}
+      <input class="d-none" type="text" value='{{ranking.rank__avg}}' id="star_ranking">
+      <span class="fa fa-star" id="star1"></span>
+      <span class="fa fa-star" id="star2"></span>
+      <span class="fa fa-star" id="star3"></span>
+      <span class="fa fa-star" id="star4"></span>
+      <span class="fa fa-star" id="star5"></span>
       </div>
     </div>
             <h5>Abbout this Listing</h5>
@@ -140,6 +148,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/
 jquery.min.js"></script>
 <script >
+var star = document.getElementById('star_ranking').value;
+var star = parseInt(star);
+console.log(star);
+for(i=1;i<=star;i++){
+  var star1 = "star"+ i;
+  document.getElementById(star1).style.color = 'yellow';
+}
+
 function showDiv() {
   var checkin = document.getElementById('check_in').value;
   var checkout = document.getElementById('check_out').value;
