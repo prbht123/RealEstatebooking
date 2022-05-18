@@ -122,19 +122,7 @@
         {% endif %}
      {% endif %}
     </div>
-    <div class="card">
-    {% if feedback %}
-    <h4>Feedback of {{property.property_name}} </h4>
-     {% for feedback_item in feedback %}
-        <div class="card-body">
-             <label > {{feedback_item.user.username}} </label>
-             <p>{{ feedback_item.feedback }}</p>
-        </div>
-
-     {% endfor %}
-     {% endif %}
-    </div>
-    <div class="card mt-1">
+    <div class="card mt-2">
     {% if request.user.username %}
     <form action="{% url 'realestateapp:create_feedback_property' slug=property.slug %}" method="post">
     {% csrf_token %}
@@ -150,6 +138,29 @@
   </form>
      {% endif %}
     </div>
+    <div class="card mt-4">
+    {% if feedback %}
+    <h4>Feedback of {{property.property_name}} </h4>
+    <hr>
+     {% for feedback_item in feedback %}
+        <div class="card-body row">
+           <div class="col-sm-2">
+             {% for userprofile in userprofiles %}
+                {% if feedback_item.user.username == userprofile.user.username %}
+                   <img class="img-thumbnail rounded-circle" height="80%" width="80%"  src={% if userprofile.image %}{{userprofile.image.url}}{% endif %}/>
+                {% endif %}
+             {% endfor %}
+           </div>
+           <div class="col-sm-10">
+             <label > {{feedback_item.user.username}} </label>
+             <p>{{ feedback_item.feedback }}</p>
+            </div>
+        </div>
+
+     {% endfor %}
+     {% endif %}
+    </div>
+    
   </div>
 
 </div>

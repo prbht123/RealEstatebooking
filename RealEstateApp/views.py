@@ -14,6 +14,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.db.models import Avg
 import json
+from AccountUser.models import UserProfile
 # Create your views here.
 
 
@@ -165,6 +166,7 @@ class propertyDetailView(DetailView):
             property__slug=self.object.slug))
         print(context['booking'])
         context['feedbackform'] = FeedbackForm
+        context['userprofiles'] = UserProfile.objects.all()
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
         if count.property.author == self.request.user:
