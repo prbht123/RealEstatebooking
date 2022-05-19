@@ -13,7 +13,11 @@ class Room(models.Model):
     slug = models.SlugField(max_length=250)
 
     def __str__(self):
-        return self.room_type_name
+        return self.slug
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.room_type_name)
+        super(Room, self).save(*args, **kwargs)
 
 
 class Address(models.Model):
@@ -26,7 +30,7 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return self.city
+        return self.slug
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.street)
@@ -75,7 +79,7 @@ class Property(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.property_name
+        return self.slug
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property_name)
@@ -135,7 +139,7 @@ class ImagesProperty(models.Model):
         upload_to='property/item/images/', blank=True, null=True)
 
     def __str__(self):
-        return self.property.slug
+        return self.slug
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property.property_name)

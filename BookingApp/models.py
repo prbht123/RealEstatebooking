@@ -62,6 +62,9 @@ class Booking(models.Model):
     paid = models.BooleanField(default=False)
     notes = models.TextField()
 
+    def __str__(self):
+        return self.slug
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.property.property_name)
         super(Booking, self).save(*args, **kwargs)

@@ -13,6 +13,7 @@
    <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline-success me-2" type="button">Edit Profile</button></a>
    <a href="{% url 'account:delete_user' slug=userprofile.slug %}"> <button class="btn btn-outline-success  me-2" type="button">Delete Profile</button></a>
    <a href="{% url 'realestateapp:create_property' %}"> <button class="btn btn-outline-success  me-2" type="button">Add Hotels</button></a>
+   <a href="{% url 'realestateapp:list_property_user' %}"> <button class="btn btn-outline-success  me-2" type="button">Hotels List</button></a>
   </form>
 </nav>
 <hr>
