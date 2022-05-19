@@ -4,6 +4,7 @@ from taggit.managers import TaggableManager
 from django_countries.fields import CountryField
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
 # Create your models here.
 
 
@@ -109,7 +110,8 @@ class FeedBackProperty(models.Model):
         return self.slug
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.property.property_name)
+        the_slug = get_random_string(8, '0123456789')
+        self.slug = slugify(self.property.property_name + the_slug)
         super(FeedBackProperty, self).save(*args, **kwargs)
 
 
@@ -126,7 +128,8 @@ class RankingProperty(models.Model):
         return self.slug
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.property.property_name)
+        the_slug = get_random_string(8, '0123456789')
+        self.slug = slugify(self.property.property_name+the_slug)
         super(RankingProperty, self).save(*args, **kwargs)
 
 

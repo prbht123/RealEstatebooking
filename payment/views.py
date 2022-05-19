@@ -47,7 +47,7 @@ class PaymentWithStripe(TemplateView):
     template_name = 'payment/stripe/process.html'
 
     def get_context_data(self, **kwargs):
-        booked = get_object_or_404(Booking, property__slug=kwargs['slug'])
+        booked = get_object_or_404(Booking, slug=kwargs['slug'])
         context = super().get_context_data(**kwargs)
         context['key'] = settings.STRIPE_PUBLISHABLE_KEY
         context['booked'] = booked

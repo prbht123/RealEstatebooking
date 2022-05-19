@@ -25,7 +25,7 @@ class createBooking(CreateView):
         data = form.save(commit=False)
         data.paid = False
         data.save()
-        return redirect('payment:process_stripe', slug=data.property.slug)
+        return redirect('payment:process_stripe', slug=data.slug)
 
 
 class bookingUpdateView(UpdateView):
