@@ -10,15 +10,16 @@
 <div class="container-fluid">
  <div class="row">
  <div class="col-sm-7">
+   <a id="btnShowPopup">
     <img class="" style="height:550px;width:103%;" src="{% if property.image %}{{ property.image.url }}{% endif %}">
+   </a>
    </div>
    <div class="col-sm-5">
    {% for image in images %}
    {% if forloop.counter == 1 %}
     <div class="row">
-      
     <img class="" style="height:276px;width:100%;" src="{% if image.image %}{{ image.image.url }}{% endif %}">
-    
+   
     </div>
     
     {% elif forloop.counter == 2 %}
@@ -164,6 +165,35 @@
   </div>
 
 </div>
+
+  <!-- Modal Popup -->
+    <div id="MyPopup" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" >
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title"> Images of {{property.property_name}}
+                    </h4>
+                </div>
+               
+                {% if images %}
+                {% for image in images %}
+                <div class="col-md-12 mt-2">
+                  <div class="thumbnail">
+                      <img src="{% if image.image %}{{image.image.url}}{% endif %}" alt="Lights" style="width:100%;height:400px;">
+                  
+                  </div>
+                </div>     
+                
+                {% endfor %}
+            
+                {% endif %}
+               
+            </div>
+        </div>
+    </div>
+
 <hr>
 {% include 'home/footer.html' %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/
@@ -219,7 +249,18 @@ function showDiv() {
    
    document.getElementById('welcomeDiv').style.display = "block";
 }
-
-
+$(function () {
+        $("#btnShowPopup").click(function () {           
+            $("#MyPopup").modal("show");
+        });
+    }); 
+$(document).ready(function () {
+    $('img').on('click', function () {
+        var image = $(this).attr('src');
+        $('#myModal').on('show.bs.modal', function () {
+            $(".img-responsive").attr("src", image);
+        });
+    });
+});
 </script>
 {% endblock %}
