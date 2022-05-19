@@ -1,25 +1,28 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends 'admin/adminPanel.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/adminuser/adminDashboard.css' %}"/>
+{% endblock %}
+ {% block adminContent %}
 
-<h3>Admin Dashboard</h3>
+<h3 class="admin_d">Admin Dashboard</h3>
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div
-        class="card bg-danger text-white"
-        style="width: 350px; height: 200px"
-      >
+      <div  
+        class="card bg-danger text-white" id="all_property"><br><br>
         <p>Total Users</p>
         <p>{{count_users}}</p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card bg-warning" style="width: 350px; height: 200px">
+      <div class="card bg-warning text-white" id="all_property"><br><br>
         <p>Last 24 hours Users</p>
         <p>{{last_day_count_users}}</p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card bg-primary" style="width: 350px; height: 200px">
+      <div class="card bg-primary text-white" id="all_property"><br><br>
         <p>Last 30 days Users</p>
         <p>{{last_month_count_users}}</p>
       </div>
@@ -27,19 +30,19 @@
   </div>
   <div class="row mt-4">
     <div class="col-4">
-      <div class="card" style="width: 350px; height: 200px">
+      <div class="card bg-info text-white" id="all_property"><br><br>
         <p>Total Listings</p>
         <p>{{count_property}}</p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card" style="width: 350px; height: 200px">
+      <div class="alert alert-info" id="all_property"><br><br>
         <p>Last 24 hours Listings</p>
         <p>{{last_day_count_property}}</p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card" style="width: 350px; height: 200px">
+      <div class="bg-danger text-white" id="all_property"><br><br>
         <p>Last 30 days Listings</p>
         <p>{{last_month_count_property}}</p>
       </div>
@@ -47,19 +50,19 @@
   </div>
   <div class="row mt-4">
     <div class="col-4">
-      <div class="card" style="width: 350px; height: 200px">
+      <div class="bg-primary text-white" id="all_property"><br><br>
         <p>Total Reservations</p>
         <p>{{count_booking}}</p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card" style="width: 350px; height: 200px">
+      <div class="alert alert-dark" id="all_property" ><br><br>
         <p>Last 24 hours Reservations</p>
         <p>{{last_day_count_booking}}</p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card" style="width: 350px; height: 200px">
+      <div class="alert alert-success" id="all_property"><br><br>
         <p>Last 30 days Reservations</p>
         <p>{{last_month_count_booking}}</p>
       </div>
@@ -68,3 +71,4 @@
 </div>
 
 {% endblock %}
+
