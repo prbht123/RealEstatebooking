@@ -1,26 +1,25 @@
 {% extends 'adminbase.html' %} {% block content %}
 <nav class="navbar navbar-expand-sm">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+  <div class="container-fluid"> <img src="/static/images/webkrone_logo.png" alt="Snow" style="width:20%;height: 20%;">
+    <!-- <a class="navbar-brand" href="javascript:void(0)">Logo</a> -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#mynavbar"
-    >
+      data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="d-flex">
       <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'admin_user:admin_home' %}">Admin Panel</a>
+            <a class="nav-link" href="javascript:void(0)"><button class="btn btn-success">Admin Panel</button></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'realestateapp:home' %}">Goto main site</a>
+            <a class="nav-link" href="{% url 'realestateapp:home' %}"><button class="btn btn-success">Goto main site</button></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/accounts/logout/">Logout</a>
+            <a class="nav-link" href="/accounts/logout/"><button class="btn btn-success">Logout</button></a>
           </li>
         </ul>
       </div>
