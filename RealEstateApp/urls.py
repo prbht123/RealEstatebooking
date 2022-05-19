@@ -30,4 +30,6 @@ urlpatterns = [
          name='images_recent_property'),
     path('rankingwiseproperty/', views.ListPropertyRankingWiseView.as_view(),
          name='list_property_ranking_wise'),
+    path('listpropertyuser/',
+         views.ListPropertyUserView.as_view(), name='list_property_user')
 ]

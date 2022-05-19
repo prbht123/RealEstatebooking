@@ -316,3 +316,18 @@ def createPropertyImages(request, slug):
         context = {}
         context['property'] = property
         return render(request, 'property/create_property_images.html', context)
+
+
+class ListPropertyUserView(ListView):
+    """
+        List out the all properties.
+    """
+    template_name = 'property/list_property_user.html'
+    model = Property
+    #context_object_name = 'properties'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['properties'] = Property.objects.filter(
+            author=self.request.user)
+        return context

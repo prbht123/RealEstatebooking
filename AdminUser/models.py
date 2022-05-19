@@ -31,7 +31,7 @@ class PopularLocations(models.Model):
     popular_rank = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.city
+        return self.slug
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.city)
