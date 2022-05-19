@@ -1,5 +1,7 @@
-h1{
+h2{
 color: #1c12a3;
+font-family: "Gill Sans Extrabold", sans-serif;
+
 
 }
 
@@ -52,5 +54,6 @@ color: #1c12a3;
 	   font-size: 1.25rem;
   margin-block-start: 1rem;
   text-transform: capitalize; 
+  font-family: Georgia, serif;
 
 }
