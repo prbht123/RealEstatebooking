@@ -1,10 +1,14 @@
 {% include 'base.html' %}{% load widget_tweaks %} {% block content %}
 <h1 class="text-center">Add The Booking</h1>
 <hr/>
-<div class="container col-sm-6">
+<div class="container col-sm-8 bg-success mb-4">
 <form method="post">
   {% csrf_token %} 
+  <div class="row container">
+  
    {% for field in form.visible_fields %}
+   {% if forloop <= 7 %}
+   <div class="col-sm-6">
   <div class="form-group mt-1">
     {% comment %} <label for="{{ field.id_for_label }}">{{ field.label }}</label> {% endcomment %}
      {% comment %} {{ field|add_class:'form-control' | }} {% endcomment %}
@@ -14,9 +18,34 @@
       <span class="help-block">{{ error }}</span>
     {% endfor %}
   </div>
+  </div>
+  {% else %}
+  <div class="col-sm-6 bg-success">
+  <div class="form-group mt-1">
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label> 
+     {% comment %} {{ field|add_class:'form-control' | }} {% endcomment %}
+     {% comment %} {{ field|append_attr:"class:form-control"|append_attr:"placeholder:field.label" }} {% endcomment %}
+     {% if field.label == 'Notes' %}
+      {% render_field field class="form-control" rows="3" placeholder=field.label %}
+     {% else %}
+       {% render_field field class="form-control" placeholder=field.label %}
+     {% endif %}
+   
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+  </div>
+  {% endif %}
 {% endfor %}
-  <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
-</form>
+
+</div>
+ <div class="d-flex justify-content-center ">
+  <button type="submit" class="btn btn-primary mt-2 mb-2 me-4">Submit</button>
+  <a class="btn btn-danger mt-2 mb-2" href="/">Cancel</a>
+  </div>
+  </form>
+  
 </div>
 {% include 'home/footer.html' %} 
 {% endblock %}
