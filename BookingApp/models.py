@@ -6,6 +6,7 @@ from django.utils import timezone
 import uuid
 from RealEstateApp.models import Address, Property
 from django.utils.text import slugify
+from django.utils.crypto import get_random_string
 #from RealEstate_App.models import Address, Property
 
 
@@ -66,7 +67,8 @@ class Booking(models.Model):
         return self.slug
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.property.property_name)
+        the_slug = get_random_string(8, '0123456789')
+        self.slug = slugify(self.property.property_name + the_slug)
         super(Booking, self).save(*args, **kwargs)
 
 
