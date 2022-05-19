@@ -1,22 +1,28 @@
-{% include 'base.html' %}{% load widget_tweaks %} {% block content %}
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/userprofile/userprofile_list.css' %}"/>
+{% endblock %}
+{% block content %}
 <h1 class="text-center">{{userprofile.user.username}}</h1>
 <hr/>
 <div class="container">
 <div class="row">
 <div class="col-sm-4">
-   <img src="{% if userprofile.image %}{{userprofile.image.url}}{% endif %}" style="height:100%;width:100%;">
+   <img class="img" src="{% if userprofile.image %}{{userprofile.image.url}}{% endif %}" >
 </div>
 <div class="col-sm-8">
 <nav class="navbar navbar-light bg-light">
 
   <form class="container-fluid justify-content-start">
-   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline-success me-2" type="button">Edit Profile</button></a>
-   <a href="{% url 'account:delete_user' slug=userprofile.slug %}"> <button class="btn btn-outline-success  me-2" type="button">Delete Profile</button></a>
-   <a href="{% url 'realestateapp:create_property' %}"> <button class="btn btn-outline-success  me-2" type="button">Add Hotels</button></a>
-   <a href="{% url 'realestateapp:list_property_user' %}"> <button class="btn btn-outline-success  me-2" type="button">Hotels List</button></a>
+   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline-success  me-2" id="edit" type="button">Edit Profile</button></a>
+   <a href="{% url 'account:delete_user' slug=userprofile.slug %}"> <button class="btn btn-outline-success  me-2" id="delete" type="button">Delete Profile</button></a>
+   <a href="{% url 'realestateapp:create_property' %}"> <button class="btn btn-outline-success  me-2" id="add_hotel" type="button">Add Hotels</button></a>
+   <a href="{% url 'realestateapp:list_property_user' %}"> <button class="btn btn-outline-success  me-2" id="hotel_list" type="button">Hotels List</button></a>
   </form>
 </nav>
-<hr>
+<div class="user_details">
  {% if userprofile.user.first_name %}
  <lable class="fw-bold"> First name : </lable>
      {{userprofile.user.first_name}}<br>
@@ -37,7 +43,7 @@
  <lable class="fw-bold"> Address : </lable>
      {{userprofile.address.street}} {{userprofile.address.city}} {{userprofile.address.state}} {{userprofile.address.zip_code}} {{userprofile.address.country}}
  {% endif %}
-
+</div>
 </div>
 </div>
 </div>

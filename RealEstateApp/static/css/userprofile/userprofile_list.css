@@ -1,0 +1,55 @@
+h1{
+color: #1c12a3;
+
+}
+
+.col-sm-4 img {
+  float: left; 
+  margin-left: -80px;
+  width: 405px;
+  height: 405px;
+  padding: 70px 60px;
+  margin: left;
+  background-color: aqua;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  box-shadow: 2px 2px 50px #eb3e13;
+  animation: pad 7s linear infinite forwards;
+
+}
+
+#edit{
+  margin-left: -30px;
+  color: #fff;
+  background-color: green;
+  
+}
+#delete{
+  color: #fff;
+  background-color: #D12A0B ;
+
+}
+
+#add_hotel{
+	color: #fff;
+  background-color: #82a11b;
+
+}
+
+#hotel_list{
+	color: #fff;
+  background-color: #2c7d0c;
+
+}
+
+.user_details{
+	  color: #222324;
+	  width: 900px;
+	  border: 2px solid green;
+	  padding: 50px;
+	  margin: 10px; 
+	   font-size: 1.25rem;
+  margin-block-start: 1rem;
+  text-transform: capitalize; 
+
+}
