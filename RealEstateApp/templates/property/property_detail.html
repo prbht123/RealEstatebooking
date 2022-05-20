@@ -10,9 +10,11 @@
 <div class="container-fluid">
  <div class="row">
  <div class="col-sm-7">
-   <a id="btnShowPopup">
+   
     <img style="height:550px;width:103%;" src="{% if property.image %}{{ property.image.url }}{% endif %}"/>
-   </a>
+  
+   <div class="bottom-left" style="position: absolute; bottom: 8px;left: 16px;"><a class="btn btn-warning ml-2" id="btnShowPopup">More Photos</a></div>
+
    </div>
    <div class="col-sm-5">
    {% for image in images %}
@@ -199,12 +201,16 @@
 {% include 'home/footer.html' %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script >
-var star = document.getElementById('star_ranking').value;
-var star = parseInt(star);
-console.log(star);
-for(i=1;i<=star;i++){
-  var star1 = "star"+ i;
-  document.getElementById(star1).style.color = 'yellow';
+var rank = "{{ranking.rank__avg}}";
+if(rank != 'None'){
+  var star = document.getElementById('star_ranking').value;
+  var star = parseInt(star);
+  console.log(star);
+  for(i=1;i<=star;i++){
+    var star1 = "star"+ i;
+    document.getElementById(star1).style.color = 'yellow';
+  }
+
 }
 
 function showDiv() {
@@ -250,8 +256,8 @@ function showDiv() {
    document.getElementById('welcomeDiv').style.display = "block";
 }
 $(function () {
-        $("#btnShowPopup").click(function () {   
-           console.log("00000000000000000000000000000000")        
+        $("#btnShowPopup").click(function () {    
+          console.log("0000000000000000000000000");       
             $("#MyPopup").modal("show");
         });
     }); 
