@@ -110,7 +110,7 @@
     Booking Details-</br>
     <p>cost :<span id="cost"> </span></p>
     <p>Availability : <span id="booking"> </span></p>
-    <a id="book_property" class="card-text float-right text-decoration-none" style="font-size: 0.9rem;display:none;" href="{% url 'booking:create_booking' %}" >
+    <a id="book_property" class="card-text float-right text-decoration-none" style="font-size: 0.9rem;display:none;" href="{% url 'booking:create_booking' slug=property.slug %}" >
         Book
         </a>
     </div>
