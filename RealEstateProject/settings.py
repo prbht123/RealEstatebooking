@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'AdminUser',
     'paypal.standard.ipn',
     'stripe',
-    'payment'
+    'payment',
+    'django_countries',
 ]
 
 MIDDLEWARE = [

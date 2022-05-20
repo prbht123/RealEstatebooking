@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from AdminUser.models import PopularLocations
-from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed, ImagesProperty
+from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed, ImagesProperty, Room
 from BookingApp.models import Booking
 from RealEstateApp.forms import FeedbackForm, PropertyForm, RankingPropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -55,6 +55,19 @@ class createProperty(CreateView):
 
     def form_valid(self, form):
         data = form.save(commit=False)
+        street = self.request.POST['street']
+        city = self.request.POST['city']
+        state = self.request.POST['state']
+        country = self.request.POST['country']
+        zip_code = self.request.POST['zip_code']
+        room_type = self.request.POST['room_type1']
+        room = Room.objects.create(room_type_name=room_type)
+        room.save()
+        address = Address.objects.create(
+            street=street, city=city, state=state, country=country, zip_code=zip_code)
+        address.save()
+        data.Address = address
+        data.room_type = room
         data.author = self.request.user
         data.image = self.request.FILES['myFile']
         data.save()
