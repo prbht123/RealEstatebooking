@@ -1,9 +1,15 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Booking
 
 
-class BookingForm(ModelForm):
+class BookingForm(forms.ModelForm):
+    street = forms.CharField(label='Street', max_length=100)
+    city = forms.CharField(label='City', max_length=100)
+    state = forms.CharField(label='State', max_length=100)
+    country = forms.CharField(label='Country', max_length=100)
+    zip_code = forms.CharField(label='Zip Code', max_length=100)
+
     class Meta:
         model = Booking
-        fields = ['gender', 'firstname', 'lastname', 'nationality', 'address', 'email', 'mobile_Number',
-                  'property', 'date_from', 'date_until', 'creation_date', 'booking_status', 'notes', 'cost']
+        fields = ['gender', 'firstname', 'lastname', 'nationality', 'email', 'mobile_Number',
+                  'date_from', 'date_until', 'street', 'city', 'state', 'country', 'zip_code', 'notes']

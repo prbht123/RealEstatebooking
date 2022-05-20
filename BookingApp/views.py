@@ -11,6 +11,9 @@ from django.conf import settings
 from django.db.models import Q
 from datetime import datetime
 from django.http import JsonResponse
+from RealEstateApp.models import Address, Property
+from datetime import date
+import datetime
 # Create your views here.
 
 
@@ -22,8 +25,26 @@ class createBooking(CreateView):
     template_name = 'booking/create_booking.html'
 
     def form_valid(self, form):
+        property = Property.objects.get(slug=self.kwargs['slug'])
+        street = self.request.POST['street']
+        city = self.request.POST['city']
+        state = self.request.POST['state']
+        country = self.request.POST['country']
+        zip_code = self.request.POST['zip_code']
+        checkin = self.request.POST['date_from']
+        checkout = self.request.POST['date_until']
+        checkin = datetime.datetime.strptime(checkin, '%Y-%m-%d %H:%M:%S')
+        checkout = datetime.datetime.strptime(checkout, '%Y-%m-%d %H:%M:%S')
+        day = checkout.date() - checkin.date()
+        address = Address.objects.create(
+            street=street, city=city, state=state, country=country, zip_code=zip_code)
+        address.save()
         data = form.save(commit=False)
+        data.address = address
+        data.property = property
         data.paid = False
+        if int(day.days) >= 1:
+            data.cost = (int(day.days))*property.cost
         data.save()
         return redirect('payment:process_stripe', slug=data.slug)
 
