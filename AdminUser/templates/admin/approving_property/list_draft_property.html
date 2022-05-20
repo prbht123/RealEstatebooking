@@ -1,6 +1,6 @@
 {% extends 'admin/adminPanel.html' %} {% block adminContent %}
 
-<h3>List Draft Properties for Approving</h3>
+<h3 style="color: #81348a;">List Draft Properties for Approving</h3>
 
     {% if not properties %}
         <p> No data found </p>
@@ -10,19 +10,19 @@
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
     <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:250px;width:100%;">
       <div class="card-body">
-        <p class="card-text text-danger" style="font-size: 0.6rem">
+        <p class="card-text text-sucess" style="font-size: 1.6rem">
           {{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}
           Bed {% else %} Beds {% endif %}
         </p>
-        <p class="card-title h6">{{property.property_name}}</p>
-        <p class="card-text" style="font-size: 0.6rem">
+        <p class="card-title h6"style="font-size: 1.4rem">{{property.property_name}}</p>
+        <p class="card-text" style="color: green;font-size: 1.5rem">
           R${{property.cost}} Per Night
         </p>
        
       
       </div>
       </a>
-       <a class="btn btn-outline" href="{% url 'admin_user:approved_property' slug=property.slug %}"> Approving</a>
+       <a class="btn btn-outline" href="{% url 'admin_user:approved_property' slug=property.slug %}"> <button style="color: white; width: 50%; background-color: blueviolet;">Approving</button></a>
     </div>
    
     {% endfor %}
