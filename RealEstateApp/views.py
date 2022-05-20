@@ -15,6 +15,9 @@ from django.urls import reverse
 from django.db.models import Avg
 import json
 from AccountUser.models import UserProfile
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 # Create your views here.
 
 
@@ -82,12 +85,24 @@ class listProperty(ListView):
     """
     template_name = 'property/list_property.html'
     model = Property
+    paginate_by = 3
     #context_object_name = 'properties'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['properties'] = Property.objects.filter(
             property_status='published')
+        paginator = Paginator(context['properties'], self.paginate_by)
+
+        page = self.request.GET.get('page')
+
+        try:
+            property = paginator.page(page)
+        except PageNotAnInteger:
+            property = paginator.page(1)
+        except EmptyPage:
+            property = paginator.page(paginator.num_pages)
+        context['properties'] = property
         return context
 
 
