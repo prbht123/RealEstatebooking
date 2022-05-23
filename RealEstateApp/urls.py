@@ -26,6 +26,8 @@ urlpatterns = [
     #      views.ListRankFeedbackProperty.as_view(), name="list_rank_feedback_property")
     path('searchpropertyname/', views.propertyNameSearchView.as_view(),
          name='search_with_property_name'),
+    path('searchpropertycity/<str:city>', views.SearchCitylistProperty.as_view(),
+         name='city_search_property'),
     path('imagesrecentproperty/', views.imagesRecentPropertiesSliderView.as_view(),
          name='images_recent_property'),
     path('rankingwiseproperty/', views.ListPropertyRankingWiseView.as_view(),
