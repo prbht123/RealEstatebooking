@@ -1,0 +1,52 @@
+.text-decoration-none{
+	font-size: 0.9rem;
+	color: blue;
+}
+.mt-2{
+	height:80%;
+	width:100%;
+}
+
+#p_name{
+	font-family:'Roboto', sans-serif;
+	font-size: 30px;
+}
+
+.room_details{
+	font-family: 'Poppins', sans-serif;
+	font-size: large;
+	color: green;
+	font-size: 20px;
+	
+}
+.card-text{
+	color: blue;
+
+	
+}
+#st{
+	font-size:20px;
+}
+.card-text{
+	font-size:20px;
+}
+.show_details{
+	font-size: 0.9rem;
+}
+.showDetails_btn{
+	background-color: green;
+	color: #fff;
+}
+
+
+.h5{
+	/*font-size: 41px;*/
+	font-size: 250%;
+}
+.page-current{
+	font-size: 1.9rem;
+	color: green;
+}
+.small{
+	color: green;
+}
