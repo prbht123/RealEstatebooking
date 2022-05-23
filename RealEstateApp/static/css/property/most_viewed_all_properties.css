@@ -1,0 +1,35 @@
+#pro{
+	width: 20rem;
+}
+#pro1{
+	font-size: 0.9rem;
+}
+
+#type{
+	font-size: 1.4rem;
+	
+}
+.mt-2{
+	height:250px;width:100%;
+}
+.h6{
+	font-size: 1.5rem;
+
+}
+.card-text{
+	font-size: 1.9rem;
+
+}
+#book{
+	margin-left: 40%;
+	background-color: #4CAF50;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	text-align: -50%;
+}
+.c1{
+	color:blue ;
+}

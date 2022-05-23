@@ -1,26 +1,32 @@
-{% include 'base.html' %} {% block content %}
-<h1 class="text-center">Most Viewed The Property</h1>
+{% include 'base.html' %} 
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/property/most_viewed_all_properties.css' %}"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock %}
+{% block content %}
+<h1 class="text-center c1" style="color: #0c692f;">Most Viewed The Property</h1>
 <hr />
 <div class="container justify-content-center mt-4">
   <div class="row">
     {% for property in properties %}
-    <div class="card me-2 mt-4" style="width: 12rem">
-    <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+    <div class="card me-2 mt-4" id="pro">
+    <a class="card-text float-right text-decoration-none" id="pro1" style="" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
     
-    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2">
       <div class="card-body">
-        <p class="card-text text-danger" style="font-size: 0.6rem">
+        <p class="card-text text-danger" id="type" style="">
           {{property.property.room_type}} - {{property.property.beds}} {% if property.property.beds == 1 %}
           Bed {% else %} Beds {% endif %}
         </p>
         <p class="card-title h6">{{property.property.property_name}}</p>
-        <p class="card-text" style="font-size: 0.6rem">
+        <p class="card-text" id="text" style="">
           R${{property.property.cost}} Per Night
         </p>
       </div>
       </a>
       <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'booking:create_booking' slug=property.property.slug %}" >
-        Book
+        <button class="w3-button w3-lime">Book Now</button>
         </a>
     </div>
     {% endfor %}
