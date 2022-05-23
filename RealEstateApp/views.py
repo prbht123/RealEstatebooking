@@ -410,3 +410,18 @@ class ListPropertyUserView(ListView):
             property = paginator.page(paginator.num_pages)
         context['properties'] = property
         return context
+
+
+class SearchCitylistProperty(ListView):
+    """
+        List out the all properties city wise.
+    """
+    template_name = 'property/city_list_property.html'
+    model = Property
+    context_object_name = 'properties'
+
+    def get_queryset(self):
+        city = self.kwargs['city']
+        properties = Property.objects.filter(
+            property_status='published', Address__city=city)
+        return properties
