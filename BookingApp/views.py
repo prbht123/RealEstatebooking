@@ -14,6 +14,7 @@ from django.http import JsonResponse
 from RealEstateApp.models import Address, Property
 from datetime import date
 import datetime
+import requests
 # Create your views here.
 
 
@@ -134,3 +135,20 @@ def SearchBookingView(request):
             property__slug=property_slug)
         return JsonResponse({'status': 1})
     return JsonResponse({'status': 0})
+
+
+
+def checking_hotel(request):
+    url = "https://booking-com.p.rapidapi.com/v1/hotels/reviews"
+
+    querystring = {"hotel_id": "1676161", "locale": "en-gb", "sort_type": "SORT_MOST_RELEVANT",
+                   "customer_type": "solo_traveller,review_category_group_of_friends", "language_filter": "en-gb,de,fr"}
+    headers = {
+        "X-RapidAPI-Host": "booking-com.p.rapidapi.com",
+        "X-RapidAPI-Key": "a284490392msh8bc2f4fca36314bp174298jsnf2e183c30573"
+    }
+
+    response = requests.request(
+        "GET", url, headers=headers, params=querystring)
+    print(response.text[0][0])
+    return render(request, 'bookingtest.html', {'context': response})

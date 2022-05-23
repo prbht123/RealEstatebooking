@@ -1,4 +1,58 @@
 
+<div class="container card">
+
+ {% for property in famoupropertylist %}
+ {% if forloop.counter == 1  %}
+<div class="row">
+<div class="col-sm-6">
+ <a href="">
+  <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+     <div class="top-left text-white ml-2" style="position: absolute; bottom: 8px;left: 16px;">{{property.Address_city}}<br>{{property.count}} properties</div>
+  </a>
+ </div>
+
+ {% endif %}
+ {% if forloop.counter == 2 %}
+ <div class="col-sm-6">
+ <a href="">
+ <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+  <div class="top-left text-white ml-2" style="position: absolute; bottom: 8px;left: 16px;">{{property.Address_city}}<br>{{property.count}} properties</div> 
+ </a>
+ </div>
+ </div>
+ {% endif %}
+ {% if forloop.counter == 3 %}
+ <div class="row">
+ <div class="col-sm-4">
+ <a href="">
+  <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+  <div class="top-left text-white ml-2" style="position: absolute; bottom: 8px;left: 16px;"> {{property.Address_city}}<br>{{property.count}} properties</div>
+ </a>
+ </div>
+{% endif %}
+{% if forloop.counter == 4 %}
+ <div class="col-sm-4">
+ <a href="">
+ <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+     <div class="top-left text-white ml-2" style="position: absolute; bottom: 8px;left: 16px;">{{property.Address_city}}<br>{{property.count}} properties</div>
+ </a>
+ </div>
+{% endif %}
+{% if forloop.counter == 5 %}
+  <div class="col-sm-4">
+  <a href="">
+ <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
+  <div class="top-left text-white ml-2" style="position: absolute; bottom: 8px;left: 16px;">{{property.Address_city}}<br>{{property.count}} properties</div>   
+ </a>
+ </div>
+</div>
+{% endif %}
+  {% endfor %}
+   
+</div>
+
+<hr>
+<h2 class="mb-3 text-danger">Popular Location Ranking Wise Hotels </h2>
 <div class="container justify-content-center mt-4 mb-4">
   <div class="row">
     {% for property in popular_location_property %}
