@@ -13,4 +13,5 @@ urlpatterns = [
     path('why_us/', views.why_us, name='why_us'),
     path('contact/', views.ContactUpload),
     path('faq/', views.faq),
+    path('testing/', views.checking_hotel),
 ]

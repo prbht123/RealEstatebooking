@@ -12,7 +12,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.forms.formsets import formset_factory
 from django.db.models import Q
 from django.urls import reverse
-from django.db.models import Avg
+from django.db.models import Avg, Count
 import json
 from AccountUser.models import UserProfile
 from django.core.paginator import Paginator
@@ -33,6 +33,20 @@ def home(request):
         context['propertiesr'].append(data)
     popular_locations = PopularLocations.objects.all()
     context['popular_location_property'] = []
+    context['famousproperty'] = Property.objects.filter(property_status='published').values(
+        'Address__city').annotate(count=Count('property_name')).order_by('-count')
+    print(context['famousproperty'])
+    context['famoupropertylist'] = []
+    for famous in context['famousproperty']:
+        property = Property.objects.filter(
+            property_status='published', Address__city=famous['Address__city'])[0]
+        data = {
+            'Address_city': famous['Address__city'],
+            'count': famous['count'],
+            'property': property,
+        }
+        context['famoupropertylist'].append(data)
+    print(context['famoupropertylist'])
     for popular in popular_locations:
         city = (popular.city).lower()
         state = (popular.state).lower()
@@ -194,6 +208,7 @@ class propertyDetailView(DetailView):
             property__slug=self.object.slug))
         print(context['booking'])
         context['feedbackform'] = FeedbackForm
+        context['form'] = RankingPropertyForm
         context['userprofiles'] = UserProfile.objects.all()
         count = MostViewed.objects.get(
             property__slug=context['property'].slug)
@@ -253,6 +268,32 @@ class createFeedbackView(CreateView):
         data.property = property
         data.save()
         return redirect(reverse('realestateapp:detail_property', kwargs={'slug': data.property.slug}))
+
+
+class createRankingView1(CreateView):
+    """
+        Give the ranck to a property.
+    """
+    model = RankingProperty
+    form_class = RankingPropertyForm
+    #template_name = 'ranking/create_ranking_property.html'
+
+    def form_valid(self, form):
+        data = form.save(commit=False)
+        print("00000000000000000000000000000")
+        print(self.kwargs['slug'])
+        property = RankingProperty.objects.filter(
+            user=self.request.user, property__slug=self.kwargs['slug'], property__property_status='published')
+        if not property:
+            if data.rank > 5:
+                return redirect('create_ranking_property', slug=self.kwargs['slug'])
+            data.user = self.request.user
+            property = Property.objects.get(
+                slug=self.kwargs['slug'], property_status='published')
+            data.property = property
+            data.save()
+
+        return redirect(reverse('realestateapp:detail_property', kwargs={'slug': self.kwargs['slug']}))
 
 
 class createRankingView(CreateView):
