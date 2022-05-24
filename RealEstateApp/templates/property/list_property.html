@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
 <div class="col-sm-4">
-<h4 class="ml-4">List Of The Property</h4>
+<h4 class="ml-4">List Of The Hotels</h4>
 </div>
 <div class="col-sm-8 d-flex justify-content-end" >
  <form action="{% url 'realestateapp:search_with_property_name' %}">
@@ -32,31 +32,33 @@
      
     <div class="card-body row">
     <div class="col-sm-4">
-     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
-    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" id="img" />
+     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:400px;"/>
     </a>
     </div>
     <div class="col-sm-6">
-      <p class="card-title h6">{{property.property_name}}</p>
-        <p class=" h7">
-          <b> {{property.Address.city}}</b> 
-          :{{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}
+      <p class="card-title h6 ml-1">{{property.property.property_name}} 
+      </p>
+        <p class="card-text text-danger" style="font-size: 1rem">
+          <b> {{property.property.Address.city}}</b> <br>
+          {{property.property.room_type}}  {{property.property.beds}} {% if property.property.beds == 1 %}
           Bed {% else %} Beds {% endif %}   
         </p>
         
-        <p class="card-text h8" >
-           R${{property.cost}} Per Night
+        <p class="card-text" style="font-size: 1rem">
+           R${{property.property.cost}} Per Night
         </p>
-         <p class="card-text h9">
-         Description:{{property.Description}}
-         </p>
-        <a class="card-text float-left text-decoration-none" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
-          <button class="button">Show Details</button>
+        <a class="card-text float-left text-decoration-none" style="font-size:1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+          Show Details
         </a>
         </div>
         <div class="col-sm-2">
-          <a class="card-text float-right text-decoration-none book_btn" href="{% url 'booking:create_booking' slug=property.slug %}" >
-        Check avilability
+          <p>
+           <b>Viewed :</b> {{property.viewed}}<br>
+           <b>Ranking :</b> {{property.rank}}
+           </p>
+          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+        See-Availability
         </a>
 
       </div>

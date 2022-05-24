@@ -115,9 +115,11 @@ def faq(request):
 
 def SearchBookingView(request):
     check_in_time = request.GET.get('checkin')
-    check_in_time = datetime.strptime(check_in_time, "%Y-%m-%d").date()
+    check_in_time = datetime.datetime.strptime(
+        check_in_time, "%Y-%m-%d").date()
     check_out_time = request.GET.get('checkout')
-    check_out_time = datetime.strptime(check_out_time, "%Y-%m-%d").date()
+    check_out_time = datetime.datetime.strptime(
+        check_out_time, "%Y-%m-%d").date()
     property_slug = request.GET.get('property_slug')
     context = {}
     if check_in_time and check_out_time:
@@ -135,7 +137,6 @@ def SearchBookingView(request):
             property__slug=property_slug)
         return JsonResponse({'status': 1})
     return JsonResponse({'status': 0})
-
 
 
 def checking_hotel(request):
