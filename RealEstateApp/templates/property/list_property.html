@@ -25,31 +25,35 @@
      
     <div class="card-body row">
     <div class="col-sm-4">
-     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
-    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:400px;"/>
+     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:400px;"/>
     </a>
     </div>
     <div class="col-sm-6">
-      <p class="card-title h6">{{property.property_name}}</p>
+      <p class="card-title h6">{{property.property.property_name}} 
+      </p>
         <p class="card-text text-danger" style="font-size: 0.6rem">
-          <b> {{property.Address.city}}</b> 
-          {{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}
+          <b> {{property.property.Address.city}}</b> 
+          {{property.property.room_type}} - {{property.property.beds}} {% if property.property.beds == 1 %}
           Bed {% else %} Beds {% endif %}   
         </p>
         
         <p class="card-text" style="font-size: 0.6rem">
-           R${{property.cost}} Per Night
+           R${{property.property.cost}} Per Night
         </p>
          <p class="card-text" style="font-size: 0.6rem">
-         {{property.Description}}
+         {{property.property.Description}}
          </p>
-        <a class="card-text float-left text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
+        <a class="card-text float-left text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
           Show Details
         </a>
         </div>
         <div class="col-sm-2">
-          <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'booking:create_booking' slug=property.slug %}" >
-        Book
+          
+           <p><b>Viewed :<b> {{property.viewed}}</p>
+           <p><b>Ranting :<b> {{property.rank}}</p>
+          <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+        Check-Availability
         </a>
       </div>
       </div>

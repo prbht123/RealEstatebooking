@@ -23,6 +23,7 @@ from django.core.paginator import PageNotAnInteger
 
 def home(request):
     context = {}
+    context['propertiess'] = Property.objects.all()
     context['properties'] = MostViewed.objects.filter(
         property__property_status='published').order_by('-viewed')[:4]
     context['ranking'] = RankingProperty.objects.filter(property__property_status='published').values(
@@ -99,13 +100,26 @@ class listProperty(ListView):
     """
     template_name = 'property/list_property.html'
     model = Property
-    paginate_by = 3
+    paginate_by = 5
     #context_object_name = 'properties'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['properties'] = Property.objects.filter(
+        context['propertiess'] = Property.objects.filter(
             property_status='published')
+        context['properties'] = []
+        for property in context['propertiess']:
+            rank = RankingProperty.objects.filter(property=property).count()
+            viewed = MostViewed.objects.filter(property=property).count()
+            print("rank", rank)
+            print("viewed", viewed)
+            print("0000000000000")
+            data = {
+                'property': property,
+                'rank': rank,
+                'viewed': viewed,
+            }
+            context['properties'].append(data)
         paginator = Paginator(context['properties'], self.paginate_by)
 
         page = self.request.GET.get('page')

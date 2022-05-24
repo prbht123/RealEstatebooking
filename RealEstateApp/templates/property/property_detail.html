@@ -101,7 +101,7 @@
     <input type="date" id="check_out" class="form-control">
 </div>
 <div class="col-auto">
-    <input type="button" class="btn btn-primary mt-2 mb-4 float-right" onclick="showDiv()" value="Search">
+    <input type="button" class="btn btn-primary mt-2 mb-4 float-right" onclick="showDiv()" value="Availability">
   </div>
 </form>
  <input class="d-none" type="text" value='{{property.cost}}' id="price">
@@ -112,7 +112,7 @@
     <p>cost :<span id="cost"> </span></p>
     <p>Availability : <span id="booking"> </span></p>
     <a id="book_property" class="card-text float-right text-decoration-none" style="font-size: 0.9rem;display:none;" href="{% url 'booking:create_booking' slug=property.slug %}" >
-        Book
+        Buy Now
         </a>
     </div>
     </div>
