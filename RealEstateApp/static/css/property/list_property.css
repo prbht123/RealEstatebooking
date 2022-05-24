@@ -1,0 +1,85 @@
+.ml-4{
+	color: #262626;
+	font-size: 40px;
+	}
+
+#total{
+	background-color: #ebf3ff;
+	border: 1px solid aqua;
+    border-radius: 6px;
+    /*box-shadow: 2px 2px 10px aqua;*/
+    /*animation: pad 7s linear infinite forwards;*/
+
+}
+#img{
+	height:110%;
+	width:80%;
+}
+.h6{
+	color: #6B6B6B;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+	margin-left: -10%;
+
+}
+.h7{
+	font-size: 1.6rem;
+	margin-left: -10%;
+}
+.h8{
+	font-size: 1.4rem;
+	margin-left: -10%;
+}
+.h9{
+	font-size: 1.4rem;
+	margin-left: -10%;
+
+}
+.button {
+  padding: 15px 25px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.book_btn{
+	padding: 15px 25px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #1b5abf;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+}
+
+.book_btn:hover {
+	background-color: #3e8e41
+}
+
+.book_btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.small{
+	font-size: 20px;
+	color: #11bf28;
+}
