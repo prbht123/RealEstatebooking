@@ -111,9 +111,6 @@ class listProperty(ListView):
         for property in context['propertiess']:
             rank = RankingProperty.objects.filter(property=property).count()
             viewed = MostViewed.objects.filter(property=property).count()
-            print("rank", rank)
-            print("viewed", viewed)
-            print("0000000000000")
             data = {
                 'property': property,
                 'rank': rank,
@@ -220,7 +217,6 @@ class propertyDetailView(DetailView):
             property__slug=self.object.slug)
         context['booking'] = list(Booking.objects.filter(
             property__slug=self.object.slug))
-        print(context['booking'])
         context['feedbackform'] = FeedbackForm
         context['form'] = RankingPropertyForm
         context['userprofiles'] = UserProfile.objects.all()
