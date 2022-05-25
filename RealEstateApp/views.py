@@ -109,12 +109,17 @@ class listProperty(ListView):
             property_status='published')
         context['properties'] = []
         for property in context['propertiess']:
-            rank = RankingProperty.objects.filter(property=property).count()
-            viewed = MostViewed.objects.filter(property=property).count()
+            rank = RankingProperty.objects.filter(
+                property=property).aggregate(avg=Avg('rank'))
+            viewed = MostViewed.objects.get(property=property)
+            if rank['avg'] is not None:
+                rank = "{:.2f}".format(rank['avg'])
+            else:
+                rank = 0
             data = {
                 'property': property,
                 'rank': rank,
-                'viewed': viewed,
+                'viewed': viewed.viewed,
             }
             context['properties'].append(data)
         paginator = Paginator(context['properties'], self.paginate_by)
@@ -164,14 +169,34 @@ class searchProperty(ListView):
                         context['propertiess'] = context['propertiess'].exclude(
                             slug=book.property.slug)
             else:
-                context['properties'] = context['booking']
+                context['propertiess'] = Property.objects.filter(
+                    property_status='published')
+                for book in context['booking']:
+                    context['propertiess'] = context['propertiess'].exclude(
+                        slug=book.property.slug)
+                #context['properties'] = context['booking']
         elif city and street:
             context['propertiess'] = Property.objects.filter(property_status='published',
                                                              Address__city=city, Address__street=street)
         else:
             context['propertiess'] = Property.objects.filter(
                 property_status='published')
-
+        context['properties'] = []
+        for property in context['propertiess']:
+            print(property)
+            rank = RankingProperty.objects.filter(
+                property=property).aggregate(avg=Avg('rank'))
+            viewed = MostViewed.objects.filter(property=property)
+            if rank['avg'] is not None:
+                rank = "{:.2f}".format(rank['avg'])
+            else:
+                rank = 0
+            data = {
+                'property': property,
+                'rank': rank,
+                'viewed': viewed[0].viewed,
+            }
+            context['properties'].append(data)
         return context
 
 
@@ -256,9 +281,23 @@ class mostViewedProperties(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['properties'] = MostViewed.objects.filter(
+        context['propertiess'] = MostViewed.objects.filter(
             property__property_status='published').order_by('-viewed')
-        print(context['properties'])
+        context['properties'] = []
+        for property in context['propertiess']:
+            rank = RankingProperty.objects.filter(
+                property=property.property).aggregate(avg=Avg('rank'))
+            viewed = MostViewed.objects.filter(property=property.property)
+            if rank['avg'] is not None:
+                rank = "{:.2f}".format(rank['avg'])
+            else:
+                rank = 0
+            data = {
+                'property': property.property,
+                'rank': rank,
+                'viewed': viewed[0].viewed,
+            }
+            context['properties'].append(data)
         return context
 
 
@@ -290,8 +329,6 @@ class createRankingView1(CreateView):
 
     def form_valid(self, form):
         data = form.save(commit=False)
-        print("00000000000000000000000000000")
-        print(self.kwargs['slug'])
         property = RankingProperty.objects.filter(
             user=self.request.user, property__slug=self.kwargs['slug'], property__property_status='published')
         if not property:
@@ -316,7 +353,6 @@ class createRankingView(CreateView):
 
     def form_valid(self, form):
         data = form.save(commit=False)
-        print(self.kwargs['slug'])
         property = RankingProperty.objects.filter(
             user=self.request.user, property__slug=self.kwargs['slug'], property__property_status='published')
         if not property:
@@ -341,8 +377,23 @@ class propertyNameSearchView(ListView):
     def get_context_data(self, **kwargs):
         property = self.request.GET.get('property')
         context = super().get_context_data(**kwargs)
-        context['properties'] = Property.objects.filter(
+        context['propertiess'] = Property.objects.filter(
             property_name__icontains=property, property_status='published')
+        context['properties'] = []
+        for property in context['propertiess']:
+            rank = RankingProperty.objects.filter(
+                property=property).aggregate(avg=Avg('rank'))
+            viewed = MostViewed.objects.filter(property=property)
+            if rank['avg'] is not None:
+                rank = "{:.2f}".format(rank['avg'])
+            else:
+                rank = 0
+            data = {
+                'property': property,
+                'rank': rank,
+                'viewed': viewed[0].viewed,
+            }
+            context['properties'].append(data)
         return context
 
 
@@ -403,22 +454,29 @@ class ListPropertyUserView(ListView):
     """
     template_name = 'property/list_property_user.html'
     model = Property
-    paginate_by = 3
     #context_object_name = 'properties'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['properties'] = Property.objects.filter(
             author=self.request.user)
-        paginator = Paginator(context['properties'], self.paginate_by)
-        page = self.request.GET.get('page')
-        try:
-            property = paginator.page(page)
-        except PageNotAnInteger:
-            property = paginator.page(1)
-        except EmptyPage:
-            property = paginator.page(paginator.num_pages)
-        context['properties'] = property
+        context['propertiess'] = Property.objects.filter(
+            author=self.request.user)
+        context['properties'] = []
+        for property in context['propertiess']:
+            rank = RankingProperty.objects.filter(
+                property=property).aggregate(avg=Avg('rank'))
+            viewed = MostViewed.objects.filter(property=property)
+            if rank['avg'] is not None:
+                rank = "{:.2f}".format(rank['avg'])
+            else:
+                rank = 0
+            data = {
+                'property': property,
+                'rank': rank,
+                'viewed': viewed[0].viewed,
+            }
+            context['properties'].append(data)
         return context
 
 
