@@ -1,21 +1,31 @@
 {% load static %}
 
 <div class="slideshow-container" style="">
-  {% for property in propertiess %}
+
 <div class="mySlides fade">
   <img src="{% if property.image %}{{property.image.url}}{% endif %}" style="width:100%;height:80vh;">
   
 </div>
-{% endfor %}
+<div class="mySlides fade">
+  <img src="{% if property.image %}{{property.image.url}}{% endif %}" style="width:100%;height:80vh;">
+  
+</div>
+<div class="mySlides fade">
+  <img src="{% if property.image %}{{property.image.url}}{% endif %}" style="width:100%;height:80vh;">
+  
+</div>
+
 
 
 </div>
 <br>
 
 <div style="text-align:center">
-{% for property in propertiess %}
+
   <span class="dot"></span> 
-  {% endfor %}
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+
   
 </div>
 <script>

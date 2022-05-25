@@ -1,44 +1,73 @@
-{% include 'base.html' %}  {% block content %}
-<hr />
-<h1 class="text-center">List Of Properties</h1>
-<hr />
-<div class="container justify-content-center mt-4">
+{% include 'base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/property/list_property.css' %}"/>
+{% endblock %}
+ {% block content %}
+<div class="container">
   <div class="row">
-    {% if not properties %} {% if not propertiess %}
-    <h4 class="text-center">No Property found</h4>
-    {% endif %} {% endif %} {% for property in properties %}
-    <div class="card mt-4" style="width: 12rem">
-    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
-      <div class="card-body">
-        <p class="card-text text-danger" style="font-size: 0.6rem">
-          &nbsp;&nbsp;{{property.property.room_type}} -
-          {{property.property.beds}} {% if property.beds == 1 %} Bed {% else %}
-          Beds {% endif %}
-        </p>
-        <p class="card-title h6">{{property.property.property_name}}</p>
-        <p class="card-text" style="font-size: 0.7rem">
-          {{property.property.cost}}
-        </p>
-      </div>
+<div class="col-sm-4">
+<h4 class="ml-4">List Of The Hotels</h4>
+</div>
+<div class="col-sm-8 d-flex justify-content-end" >
+ <form action="{% url 'realestateapp:search_with_property_name' %}">
+<div class="input-group">
+  <input type="search" class="form-control rounded mt-2 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
+  <button class="btn btn-success mt-2"><i class="fas fa-search"></i></button>
+</div>
+ </form>
+ </div>
+</div>
+</div>
+
+<hr />
+<div class="container justify-content-center mt-4 mb-4" >
+  <div class="row">
+    {% if not properties %}
+    <p class="text-center"> No property found.</p>
+ 
+  {% endif %}
+    {% for property in properties %}
+    <div class="card me-2 mt-4"id="total">
+     
+    <div class="card-body row">
+    <div class="col-sm-4">
+     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:400px;"/>
+    </a>
     </div>
-    {% endfor %} {% for property in propertiess %}
-    <div class="card me-2 mt-4" style="width: 12rem">
-    <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
-    
-      <div class="card-body">
-        <p class="card-text text-danger" style="font-size: 0.6rem">
-          {{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}
-          Bed {% else %} Beds {% endif %}
+    <div class="col-sm-6">
+      <p class="card-title h6 ml-1">{{property.property.property_name}} 
+      </p>
+        <p class="card-text text-danger" style="font-size: 1rem">
+          <b> {{property.property.Address.city}}</b> <br>
+          {{property.property.room_type}}  {{property.property.beds}} {% if property.property.beds == 1 %}
+          Bed {% else %} Beds {% endif %}   
         </p>
-        <p class="card-title h6">{{property.property_name}}</p>
-        <p class="card-text" style="font-size: 0.6rem">
-          R${{property.cost}} Per Night
+        
+        <p class="card-text" style="font-size: 1rem">
+           R${{property.property.cost}} Per Night
         </p>
+        <a class="card-text float-left text-decoration-none" style="font-size:1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+          Show Details
+        </a>
+        </div>
+        <div class="col-sm-2">
+          <p>
+           <b>Viewed :</b> {{property.viewed}}<br>
+           <b>Ranking :</b> {{property.rank}}
+           </p>
+          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+        See-Availability
+        </a>
+
       </div>
+      </div>
+        
     </div>
     {% endfor %}
   </div>
 </div>
-
-{% include 'home/footer.html' %} 
+<hr>
+{% include 'home/footer.html' %}
 {% endblock %}
