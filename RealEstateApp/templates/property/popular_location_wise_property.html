@@ -1,5 +1,5 @@
 
-<div class="container card">
+<div class="container card mb-2">
 
  {% for property in famoupropertylist %}
  {% if forloop.counter == 1  %}
@@ -50,22 +50,21 @@
   {% endfor %}
    
 </div>
-
 <hr>
-<h2 class="mb-3 text-danger">Popular Location Ranking Wise Hotels </h2>
-<div class="container justify-content-center mt-4 mb-4">
+<h3 class="mb-3 mt-2" style="font-family:Sans-serif;"><b>Popular Location Ranking Wise Hotels</b> </h3>
+<div class="container justify-content-center mb-4">
   <div class="row">
     {% for property in popular_location_property %}
-    <div class="card me-2 mt-4" style="width: 12rem">
+    <div class="card me-1" style="width: 13rem">
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
     <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
       <div class="card-body">
-        <p class="card-text text-danger" style="font-size: 0.6rem">
+        <p class="card-text text-danger" style="font-size: 0.9rem">
           {{property.room_type}} - {{property.beds}} {% if property.beds == 1 %}
           Bed {% else %} Beds {% endif %}
         </p>
-        <p class="card-title h6">{{property.property_name}}</p>
-        <p class="card-text" style="font-size: 0.6rem">
+        <p class="card-title h6 text-truncate text-secondary"><b>{{property.property_name}}</b></p>
+        <p class="card-text" style="font-size: 0.9rem">
           R${{property.cost}} Per Night
         </p>
        
