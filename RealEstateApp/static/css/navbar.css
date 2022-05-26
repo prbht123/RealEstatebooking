@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: cursive;
+    font-family: Serif;
 }
 
 a {
@@ -23,7 +23,7 @@ li {
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    background-color: green;
+    background-color: #0039c3;
     color: white;
 
 }
@@ -34,7 +34,7 @@ li {
 
 /* LOGO */
 .logo {
-    font-size: 20px;
+    font-size: 100%;
     border: 0.1rem solid #fff;
     border-radius: 2rem;
     padding: 0.4em;
@@ -52,20 +52,18 @@ li {
 /* NAVBAR MENU */
 .menu {
     display: flex;
-    gap: 1em;
-    font-size: 25px;
-    font-family: cursive;
+    font-size: 100%;
+    font-family: Serif;
     margin-top: 7px;
     /*text-tranceform: uppercase;*/
 
 }
 
 .menu li a:hover {
-    background-color: yellow;
-    color: blueviolet;
+    background-color: #bc13fe;
     border-radius: 20px;
     transition: 0.1s ease;
-    color: maroon;
+    color: rgb(14, 7, 7);
     padding: 7px;
 }
 
@@ -74,5 +72,6 @@ li {
 }
 
 .menu li a {
+    text-align: center;
     color: white;
 }
