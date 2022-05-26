@@ -224,3 +224,9 @@ class CreatePopularLocationView(CreateView):
             data.save()
             return redirect('admin_user:admin_home')
         return redirect('/')
+
+
+
+# new_admin_dashboard
+def index(request):
+    return render(request,"newAdminDashboard/index.html")

@@ -27,4 +27,6 @@ urlpatterns = [
          name='approved_property'),
     path('addpopularlocation', views.CreatePopularLocationView.as_view(),
          name="add_popular_location"),
+    
+    path('admin_profile/', views.index, name='admin_index'),
 ]
