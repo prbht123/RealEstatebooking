@@ -47,7 +47,9 @@ def UserProfileView(request, pk):
         most_ranking_property = most_ranking_property.values(
             'property__property_name').annotate(avg=Avg('rank')).order_by('-avg')[0]
     most_viewed_property = MostViewed.objects.filter(
-        property__property_status='published', property__author=request.user).order_by('-viewed')[0]
+        property__property_status='published', property__author=request.user).order_by('-viewed')
+    if most_viewed_property:
+        most_viewed_property = most_viewed_property[0]
 
     if userprofile:
         return render(request, 'user/userprofile.html', {'userprofile': userprofile[0], 'property': property, 'approved_property': approved_property, 'draft_property': draft_property, 'most_ranking_property': most_ranking_property, 'most_viewed_property': most_viewed_property})
