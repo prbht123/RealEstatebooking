@@ -1,4 +1,8 @@
 {% load static %}
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
       <!-- #Left Sidebar ==================== -->
       <div class="sidebar">
         <div class="sidebar-inner">
@@ -34,7 +38,7 @@
             <li class="nav-item mT-30 actived">
               <a class="sidebar-link" href="{% url 'admin_user:admin_home' %}">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-home"></i>
+                  <i class="fa fa-home" style="color:blue"></i>
                 </span>
                 <span class="title">Dashboard</span>
               </a>
@@ -43,7 +47,7 @@
             <li class="nav-item">
               <a class="sidebar-link" href="{% url 'admin_user:approving_property_list' %}">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-share"></i> 
+                  <i class='fas fa-hotel' style="color:blue"></i>
                 </span>
                 <span class="title">Approved Property</span>
               </a>
@@ -51,7 +55,7 @@
             <li class="nav-item">
               <a class="sidebar-link" href="{% url 'admin_user:manage_users' %}">
                 <span class="icon-holder">
-                  <i class="c-deep-purple-500 ti-comment-alt"></i>
+                  <i class='far fa-user-circle' style="color:blue"></i>
                 </span>
                 <span class="title">Manage Admin Users</span>
               </a>
@@ -59,7 +63,7 @@
             <li class="nav-item">
               <a class="sidebar-link" href="{% url 'admin_user:manage_admin_role' %}">
                 <span class="icon-holder">
-                  <i class="c-indigo-500 ti-bar-chart"></i>
+                  <i class='fab fa-critical-role' style="color:blue"></i>
                 </span>
                 <span class="title">Manage Admin Roles</span>
               </a>
@@ -67,7 +71,7 @@
             <li class="nav-item">
               <a class="sidebar-link" href="{% url 'admin_user:normal_users' %}">
                 <span class="icon-holder">
-                  <i class="c-light-blue-500 ti-pencil"></i>
+                 <i class='fas fa-user-alt' style="color:blue"></i>
                 </span>
                 <span class="title">Noraml Users</span>
               </a>
@@ -75,7 +79,7 @@
             <li class="nav-item dropdown">
               <a class="sidebar-link" href="{% url 'admin_user:add_popular_location' %}">
                 <span class="icon-holder">
-                    <i class="c-pink-500 ti-palette"></i>
+                    <i class="fa fa-location-arrow" style="color:blue"></i>
                   </span>
                 <span class="title">Add Popular Location</span>
               </a>
@@ -84,7 +88,7 @@
               <a class="sidebar-link" href="/">
                 <span class="icon-holder">
                   <!-- <i class="c-deep-orange-500 ti-calendar"></i> -->
-                  <i class="fa-duotone fa-calendar-check"></i>
+                  <i class="far fa-calendar" style="color:blue"></i>
                 </span>
                 <span class="title">Calendar</span>
               </a>
@@ -92,11 +96,11 @@
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                    <i class="c-purple-500 ti-map"></i>
+                    <i class="far fa-map" style="color:blue"></i>
                   </span>
                 <span class="title">Maps</span>
                 <span class="arrow">
-                    <i class="ti-angle-right"></i>
+                    
                   </span>
               </a>
               <ul class="dropdown-menu">
@@ -111,11 +115,11 @@
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                    <i class="c-red-500 ti-files"></i>
+                    <i class="fab fa-pagelines" style="color:blue"></i>
                   </span>
                 <span class="title">Pages</span>
                 <span class="arrow">
-                    <i class="ti-angle-right"></i>
+                    
                   </span>
               </a>
               <ul class="dropdown-menu">
@@ -134,11 +138,11 @@
             <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
-                  <i class="c-teal-500 ti-view-list-alt"></i>
+                  <i class='fas fa-level-down-alt' style="color:blue"></i>
                 </span>
                 <span class="title">Multiple Levels</span>
                 <span class="arrow">
-                  <i class="ti-angle-right"></i>
+                 
                 </span>
               </a>
               <ul class="dropdown-menu">
