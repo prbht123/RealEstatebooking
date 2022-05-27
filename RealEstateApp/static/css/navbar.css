@@ -40,10 +40,10 @@ li {
     padding: 0.4em;
     box-shadow: 0 0 .7rem #fff,
         0 0 .7rem #fff,
-        0 0 2rem #bc13fe,
-        0 0 0.8rem #bc13fe,
-        0 0 2.8rem #bc13fe,
-        inset 0 0 6.3rem #bc13fe;
+        0 0 2rem SlateBlue,
+        0 0 0.8rem SlateBlue,
+        0 0 2.8rem SlateBlue,
+        inset 0 0 6.3rem SlateBlue;
 
 
 
@@ -60,10 +60,10 @@ li {
 }
 
 .menu li a:hover {
-    background-color: #bc13fe;
+    background-color: SlateBlue;
     border-radius: 20px;
     transition: 0.1s ease;
-    color: rgb(14, 7, 7);
+    color: white;
     padding: 7px;
 }
 
