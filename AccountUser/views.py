@@ -2,10 +2,11 @@ from multiprocessing import get_context
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm, UserProfileForm
 from .models import UserProfile
-from RealEstateApp.models import Address
+from RealEstateApp.models import Address, Property, RankingProperty, MostViewed, FeedBackProperty
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.db.models import Avg, Count
 # Create your views here.
 
 
@@ -35,8 +36,21 @@ def homeView(request):
 
 def UserProfileView(request, pk):
     userprofile = UserProfile.objects.filter(user=request.user)
+    property = Property.objects.filter(author=request.user).count()
+    approved_property = Property.objects.filter(
+        author=request.user, property_status='published').count()
+    draft_property = Property.objects.filter(
+        author=request.user, property_status='draft').count()
+    most_ranking_property = RankingProperty.objects.filter(
+        property__author=request.user, property__property_status='published')
+    if most_ranking_property:
+        most_ranking_property = most_ranking_property.values(
+            'property__property_name').annotate(avg=Avg('rank')).order_by('-avg')[0]
+    most_viewed_property = MostViewed.objects.filter(
+        property__property_status='published', property__author=request.user).order_by('-viewed')[0]
+
     if userprofile:
-        return render(request, 'user/userprofile_list.html', {'userprofile': userprofile[0]})
+        return render(request, 'user/userprofile.html', {'userprofile': userprofile[0], 'property': property, 'approved_property': approved_property, 'draft_property': draft_property, 'most_ranking_property': most_ranking_property, 'most_viewed_property': most_viewed_property})
     else:
         return redirect('account:create_user_profile')
 

@@ -4,7 +4,7 @@
   <div class="row">
     {% for property in properties %}
    
-    <div class="card me-1 " style="width:13rem">
+    <div class="card me-1 " style="width:14rem">
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
     <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
       <div class="card-body">

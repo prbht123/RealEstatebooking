@@ -52,10 +52,10 @@
 </div>
 <hr>
 <h3 class="mb-3 mt-2" style="font-family:Sans-serif;"><b>Popular Location Ranking Wise Hotels</b> </h3>
-<div class="container justify-content-center mb-4">
+<div class="container justify-content-center mb-2">
   <div class="row">
     {% for property in popular_location_property %}
-    <div class="card me-1" style="width: 13rem">
+    <div class="card me-1" style="width: 14rem">
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.slug %}" >
     <img src="{% if property.image %}{{ property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
       <div class="card-body">
