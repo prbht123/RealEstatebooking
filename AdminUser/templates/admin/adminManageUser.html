@@ -1,10 +1,15 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends 'admin/adminPanel.html' %} 
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/admin/adminManageUser.css' %}"/>
+{% endblock %}
+{% block adminContent %}
 
-<h3 style="color: #1dc418;">Manage Admin Users</h3>
-<a class="btn btn-primary" href="{% url 'admin_user:admin_register_user' %}">Add New Admin User</a>
-<table class="table">
+<h1 class="heading_tag">Manage Admin Users</h1>
+<a href="{% url 'admin_user:admin_register_user' %}"><button class="btn-primary">Add New Admin User</button></a>
+<table class="table mt-2">
   <thead>
-    <tr>
+    <tr class="th-font">
       <th scope="col">S.No</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
@@ -14,13 +19,13 @@
   <tbody>
     {% for user in admin_users %}
 
-    <tr>
+    <tr class="user_f">
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
       <td>
         {% comment %} <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' pk=user.id %}">Edit</a> {% endcomment %}
-        <a class="text-decoration-none" href="{% url 'admin_user:delete_admin_user' pk=user.id %}"><button style="color: white; background-color: red; width: 80px;">Delete</button></a>
+        <a class="text-decoration-none" href="{% url 'admin_user:delete_admin_user' pk=user.id %}"><button class="del-btn">Delete</button></a>
       </td>
     </tr>
     {% endfor %}

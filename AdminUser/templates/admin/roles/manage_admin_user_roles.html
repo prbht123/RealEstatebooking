@@ -1,9 +1,10 @@
 {% extends 'admin/adminPanel.html' %} {% block adminContent %}
 
-<h3 style="color: #a249d6;">Manage Admin Users Roles</h3>
+<h1 style="font-family:Sans-serif;">Manage Admin Users Roles</h1>
 <table class="table" style=" color: black;">
-  <thead>
-    <tr style="color: #bf0d28;">
+
+  <thead style="background-color:#2fa362; color:#fff;">
+    <tr style="font-family:Sans-serif;">
       <th scope="col">S.No</th>
       <th scope="col">Username</th>
       <th scope="col">Roles</th>
@@ -18,7 +19,8 @@
       <td>{{user.user.username}}</td>
       <td>{{user.roles}}</td>
       <td>
-         <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' slug=user.slug %}"><button style="color: #fff; background-color: green; width:130px;">Edit</button></a> 
+         <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' slug=user.slug %}"><button style="color: #fff; background-color: green; width:130px;
+         font-family:Sans-serif;">Edit</button></a> 
         <a class="text-decoration-none" href="{% url 'admin_user:delete_role_admin_user' slug=user.slug %}"><button style="color:white; background-color:red;">Delete Roles</button></a>
       </td>
     </tr>
