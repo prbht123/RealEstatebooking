@@ -1,11 +1,11 @@
-{% extends 'admin/adminHome.html' %}  {% load widget_tweaks %} {% block title %} Create an
-roles {% endblock %}{% block Dashboard %} 
+{% extends "admindashboard/default.html" %} {% load widget_tweaks %} {% block title %} Create an
+roles {% endblock %}{% block content %} 
 <div class="container col-sm-6">
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {% for field in form.visible_fields %}
   <div class="form-group mt-1">
-   <p>Roles...</p>
+   <h3><p class="text-primary">Roles...</p></h3>
     {% render_field field class="form-control mb-2" placeholder=field.label %}
     {% for error in field.errors %}
       <span class="help-block">{{ error }}</span>
@@ -13,7 +13,9 @@ roles {% endblock %}{% block Dashboard %}
   </div>
 {% endfor %}
 
-  <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+  <button type="submit" class="btn btn-outline-success mt-2 mb-2">Submit</button>
+  <a href="{% url 'admin_user:manage_admin_role' %}" class="me-2 btn btn-outline-primary float-right">Cancel</a>
+        
 </form>
 </div>
 {% endblock %}

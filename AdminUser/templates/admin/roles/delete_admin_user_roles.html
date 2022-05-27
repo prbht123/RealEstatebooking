@@ -1,22 +1,12 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends "admindashboard/default.html" %} {% block content %}
 
-<div class="container pt-5">
+<div class="container pt-5 text-centre">
     <form method="post" novalidate action="">
         {% csrf_token %}
-       
-     
- 
- 
-            <p>Are you sure you want to delete?</p>
-             
-             
-             
-              
-          
-      
-        <div>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <a href="{% url 'admin_user:manage_admin_role' %}" class="btn btn-default">Cancel</a>
+        <div class="col-sm-4">
+            <h5><p>Are you sure you want to delete?</p></h5>
+            <button type="submit" class="btn btn-outline-success float-left">Submit</button>
+            <a href="{% url 'admin_user:manage_admin_role' %}" class="me-5 btn btn-outline-primary float-right">Cancel</a>
         </div>
     </form>
 </div>

@@ -1,9 +1,9 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends "admindashboard/default.html" %} {% block content %}
 
-<h3 style="color: #a249d6;">Manage Admin Users Roles</h3>
-<table class="table" style=" color: black;">
+<h3 class="text-primary"><b>Manage Admin Users Roles</b></h3>
+<table class="table">
   <thead>
-    <tr style="color: #bf0d28;">
+    <tr class="text-primary">
       <th scope="col">S.No</th>
       <th scope="col">Username</th>
       <th scope="col">Roles</th>
@@ -18,8 +18,8 @@
       <td>{{user.user.username}}</td>
       <td>{{user.roles}}</td>
       <td>
-         <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' slug=user.slug %}"><button style="color: #fff; background-color: green; width:130px;">Edit</button></a> 
-        <a class="text-decoration-none" href="{% url 'admin_user:delete_role_admin_user' slug=user.slug %}"><button style="color:white; background-color:red;">Delete Roles</button></a>
+         <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' slug=user.slug %}"><button class="btn btn-outline-primary">Edit</button></a> 
+        <a class="text-decoration-none" href="{% url 'admin_user:delete_role_admin_user' slug=user.slug %}"><button class="btn btn-outline-danger">Delete Roles</button></a>
       </td>
     </tr>
     {% endfor %}

@@ -1,14 +1,14 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends "admindashboard/default.html" %} {% block content %}
 
-<h3 style="color: #1dc418;">Manage Admin Users</h3>
-<a class="btn btn-primary" href="{% url 'admin_user:admin_register_user' %}">Add New Admin User</a>
-<table class="table">
+<h3 class="text-primary"><b>Manage Admin Users</b></h3>
+<a class="btn btn-outline-primary" href="{% url 'admin_user:admin_register_user' %}">Add New Admin User</a>
+<table class="table mt-4">
   <thead>
-    <tr>
+    <tr class="text-primary"><b>
       <th scope="col">S.No</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
-      <th scope="col">Action</th>
+      <th scope="col">Action</th></b>
     </tr>
   </thead>
   <tbody>
@@ -20,7 +20,7 @@
       <td>{{user.email}}</td>
       <td>
         {% comment %} <a class="text-decoration-none" href="{% url 'admin_user:edit_role_admin_user' pk=user.id %}">Edit</a> {% endcomment %}
-        <a class="text-decoration-none" href="{% url 'admin_user:delete_admin_user' pk=user.id %}"><button style="color: white; background-color: red; width: 80px;">Delete</button></a>
+        <a class="text-decoration-none" href="{% url 'admin_user:delete_admin_user' pk=user.id %}"><button class="btn btn-outline-danger">Delete</button></a>
       </td>
     </tr>
     {% endfor %}
