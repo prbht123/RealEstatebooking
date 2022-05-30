@@ -6,6 +6,8 @@ app_name = "account"
 urlpatterns = [
     path('', views.adminHome, name="admin_home"),
     path('manageuser', views.adminManageUsers, name="manage_users"),
+    path('adminmanageuser/', views.listAllAdminUsersView.as_view(),
+         name="admin_manage_users"),
     path('register/', views.adminRegisterUser, name='admin_register_user'),
     path('delete/<int:pk>', views.deleteAdminUser,
          name="delete_admin_user"),

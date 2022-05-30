@@ -8,6 +8,9 @@ from RealEstateApp.models import Property
 from .forms import AdminUserRegistrationForm, AdminUserRolesForm, PopularLocationsForms
 from .models import AdminUserRoles, PopularLocations
 from django.views.generic import UpdateView, CreateView, ListView, DeleteView
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 # Create your views here.
 
 
@@ -48,6 +51,31 @@ def adminHome(request):
         return render(request, 'admindashboard/index.html', context)
     else:
         return render(request, 'home.html')
+
+
+class listAllAdminUsersView(ListView):
+    """
+        List out the all admin users.
+    """
+    template_name = 'admin/adminManageUser.html'
+    model = User
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['admin_users'] = User.objects.filter(is_staff=True)
+        paginator = Paginator(context['admin_users'], self.paginate_by)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
+        try:
+            admin_users = paginator.page(page)
+        except PageNotAnInteger:
+            admin_users = paginator.page(1)
+        except EmptyPage:
+            admin_users = paginator.page(paginator.num_pages)
+        context['admin_users'] = admin_users
+        return context
 
 
 def adminManageUsers(request):
@@ -136,7 +164,25 @@ class adminManageUsersRoles(ListView):
     """
     template_name = 'admin/roles/manage_admin_user_roles.html'
     model = AdminUserRoles
-    context_object_name = 'adminuserroles'
+    #context_object_name = 'adminuserroles'
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['adminuserroles'] = AdminUserRoles.objects.all()
+        paginator = Paginator(context['adminuserroles'], self.paginate_by)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
+        try:
+            adminuserroles = paginator.page(page)
+            print(adminuserroles)
+        except PageNotAnInteger:
+            adminuserroles = paginator.page(1)
+        except EmptyPage:
+            adminuserroles = paginator.page(paginator.num_pages)
+        context['adminuserroles'] = adminuserroles
+        return context
 
 
 class deleteAdminUserRoles(DeleteView):
@@ -154,10 +200,23 @@ class listAllUsersView(ListView):
     """
     template_name = 'admin/users/list_users.html'
     model = User
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['users'] = User.objects.filter(is_staff=False)
+        paginator = Paginator(context['users'], self.paginate_by)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
+        try:
+            users = paginator.page(page)
+            print(users)
+        except PageNotAnInteger:
+            users = paginator.page(1)
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)
+        context['users'] = users
         return context
 
 
