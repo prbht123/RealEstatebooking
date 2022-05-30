@@ -100,7 +100,7 @@ class listProperty(ListView):
     """
     template_name = 'property/list_property.html'
     model = Property
-    paginate_by = 5
+    paginate_by = 10
     #context_object_name = 'properties'
 
     def get_context_data(self, **kwargs):
@@ -125,7 +125,8 @@ class listProperty(ListView):
         paginator = Paginator(context['properties'], self.paginate_by)
 
         page = self.request.GET.get('page')
-
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
         try:
             property = paginator.page(page)
         except PageNotAnInteger:
@@ -278,6 +279,7 @@ class mostViewedProperties(ListView):
     template_name = 'property/most_viewed_all_properties.html'
     model = Property
     context_object_name = 'properties'
+    paginate_by = 10
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -298,6 +300,18 @@ class mostViewedProperties(ListView):
                 'viewed': viewed[0].viewed,
             }
             context['properties'].append(data)
+        paginator = Paginator(context['properties'], self.paginate_by)
+
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
+        try:
+            property = paginator.page(page)
+        except PageNotAnInteger:
+            property = paginator.page(1)
+        except EmptyPage:
+            property = paginator.page(paginator.num_pages)
+        context['properties'] = property
         return context
 
 
@@ -454,6 +468,7 @@ class ListPropertyUserView(ListView):
     """
     template_name = 'property/list_property_user.html'
     model = Property
+    paginate_by = 5
     #context_object_name = 'properties'
 
     def get_context_data(self, **kwargs):
@@ -477,6 +492,17 @@ class ListPropertyUserView(ListView):
                 'viewed': viewed[0].viewed,
             }
             context['properties'].append(data)
+        paginator = Paginator(context['properties'], self.paginate_by)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['page_obj'] = page_obj
+        try:
+            property = paginator.page(page)
+        except PageNotAnInteger:
+            property = paginator.page(1)
+        except EmptyPage:
+            property = paginator.page(paginator.num_pages)
+        context['properties'] = property
         return context
 
 

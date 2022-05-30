@@ -68,6 +68,23 @@
     {% endfor %}
   </div>
 </div>
+{% if is_paginated %}
+        <div class="pagination justify-content-end me-4">
+            <span class="page-links d-flex float-right">
+                {% if page_obj.has_previous %}
+                
+                    <a class="text-decoration-none me-2" href="/mostviewedproperties?page={{ page_obj.previous_page_number }}"><span class="h2" aria-hidden="true">&laquo;</span> </a>
+                {% endif %}
+                <span class="page-current">
+                   <p class="small"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+                </span>
+                {% if page_obj.has_next %}
+                    <a class="ml-2 text-decoration-none" href="/mostviewedproperties?page={{ page_obj.next_page_number }}"> <span class="h2" aria-hidden="true">&raquo;</span></a>
+                 {% endif %}
+               
+            </span>
+        </div>
+    {% endif %}
 <hr>
 {% include 'home/footer.html' %}
 {% endblock %}
