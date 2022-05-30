@@ -1,20 +1,19 @@
 
 
-<div class="container justify-content-center mt-4">
+<div class="container-fluid justify-content-center mt-1">
   <div class="row">
-  <a class="d-flex float-right text-decoration-none" href="/mostviewedproperties/" >See All></a>
     {% for property in properties %}
    
-    <div class="card me-2 mt-4" style="width: 12rem">
+    <div class="card me-1 " style="width:14rem">
     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
     <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:100%;">
       <div class="card-body">
-        <p class="card-text text-danger" style="font-size: 0.6rem">
+        <p class="card-text text-danger" style="font-size: 0.9rem">
           {{property.property.room_type}} - {{property.property.beds}} {% if property.property.beds == 1 %}
           Bed {% else %} Beds {% endif %}
         </p>
-        <p class="card-title h6">{{property.property.property_name}}</p>
-        <p class="card-text" style="font-size: 0.6rem">
+        <p class="card-title h6 text-truncate text-secondary"><b>{{property.property.property_name}}</b></p>
+        <p class="card-text" style="font-size: 0.9rem">
           R${{property.property.cost}} Per Night
         </p>
    

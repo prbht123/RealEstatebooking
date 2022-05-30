@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/user/user_profile.css' %}"/>
+{% endblock %}
+{% block content %}
+
+
+<div class="container mt-5 mb-4">
+<div class="row">
+<div class="col-sm-3">
+   <img style="height:300px;width:100%" class="img1" src="{% if userprofile.image %}{{userprofile.image.url}}{% endif %}" >
+<div class="row mt-4">
+  <h5>Work</h5>
+  <p class="ml-4"> <b>Experiance : </b> There are some experienced property is added.  </p>
+<p class="ml-4"> <b>Experiance : </b> There are some experienced property is added.  </p>
+
+</div>
+</div>
+<div class="col-sm-8 ml-4">
+   <h3 class="mb-4">{{userprofile.user.first_name}} {{userprofile.user.last_name}}</h3>
+   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline btn-primary me-2" type="button">Edit Profile</button></a>
+   <a href="{% url 'account:delete_user' slug=userprofile.slug %}"> <button class="btn btn-outline btn-primary  me-2" type="button">Delete Profile</button></a>
+   <a href="{% url 'realestateapp:create_property' %}"> <button class="btn btn-outline btn-primary  me-2" type="button">Add Hotels</button></a>
+   <a href="{% url 'realestateapp:list_property_user' %}"> <button class="btn btn-outline btn-primary  me-2" type="button">Hotels List</button></a>  
+    <div class="row">
+    <div class="col-sm-6 mt-5">
+    <h5 >Contact Information : </h5>
+    
+       <p class="ml-4"> <b>Phone : </b> {{userprofile.contact_number}} </p>
+       <p class="ml-4"> <b>Address : </b> {{userprofile.address.street}} {{userprofile.address.city}} {{ userprofile.address.state }} {{userprofile.address.country}} {{userprofile.address.zip_code}}</p>
+       <p class="ml-4"> <b>Email : </b> {{userprofile.user.email}} </p>
+       <p class="ml-4"> <b>Site : </b> Webkrone.user.com </p>
+    <h5 class="mt-5">Basic Information : </h5>
+        <p class="ml-4"> <b>Name : </b> {{userprofile.user.first_name}} {{userprofile.user.last_name}} </p>
+        <p class="ml-4"> <b>Birthday : </b> 01/01/2000 </p>
+        <p class="ml-4"> <b>Gender : </b> Male </p>
+    </div>
+    <div class="col-sm-6 mt-5">
+    {% if property %}
+    <h5 >Details of property : </h5>
+    <p class="ml-4"> <b>Properties : </b> {{property}} </p>
+    <p class="ml-4"> <b>Approved Properties : </b> {{approved_property}} </p>
+    <p class="ml-4"> <b>Draft Properties : </b> {{draft_property}} </p>
+    {% if most_viewed_property %}
+    <p class="ml-4"> <b>most Viewed property : </b> {{most_viewed_property.property.property_name}}-{{most_viewed_property.viewed}} </p>
+    {% endif %}
+    {% if most_ranking_property %}
+    <p class="ml-4"> <b>most Ranking property : </b> {{most_ranking_property.property__property_name}}-{{most_ranking_property.avg}} </p>
+    {% endif %}
+    {% endif %}
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% include 'home/footer.html' %} 
+{% endblock %}

@@ -1,13 +1,14 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends "admindashboard/default.html" %} {% block content %}
 
-<h3 style="color: #1dc418;">Manage normal Users</h3>
-<table class="table" style="color: black;">
+<h3 class="text-primary"><b>Manage normal Users</b></h3>
+<table class="table">
   <thead>
-    <tr style="color: #bf0d28;">
+    <tr class="text-primary"><b>
       <th scope="col">S.No</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
       <th scope="col">Action</th>
+      </b>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +19,8 @@
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
       <td>
-         <a class="text-decoration-none" href="{% url 'admin_user:convert_admin_from_normal_user' pk=user.id %}"><button style="color:white; background-color: green;" >Add admin</button></a> 
-        <a class="text-decoration-none" href="{% url 'admin_user:delete_users_by_admin' pk=user.id %}"><button style="color:white; background-color: red;">Delete</button></a>
+         <a class="text-decoration-none" href="{% url 'admin_user:convert_admin_from_normal_user' pk=user.id %}"><button class="btn btn-outline-primary" >Add admin</button></a> 
+        <a class="text-decoration-none" href="{% url 'admin_user:delete_users_by_admin' pk=user.id %}"><button class="btn btn-outline-danger">Delete</button></a>
       </td>
     </tr>
     {% endfor %}

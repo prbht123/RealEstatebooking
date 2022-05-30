@@ -1,4 +1,5 @@
 {% include 'base.html' %} {% load widget_tweaks %} 
+{% load static %}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -25,7 +26,6 @@
   font-weight: 500;
   font-size: 20px;
   cursor: pointer;
-  color: #cccccc;
   border: 4px dashed #009578;
   border-radius: 10px;
 }
@@ -60,13 +60,13 @@
   font-size: 14px;
   text-align: center;
 }
+
 </style>
 <body>
-
-
-<h1 class="text-center">Add The Property</h1>
+<div class="col-sm-12 bg-image" style="background-image: url('{% static "images/sea.jpg" %}');">
+<h1 class="text-center">Add The Hotel</h1>
 <hr />
-<div class="container col-sm-8 bg-success mb-4">
+<div class="container col-sm-8 mb-4">
 
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -86,7 +86,7 @@
   </div>
   {% else %}
   
-  <div class="col-sm-6 bg-success">
+  <div class="col-sm-6 ">
   <div class="form-group mt-1">
     <label for="{{ field.id_for_label }}">{{ field.label }}</label> 
      {% comment %} {{ field|add_class:'form-control' | }} {% endcomment %}
@@ -111,13 +111,13 @@
 {% endfor %}
 </div>
 <div class="d-flex justify-content-center ">
-  <button type="submit" class="btn btn-primary mt-2 mb-2 me-4">Submit</button>
-  <a class="btn btn-danger mt-2 mb-2" href="/">CANCEL</a>
+  <button type="submit" class="btn btn-outline-primary mt-2 mb-2 me-4">Submit</button>
+  <a class="btn btn-outline-danger mt-2 mb-2" href="/">CANCEL</a>
   </div>
 </form>
 </div>
+</div>
 {% include 'home/footer.html' %} 
-
  <script>
   document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
   const dropZoneElement = inputElement.closest(".drop-zone");

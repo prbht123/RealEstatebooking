@@ -1,13 +1,14 @@
-{% extends 'admin/adminPanel.html' %} {% block adminContent %}
+{% extends "admindashboard/default.html" %} {% block content %}
 
-<div class="container pt-5">
+<div class="container pt-5 text-center">
     <form method="post" novalidate action="">
         {% csrf_token %} 
-            <p>Are you sure you want to delete this user?</p>         
+        <div class="col-sm-5">
+            <h5><p>Are you sure you want to delete this user?</p>  </h5>       
      
-    <div>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <a href="{% url 'admin_user:normal_users' %}" class="btn btn-default">Cancel</a>
+    
+            <button type="submit" class="ml-5 btn btn-outline-success float-left">Submit</button>
+            <a href="{% url 'admin_user:normal_users' %}" class="me-5 btn btn-outline-danger float-right">Cancel</a>
         </div>
     </form>
 </div>
