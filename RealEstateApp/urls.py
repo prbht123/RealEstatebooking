@@ -2,7 +2,8 @@ from django.urls import path, include
 from . import views
 app_name = 'realestateapp'
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.Booking, name="landingpage"),
+    path('home/', views.home, name='home'),
     path('createproperty/', views.createProperty.as_view(), name='create_property'),
     path('createpropertyimages/<slug:slug>', views.createPropertyImages,
          name='create_property_images'),
