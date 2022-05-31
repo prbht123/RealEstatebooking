@@ -102,14 +102,18 @@
     width: 100vw;
 }
 
+.card-content {
+    margin-top: -30px;
+}
+
 .card-text {
-    padding-left: 13%;
+    padding-left: 11.5%;
 }
 
 .card-h3 {
     font-size: 50px;
     font-family: poppins, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #7166f0;
    
  
@@ -155,10 +159,10 @@
 }
 
 #group-h5 {
-    font-size: 44px;
     font-family: poppins, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #7166f0;
+    font-size: 45px;
     padding-right: 54px;
     position: relative;
     right: 3%;
@@ -195,7 +199,7 @@
 .most-rate-h3 {
     font-size: 50px;
     font-family: poppins, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #7166f0;
 }
 
@@ -317,14 +321,29 @@
     font-family: poppins, sans-serif;
     font-weight: 600;
     color: #7166f0;
-    font-size: 40px;
+    font-size: 45px;
 
 }
 
 .customer-p {
     font-family: poppins, sans-serif;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+.customer-span1 {
+    font-family: poppins, sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #7166f0;
+}
+
+.customer-span2 {
+    font-family: poppins, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #868686;
+    ;
 }
 
 .customer-img {
@@ -334,17 +353,32 @@
     margin-top: 8%;
 }
 
+.house-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 10%;
+    margin-bottom: 8%;
+    margin-top: -2%;
+
+}
+
+.house-text {
+    position: relative;
+    bottom: 8%;
+}
+
 
 .house-text-h1 {
     font-family: poppins, sans-serif;
-    font-weight: 600;
-    font-size: 30px;
+    font-weight: 400;
+    font-size: 40px;
 
 }
 
 .house-text-h2 {
     font-family: poppins, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #7166f0;
     font-size: 45px;
 
@@ -352,8 +386,8 @@
 
 .house-text-p {
     font-family: poppins, sans-serif;
-    font-weight: 200;
-    font-size: 14px;
+    font-weight: 300;
+    font-size: 16px;
 }
 
 .house-text {
@@ -364,13 +398,16 @@
     width: 99%;
 }
 
-.house-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding-left: 10%;
-    margin-bottom: 8%;
+#house-button {
+    margin-top: 6%;
+}
 
+.faq-h1 {
+    font-family: poppins, sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    color: #7166f0 ;
 }
 
 .accordion-body {
@@ -387,13 +424,13 @@
 .accordion-flush {
     padding-left: 6%;
     padding-right: 6%;
-    margin-bottom: 15%;
+    margin-bottom: 11%;
 }
 
 footer {
     background-color: rgba(209, 209, 209, 0.13);
     padding-top: 5%;
-    height: 50%;
+    height: 42%;
 }
 
 .footer-span-1 {

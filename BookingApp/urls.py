@@ -14,4 +14,5 @@ urlpatterns = [
     path('contact/', views.ContactUpload),
     path('faq/', views.faq),
     path('testing/', views.checking_hotel),
+    path('landing/', views.landingView)
 ]

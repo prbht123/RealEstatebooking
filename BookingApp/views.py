@@ -153,3 +153,7 @@ def checking_hotel(request):
         "GET", url, headers=headers, params=querystring)
     print(response.text[0][0])
     return render(request, 'bookingtest.html', {'context': response})
+
+
+def landingView(request):
+    return render(request, 'landingPage/landing.html')

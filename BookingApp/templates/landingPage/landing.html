@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,28 +25,28 @@
       rel="stylesheet"
     />
     <title>Landing Page</title>
-    <link rel="stylesheet" href="css/landing.css" />
-    <link rel="stylesheet" href="css/search.css" />
-    <link rel="stylesheet" href="css/faq.css" />
+    <link rel="stylesheet" href="{% static 'css/landing_css/landing.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/landing_css/search.css' %}" />
+    <!-- <link rel="stylesheet" href="css/faq.css" /> -->
 
     <style>
       .section-top {
-        background-image: url("img/bac.png");
+        background-image: url("{% static 'images/landing_img/bac.png' %}");
         background-repeat: no-repeat;
-        height: 150vh;
+        height: 130vh;
         background-size: cover;
         background-position: center;
       }
 
       .house-top {
-        background-image: url("img/we_are_here.png");
+      background-image: url("{% static 'images/landing_img/we_are_here.png' %}");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
       }
 
       #accordionFlushExample {
-        background-image: url("img/faq.png");
+        background-image: url("{% static 'images/landing_img/faq.png' %}");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -55,7 +56,7 @@
   <body>
     <div class="section section-top">
       <div class="navbar">
-        <div id="logo"><img src="img/logo.png" alt="" /></div>
+        <div id="logo"><img src="{% static 'images/landing_img/logo.png' %}" alt="" /></div>
         <div id="text">
           <a class="text-a" href="#">Home</a>
           <a class="text-a" href="#">WhyUs</a>
@@ -68,7 +69,7 @@
 
       <div class="center-item">
         <div id="item-image">
-          <img id="home-img" src="img/home.png" alt="" />
+          <img id="home-img" src="{% static 'images/landing_img/home.png' %}" alt="" />
         </div>
         <div id="item-text" class="top">
           <h2 class="item-text-h2">It's time to</h2>
@@ -164,6 +165,7 @@
         </form>
       </div>
 
+      <div class="card-content">
       <div class="card-text">
         <h3 class="card-h3">Why should we prefer us?</h3>
         <p class="card-p">
@@ -175,7 +177,7 @@
         <div class="row card-row">
           <div class="col-sm-4">
             <div class="card">
-              <img src="img/home1.png" class="card-img-top" alt="..." />
+              <img src="{% static 'images/landing_img/home1.png' %}" class="card-img-top" alt="..." />
               <div class="card-body">
                 <p class="card-text-1">
                   <span class="card-span-1">Stay longer, </span> <br />
@@ -187,7 +189,7 @@
           </div>
           <div class="col-sm-4">
             <div class="card">
-              <img src="img/home2.png" class="card-img-top" alt="..." />
+              <img src="{% static 'images/landing_img/home2.png' %}" class="card-img-top" alt="..." />
               <div class="card-body">
                 <p class="card-text-1">
                   <span class="card-span-1">We provide </span> <br />
@@ -199,7 +201,7 @@
           </div>
           <div class="col-sm-4">
             <div class="card">
-              <img src="img/home3.png" class="card-img-top" alt="..." />
+              <img src="{% static 'images/landing_img/home3.png' %}" class="card-img-top" alt="..." />
               <div class="card-body">
                 <p class="card-text-1">
                   <span class="card-span-1">Stay at </span> <br />
@@ -211,9 +213,10 @@
           </div>
         </div>
       </div>
+    </div>
       <div class="section group-section">
         <div class="group-image">
-          <img src="img/group.png" alt="" width="80%" />
+          <img src="{% static 'images/landing_img/group.png' %}" alt="" width="80%" />
         </div>
         <div class="group-detail">
           <h5 id="group-h5">
@@ -224,13 +227,13 @@
 
           <div class="group-logo">
             <img
-              src="img/location.png"
+              src="{% static 'images/landing_img/location.png' %}"
               alt=""
               width="10%"
             />&nbsp;&nbsp;&nbsp;<span id="group-id-1">37+ CITIES</span>
             <br /><br />
             <img
-              src="img/hotel.png"
+              src="{% static 'images/landing_img/hotel.png' %}"
               alt=""
               width="10%"
             />&nbsp;&nbsp;&nbsp;<span id="group-id-2">20k HOTELS</span>
@@ -249,7 +252,7 @@
         <div class="row most-rate-row">
           <div class="col-sm-4">
             <div class="card">
-              <img src="img/1.png" class="most-rate-img-top" alt="..." />
+              <img src="{% static 'images/landing_img/1.png' %}" class="most-rate-img-top" alt="..." />
               <div class="card-body most-rate-content">
                 <div class="most-rate-text">
                   <p>
@@ -260,14 +263,14 @@
                   </p>
                 </div>
                 <div class="most-rate-rank">
-                  <img src="img/rating.png" alt="" class="most-rate-rank-1" />
+                  <img src="{% static 'images/landing_img/rating.png' %}" alt="" class="most-rate-rank-1" />
                 </div>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="card">
-              <img src="img/2.png" class="most-rate-img-top" alt="..." />
+              <img src="{% static 'images/landing_img/2.png' %}" class="most-rate-img-top" alt="..." />
               <div class="card-body most-rate-content">
                 <div class="most-rate-text">
                   <p>
@@ -277,14 +280,14 @@
                   </p>
                 </div>
                 <div class="most-rate-rank">
-                  <img src="img/rating2.png" alt="" class="most-rate-rank-1" />
+                  <img src="{% static 'images/landing_img/rating2.png' %}" alt="" class="most-rate-rank-1" />
                 </div>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="card">
-              <img src="img/3.png" class="most-rate-img-top" alt="..." />
+              <img src="{% static 'images/landing_img/3.png' %}" class="most-rate-img-top" alt="..." />
               <div class="card-body most-rate-content">
                 <div class="most-rate-text">
                   <p>
@@ -295,7 +298,7 @@
                   </p>
                 </div>
                 <div class="most-rate-rank">
-                  <img src="img/rating3.png" alt="" class="most-rate-rank-1" />
+                  <img src="{% static 'images/landing_img/rating3.png' %}" alt="" class="most-rate-rank-1" />
                 </div>
               </div>
             </div>
@@ -308,11 +311,11 @@
           <h1 class="valuable-h1">Our Valuable Partners'</h1>
         </div>
         <div class="valuable-img">
-          <img id="valuable-img-1" src="img/logo/amazon.png" alt="" />
-          <img id="valuable-img-2" src="img/logo/axis.png" alt="" />
-          <img id="valuable-img-3" src="img/logo/booking.png" alt="" />
-          <img id="valuable-img-4" src="img/logo/cocacola.png" alt="" />
-          <img id="valuable-img-5" src="img/logo/nike.png" alt="" />
+          <img id="valuable-img-1" src="{% static 'images/landing_img/logo/amazon.png' %}" alt="" />
+          <img id="valuable-img-2" src="{% static 'images/landing_img/logo/axis.png' %}" alt="" />
+          <img id="valuable-img-3" src="{% static 'images/landing_img/logo/booking.png' %}" alt="" />
+          <img id="valuable-img-4" src="{% static 'images/landing_img/logo/cocacola.png' %}" alt="" />
+          <img id="valuable-img-5" src="{% static 'images/landing_img/logo/nike.png' %}" alt="" />
         </div>
       </div>
 
@@ -327,9 +330,13 @@
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi,
             nihil dolore debitis molestias
           </p>
+          <br>
+          <p class="customer-p-1">
+            <span class="customer-span1">Arnab Mitra</span>&nbsp;&nbsp;<span class="customer-span2">(Founder & CEO)</span>
+          </p>
         </div>
         <div class="customer-bg">
-          <img class="customer-img" src="img/customers2.png" alt="" />
+          <img class="customer-img" src="{% static 'images/landing_img/customers2.png' %}" alt="" />
         </div>
       </div>
 
@@ -349,7 +356,7 @@
             </button>
           </div>
           <div class="house-bg">
-            <img class="house-img" src="img/house.png" alt="" />
+            <img class="house-img" src="{% static 'images/landing_img/house.png' %}" alt="" />
           </div>
         </div>
       </div>
@@ -415,10 +422,10 @@
           <div class="col-sm-3">
             <p><span class="footer-span-1">Contact No.</span><br><br>
               <div class="footer-img">
-                <img src="img/logo/location.png" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>111 8th Ave, New York U.S.A.</span> <br><br>
-                <img src="img/logo/calling.png" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>Reserve +1-202-555-0153</span> <br><br>
-                <img src="img/logo/mail.png" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>info@hotel.com</span> <br><br>
-                <img src="img/logo/time.png" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>08 am - 06 pm Sunday closed</span> <br><br>
+                <img src="{% static 'images/landing_img/logo/location.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>111 8th Ave, New York U.S.A.</span> <br><br>
+                <img src="{% static 'images/landing_img/logo/calling.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>Reserve +1-202-555-0153</span> <br><br>
+                <img src="{% static 'images/landing_img/logo/mail.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>info@hotel.com</span> <br><br>
+                <img src="{% static 'images/landing_img/logo/time.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>08 am - 06 pm Sunday closed</span> <br><br>
               </div>           
             </p>
           </div>
@@ -427,7 +434,7 @@
               <span class="footer-span-2">Be the first one to know  about discounts, offers, news, giveaways and events.</span>
               </p>
               <br>
-            <form action="#">
+            <form>
               <input class=" footer-input" type="text" placeholder="Enter your Email...">
               <button id="footer-button" a href="#">Submit</button>
             </form>
@@ -436,7 +443,7 @@
       </div>
       <div class="footer-end container mt-5">
         <div class="footer-copyright">
-          <p class="footer-p">© 2000-2021, All Rights Reserved</p>
+          <p class="footer-p">© 2022-2023, All Rights Reserved</p>
         </div>
         <div class="footer-anchor-content">
           <a class="footer-anchor-1" href="">Home</a>
@@ -451,8 +458,8 @@
     
 
     <!-- JAVASCRIPTS PLUGINS -->
-    <script src="js/extention/choices.js"></script>
-    <script src="js/extention/flatpickr.js"></script>
+    <script src="{% static 'js/landing_js/choices.js' %}"></script>
+    <script src="{% static 'js/landing_js/flatpickr.js' %}"></script>
     <script>
       flatpickr(".datepicker", {});
     </script>
