@@ -21,6 +21,10 @@ from django.core.paginator import PageNotAnInteger
 # Create your views here.
 
 
+def Booking(request):
+    return render(request, 'landingPage/landingpage.html')
+
+
 def home(request):
     context = {}
     context['propertiess'] = Property.objects.all()
