@@ -1,7 +1,29 @@
-{% extends "base.html" %} {% block content %}
-<h1>Welcome {{ new_user.first_name }}!</h1>
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+<!-- <h1>Welcome {{ new_user.first_name }}!</h1>
 <p>
   Your account has been successfully created. Now you can :
   <a href="{% url 'account:signin' %}">log in</a>.
-</p>
+</p> -->
+
+
+
+
+
+<section class="projects">
+    
+    <div class="project--one">
+      <div class="project--image"></div>
+      <div class="text--card">
+        <h2>Welcome {{ new_user.first_name }}!</h2>
+        <p class="text--card__description">“Your account has been successfully.Now you are the member of this booking site you can add the property set of price of property and also set a location of property"</p>
+        <a class="text--card__button" target="_blank" href="{% url 'account:signin' %}">
+          <span>Log in</span>
+          <span class="material-icons">arrow_right_alt</span>
+        </a>
+      </div>
+    </div>
+    
+
 {% endblock %}

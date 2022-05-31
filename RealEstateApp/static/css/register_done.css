@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+
+:root {
+  --primary: #1b1c50;
+  --secondary: #dadff4;
+  --accent: #A25BFD;
+  --tertiary: #ffffff;
+  --black: #1c1c1c;
+  --border: 2px solid var(--secondary);
+  --shadow: -2px 4px 0px 0px var(--secondary);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.hero--video {
+  min-width: 100%;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+.hero--overlay {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(180deg, rgba(0,0,0,.3), var(--primary));
+  background-size: cover;
+  z-index: 2;
+}
+
+.hero--content {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: var(--secondary);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.hero--description {
+  line-height: 165%;
+  font-size: 1.125rem;
+  padding-bottom: 2em;
+  width: 40%;
+}
+
+
+.hero--button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1em 3em;
+  border-radius: 0.5em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--tertiary);
+  background-color: var(--accent);
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.hero--button:hover {
+  opacity: 0.8;
+}
+
+.projects {
+  background-color: var(--primary);
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
+  align-items: center;
+}
+
+
+.project--one, 
+.project--two, 
+.project--three,
+.project--four {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  margin-block: 50px;
+}
+
+
+.text--card {
+  background-color: var(--black);
+  color: var(--secondary);
+  max-width: 360px;
+  padding: 2.4rem;
+  border-radius: .5em;
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+
+.text--card__description {
+  line-height: 165%;
+}
+
+.text--card__button {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+  width: 130px;
+  line-height: 18px;
+}
+
+.project--one a {
+  color: orange;
+} 
+
+.project--three a {
+  color: DeepSkyBlue;
+}
+
+.project--four a {
+  color: tomato;
+}
+
+.project--image {
+  width: 360px;
+  height: 500px;
+  border-radius: 0.5em;
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.project--one > .project--image {
+  background: url(https://i2.lensdump.com/i/r4SMbi.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.project--two > .project--image {
+  background: url(https://i.lensdump.com/i/r4SvkP.gif);
+  background-position: center;
+  background-size: cover;
+}
+
+.project--three > .project--image {
+  background: url(https://i1.lensdump.com/i/r4SLlm.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.project--four > .project--image {
+  background: url(https://i.lensdump.com/i/rfwRUM.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.contact {
+  width: 100%;
+  height: 50vh;
+  background-color: var(--black);
+  background-image: linear-gradient(0deg, rgba(0,0,0,.3), var(--primary));
+}
+
+@media (max-width: 840px) {
+  .hero--description {
+    width: 75%;
+  }
+  
+  .project--one, .project--three {
+    flex-direction: column;
+  }
+  
+  .project--two, .project--four {
+    flex-direction: column-reverse;
+  }
+  
+  .project--image {
+    width: 360px;
+    height: 300px;
+  }
+  
+  .text--card {
+    width: 280px;
+  }
+}
+  
