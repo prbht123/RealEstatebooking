@@ -91,7 +91,8 @@ class createProperty(CreateView):
         data.save()
         count = MostViewed.objects.create(property=data, viewed=0)
         count.save()
-        return redirect('/')
+        return redirect(reverse('realestateapp:detail_property', kwargs={'slug': data.slug}))
+        # return redirect('/')
 
 
 class listProperty(ListView):

@@ -20,10 +20,10 @@
 </div>
 <div class="col-sm-8 ml-4">
    <h3 class="mb-4">{{userprofile.user.first_name}} {{userprofile.user.last_name}}</h3>
-   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}"> <button class="btn btn-outline btn-primary me-2" type="button">Edit Profile</button></a>
-   <a href="{% url 'account:delete_user' slug=userprofile.slug %}"> <button class="btn btn-outline btn-primary  me-2" type="button">Delete Profile</button></a>
-   <a href="{% url 'realestateapp:create_property' %}"> <button class="btn btn-outline btn-primary  me-2" type="button">Add Hotels</button></a>
-   <a href="{% url 'realestateapp:list_property_user' %}"> <button class="btn btn-outline btn-primary  me-2" type="button">Hotels List</button></a>  
+   <a href="{% url 'account:update_user_profile' slug=userprofile.slug %}" class="btn btn-outline-primary me-2" >Edit Profile</a>
+   <a href="{% url 'account:delete_user' slug=userprofile.slug %}" class="btn btn-outline-primary  me-2" >Delete Profile</a>
+   <a href="{% url 'realestateapp:create_property' %}" class="btn btn-outline-primary  me-2">Add Hotels</a>
+   <a href="{% url 'realestateapp:list_property_user' %}" class="btn btn-outline-primary  me-2">Hotels List</a>  
     <div class="row">
     <div class="col-sm-6 mt-5">
     <h5 >Contact Information : </h5>
