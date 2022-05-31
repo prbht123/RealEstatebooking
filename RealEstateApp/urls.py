@@ -9,6 +9,8 @@ urlpatterns = [
          name='create_property_images'),
     path('listproperty/', views.listProperty.as_view(), name='list_property'),
     path('searchproperty/', views.searchProperty.as_view(), name='search_property'),
+    path('searchhotel/', views.searchHotelsView.as_view(),
+         name='search_hotels_list'),
     path('updateproperty/<slug:slug>/',
          views.propertyUpdateView.as_view(), name='Update_property'),
     path('deleteproperty/<slug:slug>',

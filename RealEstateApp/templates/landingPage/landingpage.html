@@ -81,7 +81,7 @@
       </div>
 
       <div class="s002">
-        <form>
+        <form action="/searchhotel/">
           <div class="inner-form">
             <div class="input-field first-wrap">
               <div class="icon-wrap">
@@ -96,7 +96,7 @@
                   ></path>
                 </svg>
               </div>
-              <input id="search" type="text" placeholder="Address" />
+              <input id="search" name="address" type="text" placeholder="Address" />
             </div>
             <div class="input-field second-wrap">
               <div class="icon-wrap">
@@ -114,7 +114,8 @@
               <input
                 class="datepicker"
                 id="depart"
-                type="text"
+                name="check_in_time"
+                type="date"
                 placeholder="28 May 2022"
               />
             </div>
@@ -134,7 +135,8 @@
               <input
                 class="datepicker"
                 id="return"
-                type="text"
+                type="date"
+                name="check_out_time"
                 placeholder="25 May 2022"
               />
             </div>
@@ -160,7 +162,7 @@
               </select>
             </div>
             <div class="input-field fifth-wrap">
-              <button class="btn-search" type="button">SEARCH</button>
+              <button class="btn-search" type="submit">SEARCH</button>
             </div>
           </div>
         </form>
