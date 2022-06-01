@@ -57,7 +57,7 @@ class bookingUpdateView(UpdateView):
     model = Booking
     form_class = BookingForm
     template_name = 'booking/update_booking.html'
-    success_url = '/'
+    success_url = '/home/'
 
     def get_form_kwargs(self):
         kwargs = super(bookingUpdateView, self).get_form_kwargs()
@@ -72,7 +72,7 @@ class bookingDeleteView(DeleteView):
     """
     model = Booking
     template_name = 'booking/delete_booking.html'
-    success_url = '/'
+    success_url = '/home/'
 
 
 def why_us(request):

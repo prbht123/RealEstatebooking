@@ -54,15 +54,16 @@ class PaymentWithStripe(TemplateView):
         return context
 
 
-def charge(request):
-    if request.method == 'POST':
-        charge = stripe.Charge.create(
-            amount="0.01",
-            currency="Inr",
-            description="payment by stripe",
-            source=request.POST['stripetoken']
-        )
-        return render(request, 'payment/done.html')
+def charge(request, slug):
+
+    print("999999999999999999999999999")
+    charge = stripe.Charge.create(
+        amount="0.01",
+        currency="Inr",
+        description="payment by stripe",
+        source=request.POST['stripetoken']
+    )
+    return render(request, 'payment/done.html', {'slug': slug})
 
 
 def payment_done_strip(request, **kwargs):
