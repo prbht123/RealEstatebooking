@@ -139,7 +139,7 @@ PAYPAL_TEST = True
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51KyrvaSEP5SNlSqvNEGiS6lmydRJRifXj1WchAuroGIgaQvELvToedvsYxLEE8MmamShKmqQEFIgbkmGzarFialh00h0N4t4Kn'
 STRIPE_SECRET_KEY = 'sk_test_51KyrvaSEP5SNlSqvIbEM4fOt6nWxJ7LTT4tJwNaoFMmsHGB33Vq9wcqpYDzE5RxD9CWilFg6Lra4PRF0ZyPeF5R200I9vJwDAD'
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
