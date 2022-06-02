@@ -9,6 +9,10 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='registration/signout.html'), name="logout"),
     path('register/', views.register, name='register'),
     path('profile/', views.homeView, name='home_profile'),
+    path('passwordchange/', PasswordChangeView.as_view(
+        template_name='registration/password_change_form.html'), name="password_change"),
+    path('password-change/done/', PasswordChangeDoneView.as_view(
+        template_name='registration/password_change_done.html'), name='password_change_done'),
     path('userprofile/<int:pk>',
          views.UserProfileView, name="user_profile"),
     path('createuserprofile/', views.CreateUserProfileView.as_view(),

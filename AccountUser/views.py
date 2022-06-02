@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.db.models import Avg, Count
 from django.urls import reverse
+
 # Create your views here.
 
 
@@ -25,7 +26,7 @@ def register(request):
         return render(request, 'registration/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
-        return render(request, 'registration/register.html', {'user_form': user_form})
+        return render(request, 'registration/signup.html', {'user_form': user_form})
 
 
 def homeView(request):
@@ -121,4 +122,4 @@ def UserDeleteView(request, slug):
     userprofile = UserProfile.objects.get(slug=slug)
     user = User.objects.get(id=userprofile.user.id)
     user.delete()
-    return redirect('/')
+    return redirect('/home/')

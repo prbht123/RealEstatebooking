@@ -1,0 +1,165 @@
+
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Signin</title>
+    <style>
+      .fa {
+        padding: 20px;
+        font-size: 30px;
+        width: 60px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+            color:white;
+        }
+
+        .fa-facebook {
+        background: #3B5998;
+        color: white;
+        }
+        .fa-twitter {
+            background: #55ACEE;
+            color: white;
+            }
+
+        .fa-google {
+            background: #dd4b39;
+            color: white;
+            }
+
+    </style>
+  </head>
+  <body>
+   
+            <div class="row">
+                <div class="col-sm-5">
+                   <img src="{% static 'images/accounts/hotel_sign_up.jpg' %}" style="width:100%;height=100%"/>
+                </div>
+                <div class="col-sm-7 mt-2">
+                  <p class="float-end me-4 mt-4">It's member? <a href="/accounts/login/" class="text-decoration-none"> Signin</a></p>
+                   <div class=" col-sm-10 offset-sm-1 d-flex justify-content-between">
+                   
+                  
+                    <form
+                            method="post"
+                            action=""
+                            style="
+                            width: 85%;
+                            padding: 15px;
+                            "
+                        >
+                            {% csrf_token %}
+                            <p class="h2">Sign Up <br> <span class="h4 fw-lighter">Please fill in this form to create an account!</span></p>
+                           <div class="input-group mb-3" >
+                            <div class="input-group-prepend">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;">
+                            <span class="fa fa-user" style="color:lightblue;"></span>
+                            </span>
+                            </div>
+                            {{ user_form.username|append_attr:"class:form-control rounded"|append_attr:"placeholder:Username" }}
+                            
+                            {% comment %} {{user_form.username|add_class:"form-control rounded" }} {% endcomment %}
+                            </div>
+                            
+                            <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;">
+                            <span class="fa fa-user" style="color:lightblue;"></span>
+                            </span>
+                            </div>
+                            {{ user_form.first_name|append_attr:"class:form-control rounded"|append_attr:"placeholder:First Name" }}
+                            {% comment %} {{ user_form.first_name|add_class:"form-control rounded" }} {% endcomment %}
+                            </div>
+                           
+                            <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;">
+                            <span class="fa fa-paper-plane" style="color:lightblue;"></span>
+                            </span>
+                            </div>
+                            {{ user_form.email|append_attr:"class:form-control rounded"|append_attr:"placeholder:Email" }}
+                            {% comment %} {{ user_form.email|add_class:"form-control rounded" }} {% endcomment %}
+                            </div>
+
+    
+
+                            <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;">
+                            <span class="fa fa-lock" style="color:lightblue;"></span>
+                            </span>
+                            </div>
+                            {{ user_form.password|append_attr:"class:form-control rounded"|append_attr:"placeholder:Paasword" }}
+                            {% comment %} {{user_form.password|add_class:"form-control rounded" }} {% endcomment %}
+                             <div class="input-group-postpend">
+                            <a onclick="myFunction()">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;" onclick="myPassword()">
+                            <i class="fa fa-eye" style="color:lightblue;"></i>
+                            </span>
+                            </a>
+                            </div>
+                            </div>
+                            
+                            <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;">
+                            <i class="fa fa-lock" style="color:lightblue;"></i>
+                            </span>
+                            </div>
+                            {{ user_form.password2|append_attr:"class:form-control rounded"|append_attr:"placeholder:Confirm Password" }}
+                            {% comment %} {{ user_form.password2|add_class:"form-control rounded" }} {% endcomment %}
+                            <div class="input-group-postpend">
+                            <span class="input-group-text rounded" style="height:10vh;background-color:white;" onclick="myPassword2()" >
+                            <i class="fa fa-eye" style="color:lightblue;"></i>
+                            </span>
+                            </div>
+                            </div>
+                             
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                <label class="form-check-label"><p class="small">
+                              I agreed Terms and Conditions & Privacy Policy
+                            </p></label>
+                             </div>
+                           <button class="btn btn-primary rounded-pill ml-4 mt-4 form-control" type="submit">
+                            Create your account
+                            </button>
+                            <h6 class="text-center mt-3"><p> Or Sign Up With</p></h6>
+                            <div class="col-sm-12 d-flex justify-content-center">
+                            <a href="#" class="fa fa-facebook"></a>
+                            <a href="#" class="fa fa-twitter"></a>
+                            <a href="#" class="fa fa-google"></a>
+                            </div>
+                            <p class="mt-2"> <span class="fw-lighter">This site is protected by reCAPTCHA and the Google </span> Privacy Policy <span class="fw-lighter">and </span>Terms of Services <span class="fw-lighter">apply.</span></p>
+                        </form>
+                        
+                   </div>
+                </div>
+            </div>
+      <script>
+      console.log("hello")
+      function myPassword() {
+          console.log("ok")
+ // document.getElementById("demo").innerHTML = "Hello World";
+}
+      </script>
+  </body>
+</html>
