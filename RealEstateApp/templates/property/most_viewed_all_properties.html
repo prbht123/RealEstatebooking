@@ -7,13 +7,13 @@
 <div class="container">
   <div class="row">
 <div class="col-sm-4">
-<h4 class="ml-4">Most Viewed Hotels</h4>
+<h4 class="ml-4 mt-4">Most Viewed Hotels</h4>
 </div>
 <div class="col-sm-8 d-flex justify-content-end" >
  <form action="{% url 'realestateapp:search_with_property_name' %}">
 <div class="input-group">
-  <input type="search" class="form-control rounded mt-2 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
-  <button class="btn btn-success mt-2"><i class="fas fa-search"></i></button>
+  <input type="search" class="form-control rounded mt-4 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
+  <button class="btn btn-primary mt-4"><i class="fas fa-search"></i></button>
 </div>
  </form>
  </div>
@@ -23,6 +23,23 @@
 <hr />
 <div class="container justify-content-center mt-4 mb-4" >
   <div class="row">
+  {% if is_paginated %}
+        <div class="pagination justify-content-end me-4">
+            <span class="page-links d-flex float-right">
+                {% if page_obj.has_previous %}
+                
+                    <a class="text-decoration-none me-2" href="/mostviewedproperties?page={{ page_obj.previous_page_number }}"><span class="h2" aria-hidden="true">&laquo;</span> </a>
+                {% endif %}
+                <span class="page-current">
+                   <p class="small mt-2"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+                </span>
+                {% if page_obj.has_next %}
+                    <a class="ml-2 text-decoration-none" href="/mostviewedproperties?page={{ page_obj.next_page_number }}"> <span class="h2" aria-hidden="true">&raquo;</span></a>
+                 {% endif %}
+               
+            </span>
+        </div>
+    {% endif %}
     {% if not properties %}
     <p class="text-center"> No property found.</p>
  
@@ -76,7 +93,7 @@
                     <a class="text-decoration-none me-2" href="/mostviewedproperties?page={{ page_obj.previous_page_number }}"><span class="h2" aria-hidden="true">&laquo;</span> </a>
                 {% endif %}
                 <span class="page-current">
-                   <p class="small"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+                   <p class="small mt-2"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
                 </span>
                 {% if page_obj.has_next %}
                     <a class="ml-2 text-decoration-none" href="/mostviewedproperties?page={{ page_obj.next_page_number }}"> <span class="h2" aria-hidden="true">&raquo;</span></a>

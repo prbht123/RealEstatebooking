@@ -1,0 +1,76 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+   <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/sign.css' %}"/>
+   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+  <div class="row">
+    <div class="col-4 " style="height:100vh;width:100vh" >
+     <img src="/static/images/Welcome to our hotel.jpg" class="img_left" style="height:100%;width:100%">
+    </div>
+    <div class="col-6" style=" margin:20px;">
+      
+  <div class="member d-flex  justify-content-end" style=" margin:40px">
+        <span>Not a member?</span> <a class="text-decoration-none " href="#">Sign up</a>
+      </div>
+      <div class="si_gn member d-flex  justify-content-center">
+      <h2 >Sign in <br>to your account</h2>
+      </div>
+           <form action="/" method="POST" class="form login" style=" margin:20px">
+
+      <div class="form__field" >
+        <label for="login__username"><svg class="icon">
+            <i class="fas fa-at"></i>
+          </svg><span class="hidden">Username</span></label>
+        <input autocomplete="username" id="login__username" type="text" name="username" class="form__input" placeholder="Username" required>
+      </div>
+
+      <div class="form__field">
+        <label for="login__password"><svg class="icon">
+            <i class="fas fa-lock"></i>
+          </svg><span class="hidden">Password</span></label>
+        <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
+      </div>
+      <div class="checkbox login-options">
+          <label><input type="checkbox"/> Remember Me</input></label>
+          <a href="#" class="login-forgot member d-flex  justify-content-end text-decoration-none">Forgot Password?</a>
+        </div>  
+
+      <div class="form__field">
+        <input type="submit" value="Sign In">
+      </div>
+      <h5 class="text-center mt-3" style="color:black;">Or Sign Up With</h5>
+          <!-- <div class="col-sm-12 d-flex justify-content-center">
+            <a href="#" class="fa fa-facebook  text-decoration-none fa-2x" style=" margin: 2vh;"></a> -->
+            <div class="col-sm-12 d-flex justify-content-center">
+            <img src="/static/images/facebook.png" class="img" style="height: 55%; width: 5%; margin: 2vh;">
+            <img src="/static/images/apple.png" class="img" style="height: 55%; width: 5%; margin: 2vh;">
+            <img src="/static/images/google.png" class="img" style="height: 55%; width: 5%; margin: 2vh;">
+            <!-- <a href="#" class="fa fa-google fa-2x text-decoration-none" style=" margin: 2vh;"></a>
+            <a href="#" class="fa fa-instagram fa-2x text-decoration-none" style=" margin: 2vh;"></a>
+             -->
+
+
+    </form>
+
+    </div>
+    <div class="d-flex  justify-content-center">
+            <p class="small mt-2 " style="color:black;">By sign up you agree to our term and that you have read our data policy</p>
+          </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

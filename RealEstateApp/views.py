@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 
 from AdminUser.models import PopularLocations
 from .models import FeedBackProperty, Property, Address, RankingProperty, Room, MostViewed, ImagesProperty, Room
-from BookingApp.models import Booking
+from BookingApp.models import Booking as Booking_Post
 from RealEstateApp.forms import FeedbackForm, PropertyForm, RankingPropertyForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.forms.formsets import formset_factory
@@ -18,7 +18,12 @@ from AccountUser.models import UserProfile
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
+import datetime
 # Create your views here.
+
+
+def Booking(request):
+    return render(request, 'landingPage/landingpage.html')
 
 
 def home(request):
@@ -91,7 +96,8 @@ class createProperty(CreateView):
         data.save()
         count = MostViewed.objects.create(property=data, viewed=0)
         count.save()
-        return redirect('/')
+        return redirect(reverse('realestateapp:detail_property', kwargs={'slug': data.slug}))
+        # return redirect('/')
 
 
 class listProperty(ListView):
@@ -153,13 +159,13 @@ class searchProperty(ListView):
         check_out_time = self.request.GET.get('checkouttime')
         context = super().get_context_data(**kwargs)
         if check_in_time and check_out_time:
-            context['booking'] = Booking.objects.filter(
+            context['booking'] = Booking_Post.objects.filter(
                 Q(date_until__lt=check_in_time) | Q(date_from__gt=check_out_time))
             if not context['booking']:
-                context['booking'] = Booking.objects.all().exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
+                context['booking'] = Booking_Post.objects.all().exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
                     date_from__lte=check_out_time, date_until__gte=check_out_time))
                 if not context['booking']:
-                    context['booking'] = Booking.objects.filter(
+                    context['booking'] = Booking_Post.objects.filter(
                         date_from__lte=check_in_time, date_until__gte=check_out_time)
 
             if city and street:
@@ -185,6 +191,84 @@ class searchProperty(ListView):
         context['properties'] = []
         for property in context['propertiess']:
             print(property)
+            rank = RankingProperty.objects.filter(
+                property=property).aggregate(avg=Avg('rank'))
+            viewed = MostViewed.objects.filter(property=property)
+            if rank['avg'] is not None:
+                rank = "{:.2f}".format(rank['avg'])
+            else:
+                rank = 0
+            data = {
+                'property': property,
+                'rank': rank,
+                'viewed': viewed[0].viewed,
+            }
+            context['properties'].append(data)
+        return context
+
+
+class searchHotelsView(ListView):
+    """
+    Class view functon to handle search as location,check-in,check-out and how many guests wise.
+    """
+    template_name = 'property/search_property.html'
+    model = Property
+    # context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        address = self.request.GET.get('address')
+        check_in_time = self.request.GET.get('check_in_time')
+        #check_out_time = self.request.GET.get('checkouttime')
+        check_out_time = self.request.GET.get('check_out_time')
+        adults = self.request.GET.get('choices-single-defaul')
+        try:
+            adults = int(adults.replace(' Adult', ""))
+        except:
+            adults = int(adults.replace(' Adults', ""))
+        context = super().get_context_data(**kwargs)
+        if check_in_time and check_out_time:
+            context['booking'] = Booking_Post.objects.filter(
+                Q(date_until__lt=check_in_time) | Q(date_from__gt=check_out_time))
+            if not context['booking']:
+                context['booking'] = Booking_Post.objects.all().exclude(Q(date_from__lte=check_in_time, date_until__gte=check_in_time) | Q(
+                    date_from__lte=check_out_time, date_until__gte=check_out_time))
+                if not context['booking']:
+                    context['booking'] = Booking_Post.objects.filter(
+                        date_from__lte=check_in_time, date_until__gte=check_out_time)
+
+            if address:
+                context['propertiess'] = Property.objects.filter(
+                    Address__city=address, property_status='published')
+                if adults:
+                    context['propertiess'] = context['propertiess'].filter(
+                        guest__gte=adults)
+                if context['booking']:
+                    for book in context['booking']:
+                        context['propertiess'] = context['propertiess'].exclude(
+                            slug=book.property.slug)
+            else:
+                context['propertiess'] = Property.objects.filter(
+                    property_status='published')
+                for book in context['booking']:
+                    context['propertiess'] = context['propertiess'].exclude(
+                        slug=book.property.slug)
+                #context['properties'] = context['booking']
+        elif address:
+
+            context['propertiess'] = Property.objects.filter(property_status='published',
+                                                             Address__city=address)
+
+            if adults:
+                context['propertiess'] = context['propertiess'].filter(
+                    guest__gte=adults)
+        else:
+            context['propertiess'] = Property.objects.filter(
+                property_status='published')
+            if adults:
+                context['propertiess'] = context['propertiess'].filter(
+                    guest=adults)
+        context['properties'] = []
+        for property in context['propertiess']:
             rank = RankingProperty.objects.filter(
                 property=property).aggregate(avg=Avg('rank'))
             viewed = MostViewed.objects.filter(property=property)
@@ -241,7 +325,7 @@ class propertyDetailView(DetailView):
             property__slug=self.object.slug).aggregate(Avg('rank'))
         context['feedback'] = FeedBackProperty.objects.filter(
             property__slug=self.object.slug)
-        context['booking'] = list(Booking.objects.filter(
+        context['booking'] = list(Booking_Post.objects.filter(
             property__slug=self.object.slug))
         context['feedbackform'] = FeedbackForm
         context['form'] = RankingPropertyForm

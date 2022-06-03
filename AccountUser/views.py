@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.db.models import Avg, Count
+from django.urls import reverse
 # Create your views here.
 
 
@@ -83,7 +84,8 @@ class CreateUserProfileView(CreateView):
         data.address = address
         data.image = self.request.FILES['myFile']
         data.save()
-        return redirect('/')
+        # return redirect('/')
+        return redirect(reverse('account:user_profile', kwargs={'pk': user.id}))
 
 
 class UpdateProfileView(UpdateView):

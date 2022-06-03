@@ -11,7 +11,8 @@ urlpatterns = [
     path('search/',
          views.SearchBookingView, name='booking_search'),
     path('why_us/', views.why_us, name='why_us'),
-    path('contact/', views.ContactUpload),
-    path('faq/', views.faq),
+    path('contact/', views.ContactUpload, name="contact"),
+    path('faq/', views.faq, name="faq"),
     path('testing/', views.checking_hotel),
+    path('sign/',views.sign_in),
 ]
