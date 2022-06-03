@@ -158,3 +158,6 @@ def checking_hotel(request):
 
 def sign_in(request):
     return render(request, 'Signin.html')
+
+def forgot_pw(request):
+    return render(request, 'forgot_password.html')
