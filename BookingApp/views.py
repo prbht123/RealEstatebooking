@@ -57,7 +57,7 @@ class bookingUpdateView(UpdateView):
     model = Booking
     form_class = BookingForm
     template_name = 'booking/update_booking.html'
-    success_url = '/'
+    success_url = '/home/'
 
     def get_form_kwargs(self):
         kwargs = super(bookingUpdateView, self).get_form_kwargs()
@@ -72,7 +72,7 @@ class bookingDeleteView(DeleteView):
     """
     model = Booking
     template_name = 'booking/delete_booking.html'
-    success_url = '/'
+    success_url = '/home/'
 
 
 def why_us(request):
@@ -94,15 +94,16 @@ def ContactUpload(request):
             messages=request.POST.get('message')
         )
         cd = {
-            'to': 'saumyaranjan.webkrone@gmail.com'
+            'to': 'prabhat.webkrone@gmail.com'
         }
         msg = request.POST.get('message')
         send_mail("subject", msg, request.POST.get('email'), [cd['to']])
         messages.success(request, "Contact sent successfully")
         obj.save()
-        return redirect('/homepage/contact/')
+        print(obj)
+        print("9999999999999999999999999999")
+        return redirect('/booking/contact/')
     else:
-        print(settings.EMAIL_HOST_USER)
         return render(request, 'homepage/contact.html')
 
 

@@ -2,12 +2,12 @@
 {% block content %}
 <div class="container card mt-4 d-flex align-items-center">
 <h1>Pay using Stripe</h1>
-<form method="post" action="{% url 'payment:stripe_done' slug=booked.slug %}">
+<form method="post" action="{% url 'payment:stripe_payment_create' slug=booked.slug %}">
 {% csrf_token %} 
 <script src ="https://checkout.stripe.com/checkout.js" class="stripe-button"
 data-key = "{{key}}"
 data.description="jgfjgewiuagiwa"
-data-amount="0.01"
+data-amount="90"
 data-locale = "auto"
 >
 </script>

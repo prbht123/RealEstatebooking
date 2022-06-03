@@ -8,6 +8,8 @@ import stripe
 from paypal.standard.forms import PayPalPaymentsForm
 # Create your views here.
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 @csrf_exempt
 def payment_done(request, **kwargs):
@@ -54,15 +56,15 @@ class PaymentWithStripe(TemplateView):
         return context
 
 
-def charge(request):
+def charge(request, slug):
     if request.method == 'POST':
         charge = stripe.Charge.create(
-            amount="0.01",
-            currency="Inr",
+            amount="90",
+            currency="usd",
             description="payment by stripe",
-            source=request.POST['stripetoken']
+            source=request.POST['stripeToken']
         )
-        return render(request, 'payment/done.html')
+    return render(request, 'payment/done.html', {'slug': slug})
 
 
 def payment_done_strip(request, **kwargs):
