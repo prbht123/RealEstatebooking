@@ -107,7 +107,8 @@
                             <span class="fa fa-lock" style="color:lightblue;"></span>
                             </span>
                             </div>
-                            {{ user_form.password|append_attr:"class:form-control rounded"|append_attr:"placeholder:Paasword" }}
+                            {% render_field user_form.password placeholder="Password" class="form-control rounded" id="password1" %}
+                            {% comment %} {{ user_form.password|append_attr:"class:form-control rounded"|append_attr:"placeholder:Paasword" }} {% endcomment %}
                             {% comment %} {{user_form.password|add_class:"form-control rounded" }} {% endcomment %}
                              <div class="input-group-postpend">
                             <a onclick="myFunction()">
@@ -124,7 +125,9 @@
                             <i class="fa fa-lock" style="color:lightblue;"></i>
                             </span>
                             </div>
-                            {{ user_form.password2|append_attr:"class:form-control rounded"|append_attr:"placeholder:Confirm Password" }}
+                            {% render_field user_form.password2 placeholder="Confirm Password" class="form-control rounded" id="password2" %}
+                           
+                            {% comment %} {{ user_form.password2|append_attr:"class:form-control rounded"|append_attr:"placeholder:Confirm Password" }} {% endcomment %}
                             {% comment %} {{ user_form.password2|add_class:"form-control rounded" }} {% endcomment %}
                             <div class="input-group-postpend">
                             <span class="input-group-text rounded" style="height:10vh;background-color:white;" onclick="myPassword2()" >
@@ -134,7 +137,7 @@
                             </div>
                              
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="Checked">
                                 <label class="form-check-label"><p class="small">
                               I agreed Terms and Conditions & Privacy Policy
                             </p></label>
@@ -158,7 +161,23 @@
       console.log("hello")
       function myPassword() {
           console.log("ok")
- // document.getElementById("demo").innerHTML = "Hello World";
+          var x = document.getElementById("password1");
+          if (x.type === "password") {
+              x.type = "text";
+            } 
+          else {
+              x.type = "password";
+            }
+}
+function myPassword2() {
+          console.log("ok")
+          var xp = document.getElementById("password2");
+          if (xp.type === "password") {
+              xp.type = "text";
+            } 
+          else {
+              xp.type = "password";
+            }
 }
       </script>
   </body>
