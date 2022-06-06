@@ -1,0 +1,587 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>New Home Page</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- <link rel="stylesheet" href="{% static 'css/newHome/newHome.css' %}" /> -->
+    <link rel="stylesheet" href="{% static 'css/newHome/search.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/newHome/newHome-1.css' %}">
+
+    
+
+    <style>
+      .first_booking {
+        background-image: url("{% static 'images/newHomePage_img/city.jpg' %}");
+        background-repeat: no-repeat;
+        height: 80vh;
+        background-size: cover;
+        background-position: center;
+        margin-top: 8%;
+        /* position: relative;
+        bottom: 20%; */
+      }
+
+.app {
+        background-image: url("{% static 'images/newHomePage_img/bg.jpg' %}");
+        background-repeat: no-repeat;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        margin-top: 8%;
+        margin-bottom: 8%;
+      }
+
+      /* .popular-place-row-1 {
+        background-image: url("{% static 'images/newHomePage_img/beach.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 70vh;
+        width: 28vw ;
+      }
+
+      .popular-place-row-2 {
+        background-image: url("{% static 'images/newHomePage_img/international.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 45vh;
+        width: 28vw ;
+      } */
+
+    </style>
+  </head>
+  <body>
+    <div class="slider-content">
+      <div class="slider-images">
+        <div class="navbar">
+          <div class="nav-logo">
+            <img
+              class="logo"
+              src="{% static 'images/landing_img/logo.png' %}"
+              alt=""
+            />
+          </div>
+          <div class="nav-link">
+            <a class="me-5" href="#">Home</a>
+            <a class="me-5" href="#">Hotel List</a>
+            <a class="me-5" href="#">Why Us</a>
+            <a class="me-5" href="#">Admin Dashboard</a>
+            <a class="me-5" href="#">Admin</a>
+            <a class="me-5" href="#">Sign out</a>
+          </div>
+        </div>
+        <h1 class="slider-h1">
+          <span class="slider-span-1"> Stay. Float. Refresh.</span><br />
+          <span class="slider-span-2"
+            >Located at the perfect place for a perfect vacation.</span
+          >
+        </h1>
+        <img
+          class="slider-img"
+          src="{% static 'images/slideimages/image15.jpg' %}"
+        />
+        <img
+          class="slider-img"
+          src="{% static 'images/slideimages/image17.jpg' %}"
+        />
+        <img
+          class="slider-img"
+          src="{% static 'images/slideimages/image11.jpg' %}"
+        />
+        <h1 class="slider-h1">
+          <span class="slider-span-1"> Stay. Float. Refresh.</span><br />
+          <span class="slider-span-2"
+            >Located at the perfect place for a perfect vacation.</span
+          >
+        </h1>
+      </div>
+      <div class="s002">
+        <form action="/searchhotel/">
+          <div class="inner-form">
+            <div class="input-field first-wrap">
+              <div class="icon-wrap">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                id="search"
+                name="address"
+                type="text"
+                placeholder="Address"
+              />
+            </div>
+            <div class="input-field second-wrap">
+              <div class="icon-wrap">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                class="datepicker"
+                id="depart"
+                name="check_in_time"
+                type="date"
+                placeholder="28 May 2022"
+              />
+            </div>
+            <div class="input-field third-wrap">
+              <div class="icon-wrap">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                class="datepicker"
+                id="return"
+                type="date"
+                name="check_out_time"
+                placeholder="25 May 2022"
+              />
+            </div>
+            <div class="input-field fouth-wrap">
+              <div class="icon-wrap">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  ></path>
+                </svg>
+              </div>
+              <select data-trigger="" name="choices-single-defaul">
+                <option placeholder="">1 Adult</option>
+                <option>2 Adults</option>
+                <option>3 Adults</option>
+                <option>4 Adults</option>
+                <option>5 Adults</option>
+              </select>
+            </div>
+            <div class="input-field fifth-wrap">
+              <button class="btn-search" type="submit">SEARCH</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="popular-text">
+      <h1 class="popular-h1">
+        <span class="popular-span-1">Some Popular Places for You.</span>
+      </h1>
+      <p>
+        <span class="popular-span-2">Lorem Ipsum is simply dummy text.</span>
+      </p>
+    </div>
+
+    <div class="container popular-place">
+      <div class="row popular-place-row">
+        <div class="col-sm-4 ">
+          <div class="row popular-place-row-1">
+            <a href="#"> 
+              <img src="{% static 'images/newHomePage_img/beach.jpg' %}" alt="" width="100%" height="100%" />
+            </a>
+          </div>
+          <div class="popular-inside-text-1">
+            <h1 class="popular-inside-h1">Beach</h1>
+            <p class="popular-inside-p">
+              13+ Destinations
+            </p>
+          </div>
+          <br />
+          <div class="row popular-place-row-2">
+            <a href="">
+              <img src="{% static 'images/newHomePage_img/international.jpg' %}" alt="" width="100%" height="100%"/>
+            </a>
+          </div>
+          <div class="popular-inside-text-2">
+            <h1 class="popular-inside-h1">International</h1>
+            <p class="popular-inside-p">
+              15+ Destinations
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row popular-place-row-3">
+            <a href="">
+              <img src="{% static 'images/newHomePage_img/hill_station.jpg' %}" alt="" width="100%" height="100%"/>
+            </a>
+          </div>
+          <div class="popular-inside-text-3">
+            <h1 class="popular-inside-h1">Hill Station</h1>
+            <p class="popular-inside-p">
+              17+ Destinations
+            </p>
+          </div>
+          <br />
+          <div class="row popular-place-row-4">
+            <a href=""><img
+              src="{% static 'images/newHomePage_img/heritage.jpg' %}"
+              alt="" width="100%" height="100%"
+            />
+          </a>
+          </div>
+          <div class="popular-inside-text-4">
+            <h1 class="popular-inside-h1">Heritage</h1>
+            <p class="popular-inside-p">
+              15+ Destinations
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row popular-place-row-5">
+            <a href=""><img
+              src="{% static 'images/newHomePage_img/pilgrims.jpg' %}"
+              alt="" width="100%" height="100%"
+            />
+            </a>
+          </div>
+          <div class="popular-inside-text-5">
+            <h1 class="popular-inside-h1">Pilgrimage </h1>
+            <p class="popular-inside-p">
+              20+ Destinations
+            </p>
+          </div>
+          <br />
+          <div class="row popular-place-row-6">
+            <a href="#"><img
+              src="{% static 'images/newHomePage_img/adventure.jpg' %}"
+              alt="" width="100%" height="100%"
+            />
+          </a>
+          </div>
+          <div class="popular-inside-text-6">
+            <h1 class="popular-inside-h1">Pilgrimage </h1>
+            <p class="popular-inside-p">
+              20+ Destinations
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="container-fluid first_booking">
+      <div class="row first_booking-row">
+        <div class="col-sm-6 first_booking_half_part">
+          <div class="first-booking-text">
+            <h1 class="first_booking-h1">
+             <span class="first_booking-span-1"> Get 40%off on <br />
+              Your First Booking.</span><br>
+            <span class="first_booking-span-2">Lorem Ipsum is simply dummy text.</span>
+            <br>
+            <button
+              class="button"
+              id="visit-button"
+              onclick="window.location.href = '#';"
+            >
+              Visit now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="most-rate-text-1">
+      <h3 class="most-rate-h3">Top rated hotels.</h3>
+      <p class="most-rate-p">
+        Some hotels are mostly rated by our customers.
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="row most-rate-row">
+        <div class="col-sm-4">
+          <a href="#" class="text-decoration-none">
+          <div class="card">
+            <img src="{% static 'images/newHomePage_img/h1.jpg' %}" class="most-rate-img-top" alt="..." />
+            <div class="card-body most-rate-content">
+              <div class="most-rate-text">
+                <p>
+                  <span id="most-rate-name"> Wexford Way </span><br />
+                  <span id="most-rate-address">91, Glenview Drive Corpus Christi</span
+                  ><br />
+                  <span id="most-rate-price">$50</span> <br>
+                  <span id="most-rate-per">per room/per night</span>
+                </p>
+              </div>
+              <div class="most-rate-rank">
+                <img src="{% static 'images/landing_img/rating.png' %}" alt="" class="most-rate-rank-1" />
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+        <div class="col-sm-4">
+          <a href="#" class="text-decoration-none">
+          <div class="card">
+            <img src="{% static 'images/newHomePage_img/h2.jpg' %}" class="most-rate-img-top" alt="..." />
+            <div class="card-body most-rate-content">
+              <div class="most-rate-text">
+                <p>
+                  <span id="most-rate-name"> Katoka Town</span><br />
+                  <span id="most-rate-address">754 Diane Street Newbury Park</span><br />
+                  <span id="most-rate-price">$80</span> <br>
+                  <span id="most-rate-per">per room/per night</span>
+                </p>
+              </div>
+              <div class="most-rate-rank">
+                <img src="{% static 'images/landing_img/rating2.png' %}" alt="" class="most-rate-rank-1" />
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="col-sm-4">
+          <a href="#" class="text-decoration-none">
+          <div class="card">
+            <img src="{% static 'images/newHomePage_img/h3.jpg' %}" class="most-rate-img-top" alt="..." />
+            <div class="card-body most-rate-content">
+              <div class="most-rate-text">
+                <p>
+                  <span id="most-rate-name"> Rose Hill Town</span><br />
+                  <span id="most-rate-address">3461 Arbor Court Worland</span
+                  ><br />
+                  <span id="most-rate-price">$60</span> <br>
+                  <span id="most-rate-per">per room/per night</span>
+                </p>
+              </div>
+              <div class="most-rate-rank">
+                <img src="{% static 'images/landing_img/rating3.png' %}" alt="" class="most-rate-rank-1" />
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="amenities-text">
+      <h3 class="amenities-h3 text-center">Our Amenities</h3>
+      <p class="amenities-p text-center">
+        Lorem Ipsum is simply dummy text.
+      </p>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class=" offset-sm-2 col-sm-2">
+        <div class="card card-content">
+          <div>
+            <img src="{% static 'images/newHomePage_img/star.png' %}" class="card-img-top mt-sm-4" alt="...">
+          </div>
+          <div class="card-body amenities-body">
+            <p class="amenities-body-p">Top Class <br> Service</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="card card-content">
+          <div>
+            <img src="{% static 'images/newHomePage_img/check_in.png' %}" class="card-img-top mt-md-4" alt="...">
+          </div>
+          <div class="card-body amenities-body">
+            <p class="amenities-body-p">Late Check In</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="card card-content">
+          <div>
+            <img src="{% static 'images/newHomePage_img/wifi.png' %}" class="card-img-top mt-sm-4" alt="...">
+          </div>
+          <div class="card-body amenities-body">
+            <p class="amenities-body-p">High Speed<br> Wi-Fi</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="card card-content">
+          <div>
+            <img src="{% static 'images/newHomePage_img/food.png' %}" class="card-img-top mt-sm-4" alt="...">
+          </div>
+          <div class="card-body amenities-body">
+            <p class="amenities-body-p">Delicious Food</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-text">
+  <h1 class="gallery-h1">
+      <span class="gallery-span-1">Hotel Gallery</span>
+    </h1>
+    <p>
+      <span class="gallery-span-2">Lorem Ipsum is simply dummy text.</span>
+    </p>
+  </div>
+
+  <div class="container gallery">
+    <div class="row gallery-main-row">
+      <div class="col-sm-5">
+        <div class="row">
+          <div class="col-sm-6">
+            <img src="{% static 'images/newHomePage_img/Mask_group-1.jpg' %}" width="100%" alt="">
+          </div> 
+          <div class="col-sm-6">
+            <img src="{% static 'images/newHomePage_img/Mask_group-4.jpg' %}" width="100%"  alt="">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <img src="{% static 'images/newHomePage_img/Mask_group-5.jpg' %}" alt="">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <img src="{% static 'images/newHomePage_img/Mask_group.jpg' %}" height="82.5%" width="100%" alt="">
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <img src="{% static 'images/newHomePage_img/Mask_group-3.jpg' %}" style="width: 83%;" alt="">
+        </div>
+        <br>
+        <div class="row">
+          <img src="{% static 'images/newHomePage_img/Mask_group-2.jpg' %}" style="width: 83%;" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app">
+    <div class="app-content">
+      <h1 class="app-h1">
+        Download hotel app <br>for exciting offer.
+      </h1>
+      <p class="app-p">Lorem Ipsum is simply dummy text.</p>
+      <br><br>
+      <p class="app-p-1">
+        Available on
+      </p>
+      <div class="app-img">
+        <img src="{% static 'images/newHomePage_img/googleplay.png' %}" alt="" width="40%">
+        <img src="{% static 'images/newHomePage_img/appstore.png' %}" alt="" width="40%">
+      </div>
+    </div>
+    <div class="app-phone">
+      <img src="{% static 'images/newHomePage_img/phonebg2.png' %}" alt="" width="90%">
+    </div>
+  </div>
+
+   <!-- =========================== FOOTER =============================== -->
+
+   <footer>
+    <div class="container footer-container">
+      <div class="row">
+        <div class="col-sm-4">
+          <p><span class="footer-span-1">About</span><br><br>
+          <span class="footer-span-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ab consectetur sit quaerat rem ea earum.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <p><span class="footer-span-1">Contact No.</span><br><br>
+            <div class="footer-img">
+              <img src="{% static 'images/landing_img/logo/location.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>111 8th Ave, New York U.S.A.</span> <br><br>
+              <img src="{% static 'images/landing_img/logo/calling.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>Reserve +1-202-555-0153</span> <br><br>
+              <img src="{% static 'images/landing_img/logo/mail.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>info@hotel.com</span> <br><br>
+              <img src="{% static 'images/landing_img/logo/time.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>08 am - 06 pm Sunday closed</span> <br><br>
+            </div>           
+          </p>
+        </div>
+        <div class="col-sm-5">
+          <p><span class="footer-span-1">Subscribe</span><br><br>
+            <span class="footer-span-2">Be the first one to know  about discounts, offers, news, giveaways and events.</span>
+            </p>
+            <br>
+          <form>
+            <input class=" footer-input" type="text" placeholder="Enter your Email...">
+            <button id="footer-button" a href="#">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-end container mt-5">
+      <div class="footer-copyright">
+        <p class="footer-p">© 2022-2023, All Rights Reserved</p>
+      </div>
+      <div class="footer-anchor-content">
+        <a class="footer-anchor-1" href="">Home</a>
+        <a class="footer-anchor-2" href="">Rooms</a>
+        <a class="footer-anchor-3" href="">Why us</a>
+        <a class="footer-anchor-4" href="">Privacy Policy</a>
+        <a class="footer-anchor-5" href="">Terms of use</a>
+      </div>
+    </div>
+    <div class="last"></div>
+  </footer>
+
+
+
+    <script src="{% static 'js/landing_js/choices.js' %}"></script>
+    <script src="{% static 'js/landing_js/flatpickr.js' %}"></script>
+    <script>
+      flatpickr(".datepicker", {});
+    </script>
+    <script>
+      const choices = new Choices("[data-trigger]", {
+        searchEnabled: false,
+        itemSelectText: "",
+      });
+    </script>
+    <script>
+      var indexValue = 0;
+      function slideShow() {
+        setTimeout(slideShow, 3000);
+        var x;
+        const img = document.getElementsByClassName("slider-img");
+        for (x = 0; x < img.length; x++) {
+          img[x].style.display = "none";
+        }
+        indexValue++;
+        if (indexValue > img.length) {
+          indexValue = 1;
+        }
+        img[indexValue - 1].style.display = "block";
+      }
+      slideShow();
+    </script>
+    <script></script>
+  </body>
+</html>

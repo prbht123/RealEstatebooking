@@ -603,3 +603,7 @@ class SearchCitylistProperty(ListView):
         properties = Property.objects.filter(
             property_status='published', Address__city=city)
         return properties
+
+
+def newHomeView(request):
+    return render(request, 'newHome/newHome.html')

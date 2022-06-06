@@ -1,0 +1,266 @@
+.slider-img {
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  position: absolute;
+  margin-top: 20px;
+  width: 80vw;
+  background-color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+}
+
+.logo {
+  width: 50%;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  color: rgb(84, 84, 84);
+  font-size: 15px;
+}
+
+.navbar a:hover {
+  color: #7166f0;
+  font-weight: 500;
+}
+
+.slider-h1 {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.slider-span-1 {
+  font-family: poppins, sans-serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 50px;
+}
+
+.slider-span-2 {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  font-size: 20px;
+}
+
+.popular-text {
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 6%;
+  margin-bottom: 3%;
+}
+
+.popular-place-row {
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+/* .col-sm-4 row {
+  padding-left: 4%;
+  padding-right: 4%;
+} */
+
+/* .popular-place img {
+  transition: transform 0.2s;
+  position: relative;
+  right: 10%;
+} */
+
+/* .popular-place img:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 10px rgba(8, 8, 8, 0.219);
+} */
+
+.popular-span-1 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+  font-size: 40px;
+}
+
+.popular-span-2 {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.first_booking_half_part {
+  background-color: #00000022;
+  height: 80vh;
+}
+
+.first_booking-span-1 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #fff;
+  font-size: 50px;
+}
+
+.first_booking-span-2 {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  color: #fff;
+  font-size: 20px;
+}
+
+#visit-button {
+  border: none;
+  height: 60px;
+  width: 150px;
+  background-color: #7166f0;
+  color: white;
+  font-family: poppins, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.most-rate-text-1 {
+  padding-left: 10%;
+  margin-top: 10%;
+}
+
+.most-rate-h3 {
+  font-size: 50px;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+}
+
+.most-rate-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.most-rate-row {
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.most-rate-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  left: 10px;
+}
+
+#most-rate-name {
+  font-size: 20px;
+  font-family: poppins, sans-serif;
+  font-weight: 500;
+  color: black;
+}
+
+#most-rate-address {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: black;
+}
+
+#most-rate-price {
+  font-family: poppins, sans-serif;
+  font-weight: 700;
+  color: #7166f0;
+  font-size: 25px;
+  position: relative;
+  top: 16px;
+}
+
+#most-rate-per {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: black;
+}
+
+#most-button {
+  border: none;
+  height: 40px;
+  width: 85px;
+  background-color: #7166f0;
+  color: white;
+  font-family: poppins, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 5px;
+  position: relative;
+  left: 33%;
+}
+
+.most-rate-rank-1 {
+  width: 80%;
+  position: relative;
+  bottom: 35px;
+}
+
+.amenities-text {
+  margin-top: 8%;
+}
+
+.amenities-h3 {
+  font-family: poppins, sans-serif;
+  color: #7166f0;
+  font-weight: 600;
+  font-size: 38px;
+}
+
+.amenities-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.amenities-body-p {
+  font-family: poppins, sans-serif;
+  color: #7166f0;
+  font-weight: 500;
+  font-size: 17px;
+  text-align: center;
+}
+
+.card-img-top {
+  width: 78px;
+  margin-left: 31%;
+}
+
+.card-content {
+  height: 95%;
+  border: 1px solid #7166f0;
+}
+
+.gallery-main-row {
+  margin-left: 9%;
+}
+
+.gallery-text {
+  padding-left: 15%;
+  margin-top: 10%;
+}
+
+.gallery-span-1 {
+  font-size: 50px;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+}
+
+.gallery-span-2 {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}

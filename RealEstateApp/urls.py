@@ -36,5 +36,6 @@ urlpatterns = [
     path('rankingwiseproperty/', views.ListPropertyRankingWiseView.as_view(),
          name='list_property_ranking_wise'),
     path('listpropertyuser/',
-         views.ListPropertyUserView.as_view(), name='list_property_user')
+         views.ListPropertyUserView.as_view(), name='list_property_user'),
+    path('newHome/', views.newHomeView)
 ]
