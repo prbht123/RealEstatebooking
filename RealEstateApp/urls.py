@@ -2,12 +2,17 @@ from django.urls import path, include
 from . import views
 app_name = 'realestateapp'
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.Booking, name="landingpage"),
+    path('navbar/', views.navbar, name="navbar"),
+    path('footer/', views.footer, name="footer"),
+    path('home/', views.home, name='home'),
     path('createproperty/', views.createProperty.as_view(), name='create_property'),
     path('createpropertyimages/<slug:slug>', views.createPropertyImages,
          name='create_property_images'),
     path('listproperty/', views.listProperty.as_view(), name='list_property'),
     path('searchproperty/', views.searchProperty.as_view(), name='search_property'),
+    path('searchhotel/', views.searchHotelsView.as_view(),
+         name='search_hotels_list'),
     path('updateproperty/<slug:slug>/',
          views.propertyUpdateView.as_view(), name='Update_property'),
     path('deleteproperty/<slug:slug>',
@@ -33,5 +38,6 @@ urlpatterns = [
     path('rankingwiseproperty/', views.ListPropertyRankingWiseView.as_view(),
          name='list_property_ranking_wise'),
     path('listpropertyuser/',
-         views.ListPropertyUserView.as_view(), name='list_property_user')
+         views.ListPropertyUserView.as_view(), name='list_property_user'),
+    path('newHome/', views.newHomeView)
 ]

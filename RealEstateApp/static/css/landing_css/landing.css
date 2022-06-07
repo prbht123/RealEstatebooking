@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 .navbar {
@@ -529,3 +530,510 @@ footer {
 
 
 
+=======
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 2%;
+  width: 100vw;
+}
+
+#logo {
+  position: relative;
+  left: 7%;
+}
+
+#home-img {
+  /* height: 100%; */
+  width: 85%;
+  position: relative;
+  top: 20px;
+}
+
+#text a {
+  text-decoration: none;
+  /* position: absolute; */
+  padding: 30px;
+  font-family: poppins, sans-serif;
+  font-weight: 500;
+  font-size: 22.28px;
+  color: #7166f0;
+}
+
+#contact {
+  position: relative;
+  right: 8%;
+}
+
+.button {
+  border: none;
+  height: 60px;
+  width: 170px;
+  background-color: #7166f0;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.item-text-h2 {
+  font-size: 40px;
+  position: relative;
+  left: 10%;
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  padding-left: 14%;
+}
+
+.item-text-h1 {
+  font-size: 85px;
+  position: relative;
+  left: 10%;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 700;
+  padding-left: 14%;
+  color: #7166f0;
+}
+
+.item-text-h4 {
+  font-size: 24px;
+  position: relative;
+  left: 10%;
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  padding-left: 14%;
+  margin-bottom: 10%;
+}
+
+#visit-button {
+  position: relative;
+  left: 24%;
+}
+
+.center-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* position: right; */
+  /* margin-left: 5%; */
+  flex-direction: row-reverse;
+  width: 100vw;
+}
+
+.card-content {
+  margin-top: -30px;
+}
+
+.card-text {
+  padding-left: 11.5%;
+}
+
+.card-h3 {
+  font-size: 50px;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+}
+
+.card-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.card-row {
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.card-text-1 {
+  text-align: center;
+  width: 100%;
+}
+
+.card-span-1 {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  text-align: center;
+}
+
+.card-span-2 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  color: #7166f0;
+  text-align: center;
+}
+
+.group-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 8%;
+}
+
+#group-h5 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+  font-size: 45px;
+  padding-right: 54px;
+  position: relative;
+  right: 3%;
+}
+
+#group-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  position: relative;
+  right: 3%;
+}
+
+#group-id-2,
+#group-id-1 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 700;
+  font-size: 27px;
+  position: relative;
+  top: 5px;
+}
+
+.group-logo {
+  position: relative;
+  top: 50px;
+  right: 3%;
+}
+
+.most-rate-text-1 {
+  padding-left: 12%;
+  margin-top: 8%;
+}
+
+.most-rate-h3 {
+  font-size: 50px;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: black;
+}
+
+.most-rate-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.most-rate-row {
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.most-rate-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  left: 10px;
+}
+
+#most-rate-name {
+  font-size: 20px;
+  font-family: poppins, sans-serif;
+  font-weight: 500;
+  color: #7166f0;
+}
+
+#most-rate-address {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+#most-rate-price {
+  font-family: poppins, sans-serif;
+  font-weight: 700;
+  color: #7166f0;
+  font-size: 25px;
+  position: relative;
+  top: 16px;
+}
+
+.most-rate-rank-1 {
+  width: 80%;
+  position: relative;
+  bottom: 35px;
+}
+
+.valuable-h1 {
+  text-align: center;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+  font-size: 50px;
+  margin-top: 10%;
+}
+
+.valuable-img {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#valuable-img-1 {
+  filter: grayscale(100%);
+}
+
+#valuable-img-1:hover {
+  filter: grayscale(0%);
+}
+
+#valuable-img-2 {
+  filter: grayscale(100%);
+}
+
+#valuable-img-2:hover {
+  filter: grayscale(0%);
+}
+
+#valuable-img-3 {
+  filter: grayscale(100%);
+}
+
+#valuable-img-3:hover {
+  filter: grayscale(0%);
+}
+
+#valuable-img-4 {
+  filter: grayscale(100%);
+}
+
+#valuable-img-4:hover {
+  filter: grayscale(0%);
+}
+
+.customer-content {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 10%;
+  margin-bottom: 5%;
+}
+
+.customer-text {
+  margin-right: 10%;
+}
+
+.customer-h1 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+  font-size: 45px;
+}
+
+.customer-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.customer-span1 {
+  font-family: poppins, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: #7166f0;
+}
+
+.customer-span2 {
+  font-family: poppins, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #868686;
+}
+
+.customer-img {
+  width: 100%;
+  position: relative;
+  right: 18%;
+  margin-top: 8%;
+}
+
+.house-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 10%;
+  margin-bottom: 8%;
+  margin-top: -2%;
+}
+
+.house-text {
+  position: relative;
+  bottom: 8%;
+}
+
+.house-text-h1 {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.house-text-h2 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  color: #7166f0;
+  font-size: 45px;
+}
+
+.house-text-p {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.house-text {
+  width: 44%;
+}
+
+.house-img {
+  width: 99%;
+}
+
+#house-button {
+  margin-top: 6%;
+}
+
+.faq-h1 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  text-align: center;
+  color: #7166f0;
+}
+
+.accordion-body {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.accordion-header {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.accordion-flush {
+  padding-left: 6%;
+  padding-right: 6%;
+  margin-bottom: 11%;
+}
+
+footer {
+  background-color: rgba(209, 209, 209, 0.13);
+  padding-top: 5%;
+  height: 42%;
+}
+
+.footer-span-1 {
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #7166f0;
+}
+
+.footer-span-2 {
+  font-family: poppins, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: rgb(145, 144, 144);
+  padding-right: 8%;
+}
+
+.footer-img {
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgb(145, 144, 144);
+}
+
+.footer-input {
+  height: 53px;
+  color: rgb(145, 144, 144);
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  width: 58%;
+  padding-left: 20px;
+}
+
+#footer-button {
+  font-size: 15px;
+  border: none;
+  height: 53px;
+  width: 160px;
+  background-color: #7166f0;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.footer-end {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-p {
+  color: rgb(145, 144, 144);
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.footer-anchor-1,
+.footer-anchor-2,
+.footer-anchor-3,
+.footer-anchor-4,
+.footer-anchor-5 {
+  color: rgb(145, 144, 144);
+  font-family: poppins, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  text-decoration: none;
+  padding-right: 30px;
+}
+
+.footer-anchor-1:hover {
+  color: #7166f0;
+}
+
+.footer-anchor-2:hover {
+  color: #7166f0;
+}
+
+.footer-anchor-3:hover {
+  color: #7166f0;
+}
+
+.footer-anchor-4:hover {
+  color: #7166f0;
+}
+
+.footer-anchor-5:hover {
+  color: #7166f0;
+}
+
+.end {
+  background-color: #7166f0;
+  height: 8.3%;
+}
+>>>>>>> 8536d3ac929c175c2c79beeddf583a9fe494acb0
