@@ -131,7 +131,7 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'property/property_update.html')
 
-    def test_blog_delete(self):
+    def test_hotel_delete(self):
         """
             This unit testing for deleting of existing blog.
         """
