@@ -41,7 +41,6 @@ def home(request):
     context['popular_location_property'] = []
     context['famousproperty'] = Property.objects.filter(property_status='published').values(
         'Address__city').annotate(count=Count('property_name')).order_by('-count')
-    print(context['famousproperty'])
     context['famoupropertylist'] = []
     for famous in context['famousproperty']:
         property = Property.objects.filter(
@@ -52,7 +51,6 @@ def home(request):
             'property': property,
         }
         context['famoupropertylist'].append(data)
-    print(context['famoupropertylist'])
     for popular in popular_locations:
         city = (popular.city).lower()
         state = (popular.state).lower()
@@ -314,7 +312,8 @@ class propertyDetailView(DetailView):
         This class is used for showing a particular property's detail.
     """
     model = Property
-    template_name = 'property/property_detail.html'
+    # template_name = 'property/property_detail.html'
+    template_name = 'hotel/hotel_detailsPage.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

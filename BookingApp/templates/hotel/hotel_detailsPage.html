@@ -1,0 +1,218 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{% static 'css/hotel/hotel_detailsPage.css' %}"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/Pepper-Grinder/jquery-ui.css">
+		<title>Hello, world!</title>
+	</head>
+	<body>
+		<div id="item-image">
+			<!-- <img id="home-img" src="{% static 'images/landing_img/home.png' %}" alt="" /> -->
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-7">
+					<p id="property"><h3 class="pname" style="color:#7952b3;">
+						<i class="fa-solid fa-hotel" style="color:black;"></i>
+					{{property.property_name}}</h3></p>
+					<p id="location"><h3 class="l_name" style="color:#7952b3;">
+						<i class="fa-solid fa-location-dot" style="color:black;"></i>
+					{{property.property.Address.city}}</h3></p>
+					<div class="num">
+						<p> Room Type : {{property.room_type}}</p>
+						<p>Bedroom : {{property.bed_room}}</p>
+						<p> Guest : {{property.guest}}</p>
+						<p>Bed : {{property.beds}}</p>
+					</div>
+					<p><h3 style="color:#7952b3;">Facilities of The :{{property.property_name}}</h3></p>
+					
+					<div class="inline">
+						<p>
+							<img src="/static/images/wifi.png" class="img me-1" style="height: 13%; width: 5%;margin: 3vh;">&nbsp;&nbsp;Free wifi
+							<img src="/static/images/ac.png" class="img me-1" style="height: 13%; width: 3%; margin: 3vh;">&nbsp;&nbsp;Ac
+							<img src="/static/images/tv.png" class="img me-1" style="height: 13%; width: 5%; margin: 3vh;">&nbsp;&nbsp;Tv
+							<img src="/static/images/car.png" class="img me-1" style="height: 13%; width: 5%; margin: 3vh;">&nbsp;&nbsp;Parking
+						</p>
+					</div>
+					<h3 style="color:#7952b3;">Description:</h3>
+					<p>Did you know that we’ve got 2.5 Crore bookings since March 2020?
+						And this is all thanks to the sanitisation & safety measures followed at
+						our properties, from disinfecting surfaces with high-quality cleaning
+						products and maintaining social distance to using protective gear
+					and more.</p>
+					<h3 style="color:#7952b3;">4 resons to chose {{property.property_name}} hotel</h3>
+					<p>
+						<img src="/static/images/price.png">&nbsp;&nbsp;Prices you can't beat!
+					</p>
+					<p>
+						<img src="/static/images/online.png">&nbsp;&nbsp;Manage your bookings online
+					</p>
+					<p>
+						<img src="/static/images/lock.png">&nbsp;&nbsp;Booking is safe
+					</p>
+					<p>
+						<img src="/static/images/language.png">&nbsp;&nbsp;The staff speak English
+					</p>
+				</div>
+				<div class="col-sm-4">
+					<!-- <p style="#7952b3;"><img src="/static/images/rupee.png"style="height: 10%; width:5%; ">{{property.cost}} </p> -->
+					<p id="property1"><h3 class="pnam" style="color:#7952b3;">
+						<img src="/static/images/rupee.png"style="height: 20%; width:6%;">
+					{{property.cost}}</h3></p>
+					<p>inclusive of all taxes per night</p>
+					<form>
+						
+						<div class="check-in-out">
+							<div class="input-group">
+								<label for="check-in" class="ch-1">Check-in</label>
+								<input type="text" id="check-in" autocomplete="off" class="date-picker">
+							</div>
+							<div class="input-group">
+								<label for="check-out" class="ch-1">Check-out</label>
+								<input type="text" id="check-out" autocomplete="off" class="date-picker">
+								
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div id="hotel">
+					<h3 class="Hotel_Policy">Hotel Policy</h3>
+					<p><h5 class="chk_in_out">check&nbsp;in&nbsp;&nbsp;&nbsp;check&nbsp;out</h5></p>
+					<div class="box green">11&nbsp;A.M</div>
+					<div class="box yellow">10&nbsp;A.M</div>
+					<div class="mt-5">
+						<p>
+							<img src="/static/images/hand.png">&nbsp;&nbsp;Check-in time is 10:00 AM and check-out time is 09:00 AM morning. Subject to
+							availability, early check-in and late check-out will be considered.
+						</p>
+						<p>
+							<img src="/static/images/hand.png">&nbsp;&nbsp;Guests will be provided with a room key only upon arrival and after
+							completing the registration at the hotel’s reception desk.
+						</p>
+						<p>
+							<img src="/static/images/hand.png">&nbsp;&nbsp;Guests can check in using any local or outstation ID proof (PAN card not
+							accepted).
+						</p>
+						<p>
+							<img src="/static/images/hand.png">&nbsp;&nbsp;Only Indian Nationals allowed.
+						</p>
+						<p>
+							<img src="/static/images/hand.png">&nbsp;&nbsp;100 % advance Payment deposit at the time of Check in.
+						</p>
+						<p>
+							<img src="/static/images/hand.png">&nbsp;&nbsp;Smoking, Alcohol, Gambling, Prostitution, contraband goods, drugs, etc–are all
+							strictly prohibited within the hotel premises.
+						</p>
+					</div>
+					<div class="mt-4">
+						<h3 class="Hotel_Policy">Rating and Reviews</h3>
+						<!-- RATING AND REVIEW -->
+						<div class="google-review">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="rating-review-item">
+											<div class="left-rating">
+												<div class="star-rating">
+													<h3>4.3</h3>
+													<i class="fas fa-star"></i>
+													<span class="icon icon-rating-star"></span>
+												</div>
+												<div class="number-rating">
+													<span>1,572 Ratings &</span>
+													<span>245 Reviews</span>
+												</div>
+											</div>
+											<div class="right-rating">
+												<ul class="order-list">
+													<li>
+														<div class="star-value">
+															<h5>5</h5>
+															<i class="fas fa-star"></i>
+														</div>
+														<div class="progress">
+															<div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+														<div class="rating-hit">914</div>
+													</li>
+													<li>
+														<div class="star-value">
+															<h5>4</h5>
+															<i class="fas fa-star"></i>
+														</div>
+														<div class="progress">
+															<div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+														<div class="rating-hit">419</div>
+													</li>
+													<li>
+														<div class="star-value">
+															<h5>3</h5>
+															<i class="fas fa-star"></i>
+														</div>
+														<div class="progress">
+															<div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+														<div class="rating-hit">148</div>
+													</li>
+													<li>
+														<div class="star-value">
+															<h5>2</h5>
+															<i class="fas fa-star"></i>
+														</div>
+														<div class="progress">
+															<div class="progress-bar bg-warning" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+														<div class="rating-hit">40</div>
+													</li>
+													<li>
+														<div class="star-value">
+															<h5>1</h5>
+															<i class="fas fa-star"></i>
+														</div>
+														<div class="progress">
+															<div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+														</div>
+														<div class="rating-hit">51</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- RATING AND REVIEW -->
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- Optional JavaScript; choose one of the two! -->
+			<!-- Option 1: Bootstrap Bundle with Popper -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+			<!-- Option 2: Separate Popper and Bootstrap JS -->
+			
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+			<script>
+				$(function () {
+			$(".date-picker").datepicker({
+			dateFormat: 'D, d M'
+			});
+			})
+			</script>
+			
+		</body>
+	</html>
