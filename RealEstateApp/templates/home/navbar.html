@@ -1,0 +1,26 @@
+{% load static %}
+<div class="navbar">
+          <div class="nav-logo">
+            <img
+              class="logo"
+              src="{% static 'images/landing_img/logo.png' %}"
+              alt=""
+            />
+          </div>
+          <div class="nav-link">
+            <a class="me-5" href="/home/">Home</a>
+            <a class="me-5" href="/listproperty/">Hotels</a>
+            <a class="me-5" href="/booking/why_us/">Why Us</a>
+            <a class="me-5" href="/booking/contact/">Contact</a>
+             {% if user.is_staff %}
+            <a class="me-5" href="/adminuser/">Admin Dashboard</a>
+            {% endif %}
+            {% if user.username %}
+            <a class="me-5" href="{% url 'account:user_profile' pk=user.id %}">{{user.username}}</a>
+            <a class="me-5" href="/accounts/logout/">SignOut</a>
+            {% else %}
+            <a class="me-5" href="/accounts/login/">SignIn</a>
+            {% endif %}
+
+          </div>
+        </div>

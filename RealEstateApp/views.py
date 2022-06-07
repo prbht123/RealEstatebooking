@@ -33,9 +33,13 @@ def home(request):
         property__property_status='published').order_by('-viewed')[:4]
     context['ranking'] = RankingProperty.objects.filter(property__property_status='published').values(
         'property').annotate(avg=Avg('rank')).order_by('-avg')
+    print(context['ranking'])
     context['propertiesr'] = []
     for item in context['ranking']:
-        data = Property.objects.get(id=item['property'])
+        data = {
+            'property': Property.objects.get(id=item['property']),
+            'rating': "%.1f" % item['avg']
+        }
         context['propertiesr'].append(data)
     popular_locations = PopularLocations.objects.all()
     context['popular_location_property'] = []
@@ -63,7 +67,7 @@ def home(request):
                 id=popular_location_property['property'])
             context['popular_location_property'].append(data)
 
-    return render(request, 'home.html', context)
+    return render(request, 'home/newHome.html', context)
 
 
 class createProperty(CreateView):
@@ -312,7 +316,7 @@ class propertyDetailView(DetailView):
         This class is used for showing a particular property's detail.
     """
     model = Property
-    template_name = 'property/property_detail.html'
+    template_name = 'property/hotel_detail.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

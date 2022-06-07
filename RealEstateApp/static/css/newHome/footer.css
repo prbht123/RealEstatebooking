@@ -1,0 +1,100 @@
+footer {
+    background-color: rgba(209, 209, 209, 0.13);
+    padding-top: 5%;
+    height: 42%;
+}
+
+.footer-span-1 {
+    font-family: poppins, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #7166f0;
+}
+
+.footer-span-2 {
+    font-family: poppins, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgb(145, 144, 144);
+    padding-right: 8%;
+}
+
+.footer-img {
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(145, 144, 144);
+}
+
+.footer-input {
+    height: 53px;
+    color: rgb(145, 144, 144);
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    width: 58%;
+    padding-left: 20px;
+}
+
+#footer-button {
+    font-size: 15px;
+    border: none;
+    height: 53px;
+    width: 160px;
+    background-color: #7166f0;
+    color: white;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.footer-end {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-p {
+    color: rgb(145, 144, 144);
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.footer-anchor-1,
+.footer-anchor-2,
+.footer-anchor-3,
+.footer-anchor-4,
+.footer-anchor-5 {
+    color: rgb(145, 144, 144);
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    text-decoration: none;
+    padding-right: 30px;
+}
+
+.footer-anchor-1:hover {
+    color: #7166f0;
+}
+
+.footer-anchor-2:hover {
+    color: #7166f0;
+}
+
+.footer-anchor-3:hover {
+    color: #7166f0;
+}
+
+.footer-anchor-4:hover {
+    color: #7166f0;
+}
+
+.footer-anchor-5:hover {
+    color: #7166f0;
+}
+
+.last {
+    background-color: #7166f0;
+    height: 22px;
+}

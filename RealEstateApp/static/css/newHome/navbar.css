@@ -1,0 +1,29 @@
+.navbar {
+    position: absolute;
+    margin-top: 20px;
+    width: 80vw;
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+}
+
+.logo {
+    width: 50%;
+}
+
+.navbar a {
+    text-decoration: none;
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    color: rgb(84, 84, 84);
+    font-size: 15px;
+}
+
+.navbar a:hover {
+    color: #7166f0;
+    font-weight: 500;
+}
