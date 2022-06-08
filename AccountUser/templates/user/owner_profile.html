@@ -1,0 +1,99 @@
+{% extends 'home/basehome.html' %}
+{% load static %}
+{% block titlename %}Profile{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .navbar{
+    border:1px solid;
+  }
+ .username{
+   color:#7166f0;
+ }
+ .addhotel{
+   background-color:#7166f0;
+   color:#fff;
+ }
+ .hotellist{
+   border:1px solid;
+   margin-left:10%;
+   width: 80vw;
+ }
+ .userprofile{
+   margin-left:10%;
+   width: 80vw;
+ }
+ .deleteicon{
+   color:#7166f0;
+ }
+ .ratinganchor{
+   background-color:#7166f0;
+   color:#fff;
+ }
+  
+</style>
+{% endblock %}
+{% block homecontent %}
+   {% include 'home/navbar.html' %}
+   <br>
+   <br>
+   <br>
+  <div class="row mt-5 userprofile">
+  <div class="col-sm-8 ">
+  
+  <div class="row">
+  <div class="col-sm-3">
+  {% if userprofile.image %}
+  <img class="img-thumbnail rounded-circle" height="100%" width="100%"  src={% if userprofile.image %}{{userprofile.image.url}}{% endif %}/>
+  {% endif %}
+  </div>
+  <div class="col-sm-8 mt-4">
+   {% if userprofile.user.first_name %}
+     <span class="h2 username"> {{userprofile.user.first_name}} <a class="btn btn-outline-primary">Edit</a></span>
+     <br>
+     <p>User ID - {{userprofile.user.id}}</p>
+     
+ {% endif %}
+  </div>
+  </div>
+  
+  
+  </div>
+  <div class="col-sm-4 mt-4">
+  <span class="float-end"><a class="btn addhotel" href="{% url 'realestateapp:create_property' %}">Add Hotel</a></span>
+  </div>
+  </div>
+  {% if property_count > 0 %}
+  <div class="row hotellist mt-5">
+      <table class="table table-borderless text-center">
+    <thead>
+      <tr class="text-center">
+        <th>Hotel Image</th>
+        <th>Hotel Name</th>
+        <th>Hotel Status</th>
+        <th>Address</th>
+        <th>Rating</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in property %}
+      <tr>
+        <td height="100px" width="130px"><img class="img-thumbnail rounded-circle" height="100%" width="100%"  src={% if item.property.image %}{{item.property.image.url}}{% endif %}/>
+        </td>
+        <td><br>{{item.property.property_name}}</td>
+        <td><br>{{item.property.property_status}}</td>
+        <td></br>{{item.property.Address.street}} {{item.property.Address.city}} {{item.property.Address.state}} {{item.Address.country}}</td>
+        <td><a class="btn ratinganchor mt-2" disabled>{{item.rating}}<span class="fa fa-star ms-1 mt-2"></span></a></td>
+        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a><i class="fa fa-trash ms-2 deleteicon"></i></a></td>
+      </tr>
+      {% endfor %}
+    
+    </tbody>
+  </table>
+  </div>
+  {% endif %}
+{% endblock %}
+

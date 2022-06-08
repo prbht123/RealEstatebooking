@@ -11,4 +11,6 @@ urlpatterns = [
     path('stripe/create/<slug:slug>', views.charge, name="stripe_payment_create"),
     path('done/<slug:slug>', views.payment_done, name='done'),
     path('canceled/', views.payment_canceled, name='canceled'),
+    path('api/checkout-session/<slug>/',
+         views.create_checkout_session, name='api_checkout_session')
 ]

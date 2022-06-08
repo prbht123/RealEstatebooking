@@ -253,6 +253,8 @@
     width: 80%;
     position: relative;
     bottom: 35px;
+    background-color: #7166f0;
+    color: #fff;
 }
 
 .amenities-text {

@@ -46,7 +46,9 @@ def homeView(request):
 
 def UserProfileView(request, pk):
     userprofile = UserProfile.objects.filter(user=request.user)
-    property = Property.objects.filter(author=request.user).count()
+    property = Property.objects.filter(author=request.user)
+    property_count = property.count()
+    print(property_count)
     approved_property = Property.objects.filter(
         author=request.user, property_status='published').count()
     draft_property = Property.objects.filter(
@@ -54,15 +56,38 @@ def UserProfileView(request, pk):
     most_ranking_property = RankingProperty.objects.filter(
         property__author=request.user, property__property_status='published')
     if most_ranking_property:
-        most_ranking_property = most_ranking_property.values(
-            'property__property_name').annotate(avg=Avg('rank')).order_by('-avg')[0]
+        ranking_property_list = most_ranking_property.values(
+            'property__property_name').annotate(avg=Avg('rank')).order_by('-avg')
+        most_ranking_property = ranking_property_list[0]
+    property_list = []
+    if property:
+        for item in property:
+            data = {}
+            if most_ranking_property:
+                if ranking_property_list:
+                    property_list_rating = ranking_property_list.filter(
+                        property__property_name=item.property_name)
+                    print(property_list_rating)
+                    if property_list_rating:
+                        data = {
+                            'property': item,
+                            'rating': "{:.1f}".format(property_list_rating[0]['avg'])
+                        }
+            if not data:
+
+                data = {
+                    'property': item,
+                    'rating': 0
+                }
+            property_list.append(data)
+
     most_viewed_property = MostViewed.objects.filter(
         property__property_status='published', property__author=request.user).order_by('-viewed')
     if most_viewed_property:
         most_viewed_property = most_viewed_property[0]
 
     if userprofile:
-        return render(request, 'user/userprofile.html', {'userprofile': userprofile[0], 'property': property, 'approved_property': approved_property, 'draft_property': draft_property, 'most_ranking_property': most_ranking_property, 'most_viewed_property': most_viewed_property})
+        return render(request, 'user/owner_profile.html', {'userprofile': userprofile[0], 'property': property_list, 'approved_property': approved_property, 'draft_property': draft_property, 'most_ranking_property': most_ranking_property, 'most_viewed_property': most_viewed_property, 'property_count': property_count, })
     else:
         return redirect('account:create_user_profile')
 

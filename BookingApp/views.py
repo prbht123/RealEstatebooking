@@ -47,7 +47,7 @@ class createBooking(CreateView):
         if int(day.days) >= 1:
             data.cost = (int(day.days))*property.cost
         data.save()
-        return redirect('payment:process_stripe', slug=data.slug)
+        return redirect('payment:process', slug=data.slug)
 
 
 class bookingUpdateView(UpdateView):

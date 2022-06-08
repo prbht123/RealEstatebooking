@@ -67,7 +67,7 @@ def home(request):
                 id=popular_location_property['property'])
             context['popular_location_property'].append(data)
 
-    return render(request, 'home/newHome.html', context)
+    return render(request, 'home/home.html', context)
 
 
 class createProperty(CreateView):
@@ -316,7 +316,7 @@ class propertyDetailView(DetailView):
         This class is used for showing a particular property's detail.
     """
     model = Property
-    template_name = 'property/hotel_detail.html'
+    template_name = 'hotels/hotel_detail.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

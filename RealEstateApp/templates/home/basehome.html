@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+
+{% endblock %}
+{% block content %}
+   {% block homecontent %}
+   {% endblock %}
+   {% include 'home/footer1.html' %}
+{% endblock %}
