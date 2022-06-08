@@ -100,11 +100,9 @@ def ContactUpload(request):
         send_mail("subject", msg, request.POST.get('email'), [cd['to']])
         messages.success(request, "Contact sent successfully")
         obj.save()
-        print(obj)
-        print("9999999999999999999999999999")
         return redirect('/booking/contact/')
     else:
-        return render(request, 'homepage/contact.html')
+        return render(request, 'home/contact.html')
 
 
 def faq(request):

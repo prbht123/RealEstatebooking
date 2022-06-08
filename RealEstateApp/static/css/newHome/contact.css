@@ -1,0 +1,64 @@
+.container {
+    position: relative;
+}
+
+
+.contact-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    left: 12%;
+    top: 30px;
+
+}
+
+.contact-form {
+    margin-left: 35%;
+}
+
+.contact-input {
+    height: 45px;
+    color: rgb(145, 144, 144);
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    width: 30vw;
+    padding-left: 20px;
+    border: 1px solid #7166f0;
+    border-radius: 5px;
+}
+
+.contact-input-textarea {
+    height: 130px;
+    width: 30vw;
+    color: rgb(145, 144, 144);
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    padding-left: 20px;
+    border: 1px solid #7166f0;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    height: 45px;
+    width: 30vw;
+    color: #fff;
+    font-family: poppins, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 20px;
+    background-color: #7166f0;
+
+}
+
+h1 {
+    font-family: poppins, sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: #7166f0;
+    text-align: center;
+
+}
