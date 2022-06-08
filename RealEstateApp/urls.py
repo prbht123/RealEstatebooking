@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.Booking, name="landingpage"),
     path('navbar/', views.navbar, name="navbar"),
     path('footer/', views.footer, name="footer"),
+    path('contact/', views.contact, name="contact"),
     path('home/', views.home, name='home'),
     path('createproperty/', views.createProperty.as_view(), name='create_property'),
     path('createpropertyimages/<slug:slug>', views.createPropertyImages,

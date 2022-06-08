@@ -34,6 +34,10 @@ def footer(request):
     return render(request, 'newHome/footer.html')
 
 
+def contact(request):
+    return render(request, 'newHome/contact.html')
+
+
 def home(request):
     context = {}
     context['propertiess'] = Property.objects.all()
