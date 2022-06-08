@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import environ
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w7edjq2&&#14ey#o)bamd*@s=3xoh&6do3(57rp&u-x0inx#ur'
+SECRET_KEY = "w7edjq2&&#14ey#o)bamd*@s=3xoh&6do3(57rp&u-x0inx#ur"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,16 +132,17 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-PAYPAL_RECEIVER_EMAIL = "prabhat.webkrone@gmail.com"
+PAYPAL_RECEIVER_EMAIL = config('PAYPAL_RECEIVER_EMAIL')
 PAYPAL_TEST = True
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51KyrvaSEP5SNlSqvNEGiS6lmydRJRifXj1WchAuroGIgaQvELvToedvsYxLEE8MmamShKmqQEFIgbkmGzarFialh00h0N4t4Kn'
-STRIPE_SECRET_KEY = 'sk_test_51KyrvaSEP5SNlSqvIbEM4fOt6nWxJ7LTT4tJwNaoFMmsHGB33Vq9wcqpYDzE5RxD9CWilFg6Lra4PRF0ZyPeF5R200I9vJwDAD'
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 

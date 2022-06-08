@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Signin</title>
+    <title>Registration</title>
     <style>
       .fa {
         padding: 20px;
@@ -107,7 +107,8 @@
                             <span class="fa fa-lock" style="color:lightblue;"></span>
                             </span>
                             </div>
-                            {{ user_form.password|append_attr:"class:form-control rounded"|append_attr:"placeholder:Paasword" }}
+                            {% render_field user_form.password placeholder="Password" class="form-control rounded" id="password1" %}
+                            {% comment %} {{ user_form.password|append_attr:"class:form-control rounded"|append_attr:"placeholder:Paasword" }} {% endcomment %}
                             {% comment %} {{user_form.password|add_class:"form-control rounded" }} {% endcomment %}
                              <div class="input-group-postpend">
                             <a onclick="myFunction()">
@@ -124,7 +125,9 @@
                             <i class="fa fa-lock" style="color:lightblue;"></i>
                             </span>
                             </div>
-                            {{ user_form.password2|append_attr:"class:form-control rounded"|append_attr:"placeholder:Confirm Password" }}
+                            {% render_field user_form.password2 placeholder="Confirm Password" class="form-control rounded" id="password2" %}
+                           
+                            {% comment %} {{ user_form.password2|append_attr:"class:form-control rounded"|append_attr:"placeholder:Confirm Password" }} {% endcomment %}
                             {% comment %} {{ user_form.password2|add_class:"form-control rounded" }} {% endcomment %}
                             <div class="input-group-postpend">
                             <span class="input-group-text rounded" style="height:10vh;background-color:white;" onclick="myPassword2()" >
@@ -134,7 +137,7 @@
                             </div>
                              
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                <input class="form-check-input" type="checkbox" id="check1" name="option1" value="Checked">
                                 <label class="form-check-label"><p class="small">
                               I agreed Terms and Conditions & Privacy Policy
                             </p></label>
@@ -143,11 +146,15 @@
                             Create your account
                             </button>
                             <h6 class="text-center mt-3"><p> Or Sign Up With</p></h6>
-                            <div class="col-sm-12 d-flex justify-content-center">
-                            <a href="#" class="fa fa-facebook"></a>
-                            <a href="#" class="fa fa-twitter"></a>
-                            <a href="#" class="fa fa-google"></a>
-                            </div>
+                            
+                             <div class="col-sm-12 d-flex justify-content-center">
+            <img src="/static/images/facebook.png" class="img" style="height: 55%; width: 5%; margin: 2vh;">
+            <img src="/static/images/apple.png" class="img" style="height: 55%; width: 5%; margin: 2vh;">
+            <img src="/static/images/google.png" class="img" style="height: 55%; width: 5%; margin: 2vh;">
+            <!-- <a href="#" class="fa fa-google fa-2x text-decoration-none" style=" margin: 2vh;"></a>
+            <a href="#" class="fa fa-instagram fa-2x text-decoration-none" style=" margin: 2vh;"></a>
+             -->
+            </div>
                             <p class="mt-2"> <span class="fw-lighter">This site is protected by reCAPTCHA and the Google </span> Privacy Policy <span class="fw-lighter">and </span>Terms of Services <span class="fw-lighter">apply.</span></p>
                         </form>
                         
@@ -158,7 +165,23 @@
       console.log("hello")
       function myPassword() {
           console.log("ok")
- // document.getElementById("demo").innerHTML = "Hello World";
+          var x = document.getElementById("password1");
+          if (x.type === "password") {
+              x.type = "text";
+            } 
+          else {
+              x.type = "password";
+            }
+}
+function myPassword2() {
+          console.log("ok")
+          var xp = document.getElementById("password2");
+          if (xp.type === "password") {
+              xp.type = "text";
+            } 
+          else {
+              xp.type = "password";
+            }
 }
       </script>
   </body>

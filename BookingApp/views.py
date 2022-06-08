@@ -158,3 +158,6 @@ def checking_hotel(request):
 
 def sign_in(request):
     return render(request, 'Signin.html')
+
+def hotel_details(request):
+    return render(request, 'owner_site.html')
