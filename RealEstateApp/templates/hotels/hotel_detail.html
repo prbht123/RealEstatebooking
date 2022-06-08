@@ -1,0 +1,281 @@
+{% extends 'home/basehome.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+{% endblock %}
+{% block homecontent %}
+<div style="height:100vh;width:100%;background-image: url({{property.image.url}});
+  background-repeat: no-repeat;
+  background-size: cover;position: responsive;">
+{% include 'home/navbar.html' %}
+
+<div class="bottom-left" style="position: absolute; bottom: 8px;left: 16px;"><a class="btn ml-2" id="btnShowPopup" style="background-color:#7166f0;color:#fff">More Photos</a></div>
+
+</div>
+
+<div class="container mt-4">
+<div class="row">
+<div class="col-sm-7">
+  <h2><b><span style="color:#7166f0;">{{property.property_name}}</span></b></h2>
+   <h6><i class="material-icons" style="font-size:28px;">place</i> {{ property.Address.street }} {{property.Address.city}}  {{property.Address.state}} {{property.Address.country}} {{property.Address.zip_code}}</h6>
+   <h5 class="mt-4"><b><span style="color:#7166f0;">Amenities</span></b></h5>
+    <span class="small"><img src="{% static 'images/hotel_detail/wifi.png' %}"/><span class="me-3"> Free Wifi </span>  <img src="{% static 'images/hotel_detail/ac.png' %}"/><span class="me-3"> AC </span><img src="{% static 'images/hotel_detail/tv.png' %}"/><span class="me-3"> TV</span> <img src="{% static 'images/hotel_detail/car.png' %}"/><span class="me-3"> Parking </span></span>
+    <h5 class="mt-4"><b><span style="color:#7166f0;">Description</span></b></h5>
+    <p><span class="fw-lighter small">{{property.Description}}</span></p>
+    <h5 class="mt-4"><b><span style="color:#7166f0;">4 Reasons for to choose {{property.property_name}}</span></b></h5>
+    <p><img src="{% static 'images/hotel_detail/price.png' %}"/> Price you can't beat.</p>
+    <p><img src="{% static 'images/hotel_detail/online.png' %}"/> Manage your booking online</p>
+    <p><img src="{% static 'images/hotel_detail/lock.png' %}"/> Booking is safe</p>
+    <p><img src="{% static 'images/hotel_detail/language.png' %}"/> The staff speak english and hindi</p>
+     <h5 class="mt-4"><b><span style="color:#7166f0;">Hotel Policy</span></b></h5>
+     <div class="col-sm-6 offset-sm-1">
+      <p> check-in <span class="float-end">check-out</span><p>
+       <a class="btn btn-outline-primary" style="pointer-events: none;color:#7166f0;"> 9 a.m.</a><span class="float-end"><a class="btn btn-outline-primary" style="pointer-events: none;color:#7166f0;"> 9 p.m.</a></span>
+     </div>
+     
+     <p><img src="{% static 'images/hotel_detail/hand.png' %}"/> Check-in time is 10:00 AM and check-out time is 09:00 AM morning. Subject to
+    availability, early check-in and late check-out will be considered.</p>
+    <p><img src="{% static 'images/hotel_detail/hand.png' %}"/> Guests will be provided with a room key only upon arrival and after
+    completing the registration at the hotel’s reception desk</p>
+    <p><img src="{% static 'images/hotel_detail/hand.png' %}"/> Guests can check in using any local or outstation ID proof (PAN card not accepted).
+    </p>
+    <p><img src="{% static 'images/hotel_detail/hand.png' %}"/> Only Indian Nationals allowed.
+    </p>
+    <p><img src="{% static 'images/hotel_detail/hand.png' %}"/> 100 % advance Payment deposit at the time of Check in.
+    </p>
+    <p><img src="{% static 'images/hotel_detail/hand.png' %}"/> Smoking, Alcohol, Gambling, Prostitution, contraband goods, drugs, etc–are all strictly prohibited within the hotel premises.
+    </p>
+      
+  </div>
+  <div class="col-sm-5">
+     <div class="card mt-5">
+     <div class="container">
+        <p class="mt-4"><b>Beds </b> <span class="float-end me-1"> {{property.beds}}</span></p>
+        <p><b>Room Type </b> <span class="float-end me-1"> {{property.room_type}}</span></p>
+        <p><b>Bed Room </b><span class="float-end me-1">  {{property.bed_room}}</span></p>
+        <p><b>Guest </b> <span class="float-end me-1"> {{property.guest}}</span></p>
+        <p><b>Cancellation </b><span class="float-end me-1"> {{property.cancellation}}</span></p>
+        <p><b>Contact Number </b> <span class="float-end me-1"> {{property.contact_number}}</span></p>
+        <hr>
+        <h3 style="color:#7166f0;"> <b>  {{property.cost}}</b> </h3>
+        <p>inclusive of all taxes per night</p>
+        </div>
+        <label class="fw-light ms-4" style="color:#7166f0;"><b>Check-In </b>
+        <span class="float-end me-4"></b>Check-Out</b></span></label>
+        <div class="container">
+        <form class="mb-2">
+                <div class="input-group">
+                
+            <input type="date" id="check_in" class="form-control" >
+            <div class="input-group-prepend">
+                <span class="input-group-text">-</span>
+            </div>
+            <input type="date" id="check_out" class="form-control">
+        </div>
+        <div class="col-auto">
+            <input type="button" class="btn mt-2 form-control" onclick="showDiv1()" value="Availability" style="background-color:#7166f0; color:#fff">
+        </div>
+        </form>
+        </div>
+        <input class="d-none" type="text" value='{{property.cost}}' id="price">
+        <input class="d-none" type="text" value='{{booking}}' id="booked">
+            <div class="mt-2" style="display:none;" id="welcomeDiv">
+            <div class="card">
+            <div class="container">
+            <p class="mt-4"><b>Status </b> <span class="float-end" id="booking"> </span></p>
+            <p><b>{{property.beds}} Room x 1 Night </b><span class="float-end"><i class="fa fa-rupee"></i> {{property.cost}} </span></p>
+            <p><b>Discount </b><span class="float-end"><i class="fa fa-rupee"></i> 0 </span></p>
+            <p><b>Total Amount </b><span class="float-end"><i class="fa fa-rupee "></i> <span id="cost"> </span>  </span></p>
+            <a id="book_property" class="btn text-decoration-none float-control mb-4" style="font-size: 0.9rem;display:none;background-color:#7166f0; color:#fff" href="{% url 'booking:create_booking' slug=property.slug %}" >
+                Buy Now
+                </a>
+                </div>
+            </div>
+            </div>
+     </div>
+  </div>
+  </div>
+     
+       <h5 class="mt-4"><b><span style="color:#7166f0;">Rating and Reviews</span></b></h5>
+   <div class="container row">
+    <div class="row d-flex justify-content-center">
+    <div class="col-sm-4">
+          
+          <div class="col">
+            {% if ranking.rank__avg %}
+            Overall Rating : 
+            
+            <input class="d-none" type="text" value='{{ranking.rank__avg}}' id="star_ranking">
+            <span class="fa fa-star" id="star1"></span>
+            <span class="fa fa-star" id="star2"></span>
+            <span class="fa fa-star" id="star3"></span>
+            <span class="fa fa-star" id="star4"></span>
+            <span class="fa fa-star" id="star5"></span>
+            <br>
+             <a class="btn" style="background-color:#7166f0;pointer-events: none;color:#fff;">{{ranking.rank__avg}}</a>
+             <br>
+            {% endif %}
+            50 Reviews
+            </div>
+           
+
+    </div>
+    <div class="col-sm-6">
+      <div class="progress mb-2">
+      <span><b>5 star &nbsp; </b></span> <div class="progress-bar" role="progressbar" style="width: 92%;background-color:#7166f0;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="0" aria-valuemax="100"></div>
+</div>
+<div class="progress mb-2">
+  <span><b>4 star &nbsp;</b></span><div class="progress-bar" role="progressbar" style="width: 68%;background-color:#7166f0;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="progress mb-2">
+  <span><b>3 star &nbsp; </b></span><div class="progress-bar" role="progressbar" style="width: 42%;background-color:#7166f0;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="progress mb-2">
+  <span><b>2 star &nbsp; </b></span><div class="progress-bar" role="progressbar" style="width: 19%;background-color:#7166f0;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="progress mb-2">
+  <span><b>1 star &nbsp;</b></span><div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"  aria-valuemax="100" ></div>
+</div>
+    </div>
+    </div>
+    </div>
+      <div class="mt-4 col-sm-9 offset-col-sm-2">
+    {% if request.user.username %}
+    <form action="{% url 'realestateapp:create_feedback_property' slug=property.slug %}" method="post">
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-sm-10">
+    {% for field in feedbackform.visible_fields %}
+  <div class="form-group mt-2">
+    {% render_field field class="form-control ms-2" rows="2" placeholder="Write Reviews" %}
+   
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+</div>
+<div class="col-sm-2">
+  <button type="submit" class="btn mt-2 mb-2 ms-0"> <img src="{% static 'images/hotel_detail/send.png' %}"></button>
+  </div>
+  </div>
+  </form>
+     {% endif %}
+    </div>
+     <div class=" mt-4">
+    {% if feedback %}
+     {% for feedback_item in feedback %}
+        <div class="card-body row">
+           <div class="col-sm-2">
+             {% for userprofile in userprofiles %}
+                {% if feedback_item.user.username == userprofile.user.username %}
+                   <img class="img-thumbnail rounded-circle" height="80%" width="80%"  src={% if userprofile.image %}{{userprofile.image.url}}{% endif %}/>
+                {% endif %}
+             {% endfor %}
+           </div>
+           <div class="col-sm-7">
+             <p > {{feedback_item.user.username}} <span class="float-end">20 may 2022</span></p>
+             <hr>
+             <p>{{ feedback_item.feedback }}</p>
+            </div>
+        </div>
+
+     {% endfor %}
+     {% endif %}
+    </div>
+</div>
+ 
+
+
+<hr>
+<!-- Modal Popup -->
+    <div id="MyPopup" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" >
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title"> Images of {{property.property_name}}
+                    </h4>
+                </div>
+               
+                {% if images %}
+                {% for image in images %}
+                <div class="col-md-12 mt-2">
+                  <div class="thumbnail">
+                      <img src="{% if image.image %}{{image.image.url}}{% endif %}" alt="Lights" style="width:100%;height:400px;">
+                  
+                  </div>
+                </div>     
+                
+                {% endfor %}
+            
+                {% endif %}
+               
+            </div>
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(function () {
+        $("#btnShowPopup").click(function () {         
+            $("#MyPopup").modal("show");
+        });
+    }); 
+
+var rank = "{{ranking.rank__avg}}";
+if(rank != 'None'){
+  var star = document.getElementById('star_ranking').value;
+  var star = parseInt(star);
+  console.log(star);
+  for(i=1;i<=star;i++){
+    var star1 = "star"+ i;
+    document.getElementById(star1).style.color = 'yellow';
+  }
+
+}
+{% comment %} function for searching hotel on checkin and checkout time {% endcomment %}
+function showDiv1() {
+  var checkin = document.getElementById('check_in').value;
+  var checkout = document.getElementById('check_out').value;
+  console.log(checkin)
+  date1 = new Date(checkin);
+  date2 = new Date(checkout);
+  date1time = date1.getTime();
+  date2time = date2.getTime();
+  day = date2time-date1time;
+  day = day/(1000 * 60 * 60 * 24) + 1;
+   price = document.getElementById('price').value;
+   cost = day*price;
+   document.getElementById('cost').innerHTML = cost;
+   book = document.getElementById('booked').value;
+   var booked = "{{booking}}";
+   mydata = {
+     'checkin':checkin,
+      'checkout':checkout,
+      'property_slug':'{{property.slug}}',
+   }
+   $.ajax({
+     url : "{% url 'booking:booking_search' %}",
+     method:"GET",
+     data :mydata,
+      success:function(data){
+       if(data.status == 1){
+         document.getElementById('booking').innerHTML = "Available";
+         document.getElementById('book_property').style.display = "block";
+       }
+       else{
+         document.getElementById('booking').innerHTML = "Already Booked Hotel,Please try another date...";
+       }
+       
+      },
+     
+     
+   })
+   
+   document.getElementById('welcomeDiv').style.display = "block";
+}
+</script>
+{% endblock %}

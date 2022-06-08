@@ -1,27 +1,11 @@
+{% extends 'home/basehome.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title>Hotel Booking</title>
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/search.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/newHome-1.css' %}">
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- <link rel="stylesheet" href="{% static 'css/newHome/newHome.css' %}" /> -->
-    <link rel="stylesheet" href="{% static 'css/newHome/search.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/newHome/newHome-1.css' %}">
-
-    
-
-    <style>
+<style>
       .first_booking {
         background-image: url("{% static 'images/home/library.jpg' %}");
         background-repeat: no-repeat;
@@ -45,35 +29,12 @@
 
 
     </style>
-  </head>
-  <body>
-    <div class="slider-content">
-      <div class="slider-images">
-        <div class="navbar">
-          <div class="nav-logo">
-            <img
-              class="logo"
-              src="{% static 'images/landing_img/logo.png' %}"
-              alt=""
-            />
-          </div>
-          <div class="nav-link">
-            <a class="me-5" href="/home/">Home</a>
-            <a class="me-5" href="/listproperty/">Hotels</a>
-            <a class="me-5" href="/booking/why_us/">Why Us</a>
-            <a class="me-5" href="/booking/contact/">Contact</a>
-             {% if user.is_staff %}
-            <a class="me-5" href="/adminuser/">Admin Dashboard</a>
-            {% endif %}
-            {% if user.username %}
-            <a class="me-5" href="{% url 'account:user_profile' pk=user.id %}">{{user.username}}</a>
-            <a class="me-5" href="/accounts/logout/">SignOut</a>
-            {% else %}
-            <a class="me-5" href="/accounts/login/">SignIn</a>
-            {% endif %}
+{% endblock %}
 
-          </div>
-        </div>
+{% block homecontent %}
+     <div class="slider-content">
+      <div class="slider-images">
+        {% include 'home/navbar.html' %}
         <h1 class="slider-h1">
           <span class="slider-span-1"> Stay. Float. Refresh.</span><br />
           <span class="slider-span-2"
@@ -497,55 +458,7 @@
     </div>
   </div>
 
-   <!-- =========================== FOOTER =============================== -->
-  {% include 'home/footer1.html' %}
-   {% comment %} <footer>
-    <div class="container footer-container">
-      <div class="row">
-        <div class="col-sm-4">
-          <p><span class="footer-span-1">About</span><br><br>
-          <span class="footer-span-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ab consectetur sit quaerat rem ea earum.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-          </p>
-        </div>
-        <div class="col-sm-3">
-          <p><span class="footer-span-1">Contact No.</span><br><br>
-            <div class="footer-img">
-              <img src="{% static 'images/landing_img/logo/location.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>111 8th Ave, New York U.S.A.</span> <br><br>
-              <img src="{% static 'images/landing_img/logo/calling.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>Reserve +1-202-555-0153</span> <br><br>
-              <img src="{% static 'images/landing_img/logo/mail.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>info@hotel.com</span> <br><br>
-              <img src="{% static 'images/landing_img/logo/time.png' %}" alt="">&nbsp;&nbsp;&nbsp;&nbsp;<span>08 am - 06 pm Sunday closed</span> <br><br>
-            </div>           
-          </p>
-        </div>
-        <div class="col-sm-5">
-          <p><span class="footer-span-1">Subscribe</span><br><br>
-            <span class="footer-span-2">Be the first one to know  about discounts, offers, news, giveaways and events.</span>
-            </p>
-            <br>
-          <form>
-            <input class=" footer-input" type="text" placeholder="Enter your Email...">
-            <button id="footer-button" a href="#">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="footer-end container mt-5">
-      <div class="footer-copyright">
-        <p class="footer-p">© 2022-2023, All Rights Reserved</p>
-      </div>
-      <div class="footer-anchor-content">
-        <a class="footer-anchor-1" href="/home/">Home</a>
-        <a class="footer-anchor-2" href="/listproperty/">Rooms</a>
-        <a class="footer-anchor-3" href="/booking/why_us/">Why us</a>
-        <a class="footer-anchor-4" href="">Privacy Policy</a>
-        <a class="footer-anchor-5" href="">Terms of use</a>
-      </div>
-    </div>
-    <div class="last"></div>
-  </footer> {% endcomment %}
-
-
-
+  
     <script src="{% static 'js/landing_js/choices.js' %}"></script>
     <script src="{% static 'js/landing_js/flatpickr.js' %}"></script>
     <script>
@@ -575,5 +488,4 @@
       slideShow();
     </script>
     <script></script>
-  </body>
-</html>
+{% endblock %}
