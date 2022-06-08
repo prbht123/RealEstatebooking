@@ -1,0 +1,61 @@
+{% extends 'home/basehome.html' %}
+{% load static %}
+{% block title %}
+Contact
+{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/contact.css' %}" />
+<style>
+  .navbar{
+    border:1px solid;
+  }
+  </style>
+{% endblock %}
+{% block homecontent %}
+{% include 'home/navbar.html' %}
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-4 contact-content">
+          <div>
+            <img
+              src="{% static 'images/Contact_image.png' %}"
+              alt=""
+            />
+
+            <h1 class="mt-2">Contact us</h1>
+          </div>
+        </div>
+        <div class="col-sm-4 contact-content">
+          <form method="post" class="contact-form">
+            {% csrf_token %}
+            <input
+              type="text"
+              placeholder="Name..."
+              class="contact-input"
+            /><br /><br />
+            <input
+              type="email"
+              placeholder="Email..."
+              class="contact-input"
+            /><br /><br />
+            <input
+              type="number"
+              placeholder="Phone Number..."
+              class="contact-input"
+            /><br /><br />
+            <textarea
+              placeholder="Message..."
+              class="contact-input-textarea"
+            ></textarea
+            ><br /><br />
+            <input type="submit" value="Submit" class="btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}
