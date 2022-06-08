@@ -15,4 +15,6 @@ urlpatterns = [
     path('faq/', views.faq, name="faq"),
     path('testing/', views.checking_hotel),
     path('sign/',views.sign_in),
+    path('owner/',views.owner_details),
+    path('owner_view/',views.owner_account),
 ]

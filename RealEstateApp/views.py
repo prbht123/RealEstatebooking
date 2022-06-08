@@ -41,7 +41,6 @@ def home(request):
     context['popular_location_property'] = []
     context['famousproperty'] = Property.objects.filter(property_status='published').values(
         'Address__city').annotate(count=Count('property_name')).order_by('-count')
-    print(context['famousproperty'])
     context['famoupropertylist'] = []
     for famous in context['famousproperty']:
         property = Property.objects.filter(
@@ -52,7 +51,6 @@ def home(request):
             'property': property,
         }
         context['famoupropertylist'].append(data)
-    print(context['famoupropertylist'])
     for popular in popular_locations:
         city = (popular.city).lower()
         state = (popular.state).lower()

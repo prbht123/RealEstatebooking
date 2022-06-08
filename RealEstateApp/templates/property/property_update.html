@@ -63,7 +63,7 @@
 </style>
 <body>
 
-<div class="col-sm-12 bg-image" style="background-image: url('{% static "images/sea.jpg" %}');">
+{% comment %} <div class="col-sm-12 bg-image" style="background-image: url('{% static "images/sea.jpg" %}');"> {% endcomment %}
 
 <h1 class="text-center">Edit The Hotel</h1>
 <hr />
@@ -111,13 +111,14 @@
  
 {% endfor %}
 </div>
-<div class="d-flex justify-content-center ">
-  <button type="submit" class="btn btn-outline-primary mt-2 mb-2 me-4">Submit</button>
-  <a class="btn btn-outline-danger mt-2 mb-2" href="/">CANCEL</a>
-  </div>
+  <button type="submit" class="btn btn-outline-primary mt-2 mb-2 me-4 float-left">Submit</button>
+  <a class="btn btn-outline-danger mt-2 mb-2 float-right" href="/">CANCEL</a>
+<br>
+<br>
+<hr>
 </form>
 </div>
-</div>
+
 {% include 'home/footer.html' %} 
 
  <script>
