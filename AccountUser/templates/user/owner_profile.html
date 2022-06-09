@@ -32,7 +32,14 @@
    background-color:#7166f0;
    color:#fff;
  }
-  
+ .imagefield{
+   margin-left:10%;
+   width: 80vw;
+ }
+.image_field_user_profile{
+  height:500px;
+  width:550px;
+}
 </style>
 {% endblock %}
 {% block homecontent %}
@@ -51,7 +58,7 @@
   </div>
   <div class="col-sm-8 mt-4">
    {% if userprofile.user.first_name %}
-     <span class="h2 username"> {{userprofile.user.first_name}} <a class="btn btn-outline-primary">Edit</a></span>
+     <span class="h2 username"> {{userprofile.user.first_name}} <a class="btn btn-outline-primary ms-2">Edit</a></span>
      <br>
      <p>User ID - {{userprofile.user.id}}</p>
      
@@ -62,12 +69,14 @@
   
   </div>
   <div class="col-sm-4 mt-4">
-  <span class="float-end"><a class="btn addhotel" href="{% url 'realestateapp:create_property' %}">Add Hotel</a></span>
+  {% if property_count > 0 %}
+  <span class="float-end"><a class="btn addhotel" href="{% url 'realestateapp:create_property' %}"><i class="fa fa-plus me-2"></i>Add Hotel</a></span>
+  {% endif %}
   </div>
   </div>
   {% if property_count > 0 %}
   <div class="row hotellist mt-5">
-      <table class="table table-borderless text-center">
+      <table class="table table-borderless text-center small">
     <thead>
       <tr class="text-center">
         <th>Hotel Image</th>
@@ -87,13 +96,21 @@
         <td><br>{{item.property.property_status}}</td>
         <td></br>{{item.property.Address.street}} {{item.property.Address.city}} {{item.property.Address.state}} {{item.Address.country}}</td>
         <td><a class="btn ratinganchor mt-2" disabled>{{item.rating}}<span class="fa fa-star ms-1 mt-2"></span></a></td>
-        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a><i class="fa fa-trash ms-2 deleteicon"></i></a></td>
+        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a class="mt-2"><i class="fa fa-trash ms-2 deleteicon"></i></a></td>
       </tr>
       {% endfor %}
     
     </tbody>
   </table>
   </div>
+  {% else %}
+     <div class="row container imagefield mt-1 ">
+       <img class="rounded mx-auto d-block image_field_user_profile"  src="{% static 'images/bg_pic.png' %}" />
+       <br>
+       <div class="colo-sm-12 d-flex justify-content-center">
+      <a class="btn addhotel" href="{% url 'realestateapp:create_property' %}"><i class="fa fa-plus me-2"></i>Add Hotel</a>
+     </div>
+     </div>
   {% endif %}
 {% endblock %}
 
