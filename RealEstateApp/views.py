@@ -480,6 +480,7 @@ class propertyNameSearchView(ListView):
         context['propertiess'] = Property.objects.filter(
             property_name__icontains=property, property_status='published')
         context['properties'] = []
+        context['search_property_name'] = property
         for property in context['propertiess']:
             rank = RankingProperty.objects.filter(
                 property=property).aggregate(avg=Avg('rank'))

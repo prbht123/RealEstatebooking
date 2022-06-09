@@ -1,26 +1,49 @@
-{% include 'base.html' %}
+{% extends 'home/basehome.html' %}
 {% load static %}
+{% block title %}Hotels-{{search_property_name}}{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/property/list_property.css' %}"/>
+
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<style>
+.hotels_list{
+   margin-left:10%;
+   width: 80vw;
+ }
+ .navbar{
+   border:1px solid;
+ }
+  .property_city_button{
+   background-color:#7166f0;
+ }
+ .fas{
+   color:#fff;
+ }
+  .pre_button,.next_button{
+   color:#7166f0;
+ }
+ </style>
 {% endblock %}
- {% block content %}
+ {% block homecontent %}
+ {% include 'home/navbar.html' %}
+ <br>
+ <div class="hotels_list mt-5">
 <div class="container">
   <div class="row">
 <div class="col-sm-4">
-<h4 class="ml-4">List Of The Hotels</h4>
+<h4 class="ml-4 mt-4">List Of The Hotels</h4>
 </div>
 <div class="col-sm-8 d-flex justify-content-end" >
  <form action="{% url 'realestateapp:search_with_property_name' %}">
 <div class="input-group">
-  <input type="search" class="form-control rounded mt-2 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
-  <button class="btn btn-success mt-2"><i class="fas fa-search"></i></button>
+  <input type="search" class="form-control rounded mt-4 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
+  <button class="btn mt-4 property_city_button"><i class="fas fa-search"></i></button>
 </div>
  </form>
  </div>
 </div>
 </div>
-
-<hr />
+<hr>
 <div class="container justify-content-center mt-4 mb-4" >
   <div class="row">
     {% if not properties %}
@@ -32,32 +55,32 @@
      
     <div class="card-body row">
     <div class="col-sm-4">
-     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
-    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:400px;"/>
+     <a class="card-text float-right text-decoration-none" style="" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:370px;"/>
     </a>
     </div>
-    <div class="col-sm-6">
-      <p class="card-title h6 ml-1">{{property.property.property_name}} 
+    <div class="col-sm-5">
+      <p class="card-title h5 mt-4">{{property.property.property_name}} 
       </p>
-        <p class="card-text text-danger" style="font-size: 1rem">
+        <p class="card-text text-danger small ms-1" style="font-size: 1rem">
           <b> {{property.property.Address.city}}</b> <br>
           {{property.property.room_type}}  {{property.property.beds}} {% if property.property.beds == 1 %}
           Bed {% else %} Beds {% endif %}   
         </p>
         
-        <p class="card-text" style="font-size: 1rem">
+        <p class="card-text small ms-1">
            R${{property.property.cost}} Per Night
         </p>
-        <a class="card-text float-left text-decoration-none" style="font-size:1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+        <a class="card-text float-left text-decoration-none" style="font-size:1.5rem;color:#7166f0;" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
           Show Details
         </a>
         </div>
-        <div class="col-sm-2">
-          <p>
+        <div class="col-sm-3">
+          <p class="mt-4">
            <b>Viewed :</b> {{property.viewed}}<br>
            <b>Ranking :</b> {{property.rank}}
            </p>
-          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem;color:#7166f0;" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
         See-Availability
         </a>
 
@@ -85,6 +108,6 @@
     {% endif %}
   </div>
 </div>
-<hr>
-{% include 'home/footer.html' %}
+</div>
+
 {% endblock %}

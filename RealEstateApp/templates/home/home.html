@@ -1,5 +1,8 @@
 {% extends 'home/basehome.html' %}
 {% load static %}
+{% block title %}
+Home
+{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
 <link rel="stylesheet" href="{% static 'css/newHome/search.css' %}" />
@@ -168,7 +171,7 @@
         <div class="col-sm-4 ">
         
           <div class="row popular-place-row-1">
-            <a href="#"> 
+            <a href="{% url 'realestateapp:city_search_property' city=famoupropertylist.0.Address_city %}"> 
               <img src="{{ famoupropertylist.0.property.image.url }}" alt="" width="100%" height="100%" />
             </a>
           </div>
@@ -180,7 +183,7 @@
           </div>
           <br />          
           <div class="row popular-place-row-2">
-            <a href="">
+            <a href="{% url 'realestateapp:city_search_property' city=famoupropertylist.1.Address_city %}">
               <img src="{{ famoupropertylist.1.property.image.url }}" alt="" width="100%" height="100%"/>
             </a>
           </div>
@@ -193,7 +196,7 @@
         </div>
         <div class="col-sm-4">
           <div class="row popular-place-row-3">
-            <a href="">
+            <a href="{% url 'realestateapp:city_search_property' city=famoupropertylist.2.Address_city %}">
               <img src="{{ famoupropertylist.2.property.image.url }}" alt="" width="100%" height="100%"/>
             </a>
           </div>
@@ -205,7 +208,7 @@
           </div>
           <br />
           <div class="row popular-place-row-4">
-            <a href=""><img
+            <a href="{% url 'realestateapp:city_search_property' city=famoupropertylist.3.Address_city %}"><img
               src="{{ famoupropertylist.3.property.image.url }}"
               alt="" width="100%" height="100%"
             />
@@ -220,7 +223,7 @@
         </div>
         <div class="col-sm-4">
           <div class="row popular-place-row-5">
-            <a href=""><img
+            <a href="{% url 'realestateapp:city_search_property' city=famoupropertylist.4.Address_city %}"><img
               src="{{ famoupropertylist.4.property.image.url }}"
               alt="" width="100%" height="100%"
             />
@@ -234,7 +237,7 @@
           </div>
           <br />
           <div class="row popular-place-row-6">
-            <a href="#"><img
+            <a href="{% url 'realestateapp:city_search_property' city=famoupropertylist.5.Address_city %}"><img
               src="{{ famoupropertylist.5.property.image.url }}"
               alt="" width="100%" height="100%"
             />
@@ -284,7 +287,7 @@
       <div class="row most-rate-row">
       {% for property in propertiesr %}
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" class="text-decoration-none">
           <div class="card">
             <img src="{{ property.property.image.url }}" class="most-rate-img-top" alt="..." height="200px" width="100%" />
             <div class="card-body most-rate-content">
@@ -321,7 +324,7 @@
       <div class="row most-rate-row">
       {% for property in properties %}
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" class="text-decoration-none">
           <div class="card">
             <img src="{{ property.property.image.url }}" class="most-rate-img-top" alt="..." height="200px" width="100%" />
             <div class="card-body most-rate-content">
