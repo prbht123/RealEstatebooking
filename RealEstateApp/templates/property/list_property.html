@@ -1,9 +1,32 @@
-{% include 'base.html' %}
+{% extends 'home/basehome.html' %}
 {% load static %}
+{% block title %}Hotels{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/property/list_property.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<style>
+.hotels_list{
+   margin-left:10%;
+   width: 80vw;
+ }
+ .navbar{
+   border:1px solid;
+ }
+ .property_city_button{
+   background-color:#7166f0;
+ }
+ .fas{
+   color:#fff;
+ }
+ .pre_button,.next_button{
+   color:#7166f0;
+ }
+</style>
 {% endblock %}
- {% block content %}
+ {% block homecontent %}
+ {% include 'home/navbar.html' %}
+ <br>
+ <div class="hotels_list mt-5">
 <div class="container">
   <div class="row">
 <div class="col-sm-4">
@@ -13,7 +36,7 @@
  <form action="{% url 'realestateapp:search_with_property_name' %}">
 <div class="input-group">
   <input type="search" class="form-control rounded mt-4 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
-  <button class="btn btn-primary mt-4"><i class="fas fa-search"></i></button>
+  <button class="btn mt-4 property_city_button"><i class="fas fa-search"></i></button>
 </div>
  </form>
  </div>
@@ -28,13 +51,13 @@
             <span class="page-links d-flex float-right">
                
                 {% if page_obj.has_previous %}
-                    <a class="text-decoration-none me-2" href="/listproperty?page={{ page_obj.previous_page_number }}"><span class="h2" aria-hidden="true">&laquo;</span> </a>
+                   <a class="text-decoration-none me-2" href="/listproperty?page={{ page_obj.previous_page_number }}"><span class="h2 pre_button" aria-hidden="true">&laquo;</span> </a>
                 {% endif %}
                 <span class="page-current">
                    <p class="small text-center mt-2"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
                 </span>
                 {% if page_obj.has_next %}
-                    <a class="ml-2 text-decoration-none" href="/listproperty?page={{ page_obj.next_page_number }}"> <span class="h2" aria-hidden="true">&raquo;</span></a>
+                    <a class="ms-2 text-decoration-none" href="/listproperty?page={{ page_obj.next_page_number }}"> <span class="h2 next_button" aria-hidden="true">&raquo;</span></a>
                 {% endif %}
               
             </span>
@@ -49,32 +72,32 @@
      
     <div class="card-body row">
     <div class="col-sm-4">
-     <a class="card-text float-right text-decoration-none" style="font-size: 0.9rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
-    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:400px;"/>
+     <a class="card-text float-right text-decoration-none" style="" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+    <img src="{% if property.property.image %}{{ property.property.image.url }}{% endif %}" class="card-img-top mt-2" style="height:200px;width:370px;"/>
     </a>
     </div>
-    <div class="col-sm-6">
-      <p class="card-title h6 ml-1">{{property.property.property_name}} 
+    <div class="col-sm-5">
+      <p class="card-title h5 mt-4">{{property.property.property_name}} 
       </p>
-        <p class="card-text text-danger" style="font-size: 1rem">
+        <p class="card-text text-danger small" >
           <b> {{property.property.Address.city}}</b> <br>
           {{property.property.room_type}}  {{property.property.beds}} {% if property.property.beds == 1 %}
           Bed {% else %} Beds {% endif %}   
         </p>
         
-        <p class="card-text" style="font-size: 1rem">
+        <p class="card-text">
            R${{property.property.cost}} Per Night
         </p>
-        <a class="card-text float-left text-decoration-none" style="font-size:1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+        <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem;color:#7166f0;" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
           Show Details
         </a>
         </div>
-        <div class="col-sm-2">
-          <p>
+        <div class="col-sm-3">
+          <p class="mt-4">
            <b>Viewed :</b> {{property.viewed}}<br>
            <b>Ranking :</b> {{property.rank}}
            </p>
-          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem;color:#7166f0;" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
         See-Availability
         </a>
 
@@ -88,13 +111,13 @@
             <span class="page-links d-flex float-right">
                
                 {% if page_obj.has_previous %}
-                    <a class="text-decoration-none me-2" href="/listproperty?page={{ page_obj.previous_page_number }}"><span class="h2" aria-hidden="true">&laquo;</span> </a>
+                    <a class="text-decoration-none me-2" href="/listproperty?page={{ page_obj.previous_page_number }}"><span class="h2 pre_button" aria-hidden="true">&laquo;</span> </a>
                 {% endif %}
                 <span class="page-current">
                    <p class="small text-center mt-2"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
                 </span>
                 {% if page_obj.has_next %}
-                    <a class="ml-2 text-decoration-none" href="/listproperty?page={{ page_obj.next_page_number }}"> <span class="h2" aria-hidden="true">&raquo;</span></a>
+                    <a class="ms-2 text-decoration-none" href="/listproperty?page={{ page_obj.next_page_number }}"> <span class="h2 next_button" aria-hidden="true">&raquo;</span></a>
                 {% endif %}
               
             </span>
@@ -102,5 +125,5 @@
     {% endif %}
   </div>
 </div>
-{% include 'home/footer.html' %}
+</div>
 {% endblock %}
