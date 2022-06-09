@@ -1,14 +1,25 @@
-{% include 'base.html' %}
+{% extends 'home/basehome.html' %}
 {% load static %}
-<head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"/>
-      <link rel="stylesheet" href="{% static 'css/why_us.css' %}"/>
-
-</head>
-
+{% block titlename %}Profile{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% comment %} <link rel="stylesheet" href="{% static 'css/why_us.css' %}"/> {% endcomment %}
+<style>
+.why_us_page{
+   margin-left:10%;
+   width: 80vw;
+ }
+ .navbar{
+   border:1px solid;
+ }
+</style>
+{% endblock %}
+{% block homecontent %}
+   {% include 'home/navbar.html' %}
+   <br>
+ <div class="row mt-5 why_us_page">
 <div class="bg-light">
   <div class="container py-5">
     <div class="row h-100 align-items-center py-5">
@@ -53,7 +64,7 @@
     <div class="row text-center">
       <!-- Team item-->
       <div class="col-xl-3 col-sm-6 mb-5">
-        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-4.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
           <h5 class="mb-0">Manoj N</h5><span class="small text-uppercase text-muted">Owner</span>
           <ul class="social mb-0 list-inline mt-3">
             <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
@@ -69,4 +80,5 @@
     </div>
   </div>
 </div>
-{% include 'home/footer.html' %}
+</div>
+{% endblock %}
