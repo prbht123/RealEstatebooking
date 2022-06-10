@@ -7,78 +7,291 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7c34039e6c.js" crossorigin="anonymous"></script>
     <title>hotel details</title>
     <style>
     #box_size{
     width: 70%;
     padding: 15px;
-    margin-left: 9%;
+    margin-left: 23%;
     }
     #form__field1{
+    /*background-image: url("{% static 'images/hotel_detail/ac.png' %}");*/
+    position: relative;
     height: 40px;
-    width: 74%;
-    }
-    
-    #form__field{
-    /*margin-left: 45%;*/
-    }
-    #form__field5{
-    /*margin-left: 33%;*/
-    /*width: 120%;*/
-    width: 470px;
-    
-    }
-    #form__field6{
-    /*margin-left: 50%;*/
-    /*width: 110%;*/
-    width: 470px;
-    margin-left: 13%;
+    width: 74.5%;
+    position: left;
+    padding-left: 30px;
+    background-size: 10px;
+    background-repeat: no-repeat;
     }
     #add_bar{
     background-color: 0 1px solid green;
     }
+    #box_details{
+    width: 75%;
+    }
+    #price{
+    width: 25%;
+    }
+    #email{
+    border: 2px solid #7952b3;
+    }
+    .btn{
+    /*background-color: #7952b3;*/
+    padding: 14px;
+    width: 15%;
+    margin-left: %;
+    }
+    .btn1{
+    background-color: #dc35;
+    padding: 14px;
+    width: 14%;
     
+    
+    }
+    .inputWidthIcone input[type=text]{
+    padding-left: 60px;
+    }
+    .inputWidthIcone{
+    position: relative;
+    }
+    .inputWidthIcone i{
+    position: absolute;
+    left: 13px;
+    top: 13px;
+    height: 10%;
+    width: 8%;
+    }
+    
+    .inputWidthIcone2 input[type=text]{
+    padding-left: 32px;
+    }
+    .inputWidthIcone2{
+    position: relative;
+    }
+    .inputWidthIcone2 i{
+    position: absolute;
+    left: 25px;
+    top: 13px;
+    height: 10%;
+    width: 12%;
+    }
+    .price input[type=number]{
+    padding-left: 42px;
+    }
+    .price{
+    position: relative;
+    }
+    .price i{
+    position: absolute;
+    left: 25px;
+    top: 14px;
+    height: 10%;
+    width: 12%;
+    }
+    .room input[type=text]{
+    padding-left: 47px;
+    }
+    .room{
+    position: relative;
+    }
+    .room i{
+    position: absolute;
+    left: 25px;
+    top: 13px;
+    height: 10%;
+    width: 12%;
+    }
+    .bed input[type=number]{
+    padding-left: 53px;
+    }
+    .bed{
+    position: relative;
+    }
+    .bed i{
+    position: absolute;
+    left: 25px;
+    top: 12px;
+    height: 10%;
+    width: 12%;
+    }
+    .beds input[type=number]{
+    padding-left: 52px;
+    }
+    .beds{
+    position: relative;
+    }
+    .beds i{
+    position: absolute;
+    left: 25px;
+    top: 11px;
+    height: 10%;
+    width: 12%;
+    }
+    .Adults input[type=number]{
+    padding-left: 42px;
+    }
+    .Adults{
+    position: relative;
+    }
+    .Adults i{
+    position: absolute;
+    left: 25px;
+    top: 11px;
+    height: 10%;
+    width: 12%;
+    }
+    .child input[type=number]{
+    padding-left: 52px;
+    }
+    .child{
+    position: relative;
+    }
+    .child i{
+    position: absolute;
+    left: 25px;
+    top: 11px;
+    height: 10%;
+    width: 12%;
+    }
+    .contact input[type=number]{
+    padding-left: 45px;
+    }
+    .contact{
+    position: relative;
+    }
+    .contact i{
+    position: absolute;
+    left: 25px;
+    top: 44px;
+    height: 10%;
+    width: 12%;
+    }
     </style>
   </head>
   <body>
     
-    <h1 class="mt-5"style="color:#7952b3; margin-left: 10%;">Fill hotel details</h1>
+    
+    
     
     <div class="container" id="box_size">
-      <div><input type="text" class="form-control" id="form__field1"  placeholder="Property Name"></div>
-      <div class="row mt-3" >
-        <div class="col-3">
-          <input type="text" class="form-control" id="form__field"  placeholder="Property Name">
+      <form action = "" method = "post">
+        {% csrf_token %}
+        <h1 class="mt-5"style="color:#7952b3; ">Fill hotel details</h1>
+        <div class="inputWidthIcone" >
+          <input type="text" class="form-control" id="form__field1"  placeholder="Property Name"style="border: 2px solid #7952b3;">
+          <!-- <img src="{% static 'images/appartment .png' %}"> -->
+          <i class="fa-solid fa-hotel"></i>
         </div>
-        <div class="col-3">
-          <input type="text" class="form-control" id="form__field"  placeholder="Property Name">
+        <div class="row mt-3 " >
+          <div class="col-3 inputWidthIcone2" >
+            <input type="text" class="form-control" id="form__field"  placeholder="Street"style="border: 2px solid #7952b3;">
+            <i class="fa-solid fa-street-view"></i>
+          </div>
+          <div class="col-3 inputWidthIcone2">
+            <input type="text" class="form-control" id="form__field"  placeholder="City"style="border: 2px solid #7952b3;"><i class="fa-solid fa-city"></i>
+          </div>
+          <div class="col-3 inputWidthIcone2">
+            <input type="text" class="form-control" id="form__field"  placeholder="State"style="border: 2px solid #7952b3;"><i class="fa-solid fa-mountain-city"></i>
+          </div>
         </div>
-        <div class="col-3">
-          <input type="text" class="form-control" id="form__field"  placeholder="Property Name">
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-4">
-          <input type="text" class="form-control" id="form__field5"  placeholder="Property Name">
-        </div>
-        <div class="col-4">
-          <input type="text" class="form-control" id="form__field6"  placeholder="Property Name">
+        <div class="row mt-3">
+          <div class="col-4 inputWidthIcone2">
+            <input type="text" class="form-control" id="form__field"  placeholder="Country"style="border: 2px solid #7952b3;"><i class="fa-solid fa-flag"></i>
+          </div>
+          <div class="col-4 inputWidthIcone2">
+            <input type="text" class="form-control" id="form__field"  placeholder="Zip&nbsp;code"style="border: 2px solid #7952b3;"><i class="fa fa-map-pin" aria-hidden="true"></i>
+          </div>
+         
+          <span class="mt-4" style="color:#7166f0;"><h4>Amenities</h4></span></b></h5>
+          <div class="mt-4">
+            <img src="{% static 'images/hotel_detail/wifi.png' %}"/><span class="me-3"> Free Wifi </span>  <img src="{% static 'images/hotel_detail/ac.png' %}"/><span class="me-3"> AC </span><img src="{% static 'images/hotel_detail/tv.png' %}"/><span class="me-3"> TV</span> <img src="{% static 'images/hotel_detail/car.png' %}"/><span class="me-3"> Parking </span></span>
+          </div>
         </div>
         
-        <!-- <h4 class="mt-4"style="color:#7952b3; ">Amenities</h4> -->
-        <span class="mt-4" style="color:#7166f0;"><h4>Amenities</h4></span></b></h5>
-        <div class="mt-4">
-        <span class="form-check small">  <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked><img src="{% static 'images/hotel_detail/wifi.png' %}"/><span class="me-3"> Free Wifi </span>  <img src="{% static 'images/hotel_detail/ac.png' %}"/><span class="me-3"> AC </span><img src="{% static 'images/hotel_detail/tv.png' %}"/><span class="me-3"> TV</span> <img src="{% static 'images/hotel_detail/car.png' %}"/><span class="me-3"> Parking </span></span>
+        <div class="mb-3 mt-4" id="box_details"style="border: 2px solid #7952b3;">
+          <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Descriptions"></textarea>
         </div>
-      </div>
-      
-      <!-- Optional JavaScript; choose one of the two! -->
-      <!-- Option 1: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <!-- Option 2: Separate Popper and Bootstrap JS -->
-      <!--
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-      -->
-    </body>
-  </html>
+        <div class="mb-3 mt-4" id="box_details"style="border: 2px solid #7952b3;">
+          <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Write your Hotel Police"></textarea>
+        </div>
+        <div class="row">
+          <div class="form-group mt-4">
+            <label for="email">Hotel Price&nbsp;(per room)</label>
+            <div class="col-3 price">
+              <input type="number" class="form-control mt-2" id="email" placeholder="price" name="email"><i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row form-inline mt-4">
+          <div class="col-3">
+            <label for="email">Room</label>
+            <div class="room">
+              <input type="text" class="form-control mt-2" id="email" placeholder="room" ><i class="fa-solid fa-door-open"></i>
+            </div>
+          </div>
+          <div class="col-3">
+            <label for="number">Beds</label>
+            <div class="bed">
+              <input type="number" class="form-control mt-2" id="email" placeholder="beds" ><i class="fa-solid fa-bed"></i>
+            </div>
+          </div>
+          <div class="col-3">
+            <label for="text">Beds Type</label>
+            <div class="beds">
+              <input type="number" class="form-control mt-2" id="email" placeholder="beds" ><i class="fa-solid fa-bed"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="row form-inline mt-4">
+          <div class="col-3">
+            <label for="email">Adults</label>
+            <div class="Adults">
+              <input type="number" class="form-control mt-2" id="email" placeholder="Adults" name="email"><i class="fa-solid fa-person-dress"></i>
+            </div>
+          </div>
+          <div class="col-3">
+            <label for="email">Childrens</label>
+            <div class="child">
+              <input type="number" class="form-control mt-2" id="email" placeholder="Childrens" name="email"><i class="fa-solid fa-children"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row form-inline mt-4">
+          <div class="col-3">
+            <div class="contact">
+              <label for="email">Hotel Contact Persion</label>
+              <input type="number" class="form-control mt-2" id="email" placeholder="Contact" name="email"><i class="fa-solid fa-phone"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container mt-5">
+          <div class="row form-inline" style="border-style: dashed; width: 80%;">
+            <div style="width:250px; margin-left: 34%;   " >
+              <img src="{% static 'images/drive.png' %}"><h5 style="margin-left: 4%">Drag & Drop File<br> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;  Or</h5>
+              <!-- </div> -->
+              <div class="row" >
+                <a href="/"><button style="border:2px solid #7952b3; color: #7952b3; padding: 12px;width: 90%;"><img src="{% static 'images/folder.png' %}" style="height: 17px;"> &nbsp; Browse</button></a></p></div>
+              </div>
+            </div>
+          </div>
+          <div class="row inline-block mt-4">
+            <button type="button" class="btn btn-outline " style="color: #fff;background-color:#7952b3;">Submit</button>
+            <button type="button" class="btn btn-outline-danger" style="margin-left:48%;">Reset</button>
+          </form>
+        </div>
+        
+        
+        <!-- Optional JavaScript; choose one of the two! -->
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        
+      </body>
+    </html>
