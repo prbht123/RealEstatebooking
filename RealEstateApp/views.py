@@ -76,9 +76,11 @@ class createProperty(CreateView):
     """
     model = Property
     form_class = PropertyForm
-    template_name = 'property/create_property.html'
+    template_name = 'hotels/create_hotels.html'
+    #template_name = 'property/create_property.html'
 
     def form_valid(self, form):
+        print(self.request.POST)
         data = form.save(commit=False)
         street = self.request.POST['street']
         city = self.request.POST['city']
@@ -121,7 +123,7 @@ class listProperty(ListView):
                 property=property).aggregate(avg=Avg('rank'))
             viewed = MostViewed.objects.get(property=property)
             if rank['avg'] is not None:
-                rank = "{:.2f}".format(rank['avg'])
+                rank = "{:.1f}".format(rank['avg'])
             else:
                 rank = 0
             data = {
@@ -486,7 +488,7 @@ class propertyNameSearchView(ListView):
                 property=property).aggregate(avg=Avg('rank'))
             viewed = MostViewed.objects.filter(property=property)
             if rank['avg'] is not None:
-                rank = "{:.2f}".format(rank['avg'])
+                rank = "{:.1f}".format(rank['avg'])
             else:
                 rank = 0
             data = {

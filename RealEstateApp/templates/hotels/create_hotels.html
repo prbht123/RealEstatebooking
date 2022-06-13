@@ -1,0 +1,283 @@
+{% extends 'home/basehome.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<script src="https://kit.fontawesome.com/7c34039e6c.js" crossorigin="anonymous"></script>
+<style>
+.navbar{
+    border:1px solid;
+  }
+.addhotels{
+   margin-left:10%;
+   width: 80vw;
+ }
+   .submit_cancel{
+    color:#fff;
+    background-color:#7166f0;
+    width:20%;
+    height:70px;
+   }
+
+    .inputWidthIcone input{
+    padding-left: 40px;
+    border: 2px solid #7166f0;
+    height:70px;
+    }
+    .adults_children{
+    padding-left: 40px;
+    border: 2px solid #7166f0;
+    height:70px;
+    }
+    .inputWidthIcone{
+    position: relative;
+    }
+    .inputWidthIcone i{
+    position: absolute;
+    left: 13px;
+    top: 26px;
+    height: 10%;
+    width: 6%;
+    }
+    
+
+     .drop-zone {
+  max-width: 100%;
+  height: 310px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  border: 2px dashed #7166f0;
+  border-radius: 10px;
+}
+
+.drop-zone--over {
+  border-style: solid;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
+}
+
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+  text-align: center;
+}
+</style>
+{% endblock %}
+{% block homecontent %}
+{% include 'home/navbar.html' %}
+<br>
+<div class="row mt-5 addhotels">
+
+    <div class="container d-flex justify-content-center" id="box_size">
+      <form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 class="mt-5"style="color:#7166f0; ">Fill hotel details</h1>
+        <div class="inputWidthIcone mt-4" >
+        {% render_field form.property_name class="form-control" placeholder="Property Name" %}
+          <!-- <img src="{% static 'images/appartment .png' %}"> -->
+          <i class="fa-solid fa-hotel"></i>
+        </div>
+        <div class="row mt-3 " >
+          <div class="col-4 inputWidthIcone" >
+          {% render_field form.street class="form-control" placeholder="Street" name="street" %}
+            <i class="fa-solid fa-street-view ms-3"></i>
+          </div>
+          <div class="col-4 inputWidthIcone">
+            {% render_field form.city class="form-control" placeholder="City" name="city" %}
+           <i class="fa-solid fa-city ms-3"></i>
+          </div>
+          <div class="col-4 inputWidthIcone">
+          {% render_field form.state class="form-control" placeholder="State" name="state" %}<i class="fa-solid fa-mountain-city ms-3"></i>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-6 inputWidthIcone">
+          {% render_field form.country class="form-control" placeholder="Country" name="country" %}<i class="fa-solid fa-flag ms-3"></i>
+          </div>
+          <div class="col-6 inputWidthIcone">
+          {% render_field form.zip_code class="form-control" placeholder="Zip Code" name="zip_code" %}<i class="fa fa-map-pin ms-3" aria-hidden="true"></i>
+          </div>
+         
+          <span class="mt-5" style="color:#7166f0;"><h4>Amenities</h4></span></b></h5>
+          <div class="mt-4">
+            <img src="{% static 'images/hotel_detail/wifi.png' %}"/><span class="me-3"> Free Wifi </span>  <img src="{% static 'images/hotel_detail/ac.png' %}"/><span class="me-3"> AC </span><img src="{% static 'images/hotel_detail/tv.png' %}"/><span class="me-3"> TV</span> <img src="{% static 'images/hotel_detail/car.png' %}"/><span class="me-3"> Parking </span></span>
+          </div>
+        </div>
+        
+        <div class="mb-3 mt-5" style="border: 2px solid #7166f0;">
+        {% render_field form.Description class="form-control" rows="8" placeholder=" Descriptions" %}
+        </div>
+        <div class="mb-3 mt-4" style="border: 2px solid #7166f0;">
+          <textarea class="form-control" rows="8" name="text" placeholder="  Write your Hotel Police"></textarea>
+        </div>
+        <div class="row">
+          <div class="form-group mt-4">
+            <label for="email">Hotel Price (per room)</label>
+            <div class="col-6 inputWidthIcone">
+            {% render_field form.cost class="form-control" placeholder="Price" %}<i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row form-inline mt-4">
+          <div class="col-4 ">
+            <label for="email">Room Type</label>
+            <div class="inputWidthIcone">
+            {% render_field form.room_type1 class="form-control mt-2" placeholder="Room Type" name="room_type" %}<i class="fa-solid fa-door-open"></i>
+            </div>
+          </div>
+          <div class="col-4 ">
+            <label for="number">Rooms</label>
+            <div class="inputWidthIcone">
+            {% render_field form.bed_room class="form-control mt-2" placeholder="Rooms" %}<i class="fa-solid fa-bed"></i>
+            </div>
+          </div>
+          <div class="col-4 ">
+            <label for="text">Beds</label>
+            <div class="inputWidthIcone">
+            {% render_field form.beds class="form-control mt-2" placeholder="Beds" %}<i class="fa-solid fa-bed"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="row form-inline mt-4">
+          <div class="col-4 ">
+            <label for="email">Adults/Children</label>
+            <div class="inputWidthIcone">
+            {% render_field form.bed_type class="form-control mt-2 adults_children" placeholder="Adults/Children" %}
+             <i class="fa-solid fa-person-dress"></i>
+            </div>
+          </div>
+          <div class="col-4 ">
+            <label for="email">Persons</label>
+            <div class="inputWidthIcone">
+            {% render_field form.guest class="form-control mt-2 mb-2" placeholder="Persons" %}<i class="fa-solid fa-children"></i>
+            </div>
+          </div>
+          <div class="col-4 ">
+            <label for="email">Cancellations</label>
+            <div class="inputWidthIcone">
+            {% render_field form.cancellation class="form-control mt-2 mb-2 adults_children" placeholder="Cancellations" %}<i class="fa-solid fa-children"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 mt-2">
+            <label for="email">Hotel Contact Persion</label>
+            <div class="inputWidthIcone">
+            {% render_field form.contact_number class="form-control mt-2 mb-2" placeholder="Contact" %}<i class="fa-solid fa-children"></i>
+            </div>
+          </div>
+          <div class="drop-zone mt-5">
+                <span class="drop-zone__prompt fw-light mt-4">Drop file here or click to upload</span>
+                <input type="file" name="myFile" class="drop-zone__input">
+            </div>
+          <div class="col mt-4 ">
+           <button type="submit" class="btn mt-2 mb-2 me-4 submit_cancel">Submit</button>
+            <a class="btn mt-2 mb-2 me-4 float-end submit_cancel" href="/"><span class="mt-3">Cancel</span></a>
+            </div>
+          </form>
+        </div>
+        
+</div>
+
+
+<script>
+  document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+  const dropZoneElement = inputElement.closest(".drop-zone");
+
+  dropZoneElement.addEventListener("click", (e) => {
+    inputElement.click();
+  });
+
+  inputElement.addEventListener("change", (e) => {
+    if (inputElement.files.length) {
+      updateThumbnail(dropZoneElement, inputElement.files[0]);
+    }
+  });
+
+  dropZoneElement.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement.classList.add("drop-zone--over");
+  });
+
+  ["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement.addEventListener(type, (e) => {
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+
+  dropZoneElement.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+      inputElement.files = e.dataTransfer.files;
+      updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+    }
+
+    dropZoneElement.classList.remove("drop-zone--over");
+  });
+});
+
+/**
+ * Updates the thumbnail on a drop zone element.
+ *
+ * @param {HTMLElement} dropZoneElement
+ * @param {File} file
+ */
+function updateThumbnail(dropZoneElement, file) {
+  let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+  // First time - remove the prompt
+  if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+    dropZoneElement.querySelector(".drop-zone__prompt").remove();
+  }
+
+  // First time - there is no thumbnail element, so lets create it
+  if (!thumbnailElement) {
+    thumbnailElement = document.createElement("div");
+    thumbnailElement.classList.add("drop-zone__thumb");
+    dropZoneElement.appendChild(thumbnailElement);
+  }
+
+  thumbnailElement.dataset.label = file.name;
+
+  // Show thumbnail for image files
+  if (file.type.startsWith("image/")) {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+    };
+  } else {
+    thumbnailElement.style.backgroundImage = null;
+  }
+}
+
+  </script>
+{% endblock %}

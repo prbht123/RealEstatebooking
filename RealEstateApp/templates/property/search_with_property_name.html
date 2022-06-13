@@ -19,9 +19,30 @@
  .fas{
    color:#fff;
  }
-  .pre_button,.next_button{
-   color:#7166f0;
+ .availability_button{
+   background-color:#7166f0;
+   color:#fff;
  }
+ .search_hotels_name{
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1);  
+}
+
+.search_hotels_name input{
+  height: 60px;
+  width:100%;
+  text-indent: 25px;
+  border: 2px solid #d6d4d4;
+}
+.search_hotels_name button{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 50px;
+        width: 110px;
+        background: #7166f0;
+
+       }
  </style>
 {% endblock %}
  {% block homecontent %}
@@ -30,15 +51,19 @@
  <div class="hotels_list mt-5">
 <div class="container">
   <div class="row">
-<div class="col-sm-4">
-<h4 class="ml-4 mt-4">List Of The Hotels</h4>
+<div class="col-sm-6">
+<h4 class="ml-4 mt-5">List Of The Hotels</h4>
 </div>
-<div class="col-sm-8 d-flex justify-content-end" >
+<div class="col-sm-6" >
  <form action="{% url 'realestateapp:search_with_property_name' %}">
-<div class="input-group">
+{% comment %} <div class="input-group">
   <input type="search" class="form-control rounded mt-4 me-1" name="property" placeholder="Property Name" aria-label="Search" aria-describedby="search-addon" />
   <button class="btn mt-4 property_city_button"><i class="fas fa-search"></i></button>
-</div>
+</div> {% endcomment %}
+    <div class="search search_hotels_name">
+        <input type="text" class="form-control mt-4" name="property" placeholder="Property Name">
+        <button class="btn btn-primary"> <i class="fa fa-search"></i></button>
+      </div>
  </form>
  </div>
 </div>
@@ -77,10 +102,10 @@
         </div>
         <div class="col-sm-3">
           <p class="mt-4">
-           <b>Viewed :</b> {{property.viewed}}<br>
-           <b>Ranking :</b> {{property.rank}}
+           <b>Viewed :</b> <span class="float-end">{{property.viewed}}</span><br>
+           <b>Ranking :</b><span class="float-end"> {{property.rank}}</span>
            </p>
-          <a class="card-text float-left text-decoration-none" style="font-size: 1.5rem;color:#7166f0;" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
+          <a class="btn float-left text-decoration-none form-control availability_button" style="font-size: 1.5rem;" href="{% url 'realestateapp:detail_property' slug=property.property.slug %}" >
         See-Availability
         </a>
 
