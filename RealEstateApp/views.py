@@ -19,6 +19,8 @@ from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 import datetime
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -80,7 +82,6 @@ class createProperty(CreateView):
     #template_name = 'property/create_property.html'
 
     def form_valid(self, form):
-        print(self.request.POST)
         data = form.save(commit=False)
         street = self.request.POST['street']
         city = self.request.POST['city']
@@ -295,11 +296,42 @@ class propertyUpdateView(UpdateView):
     """
     model = Property
     form_class = PropertyForm
-    template_name = 'property/property_update.html'
-    success_url = '/'
+    #template_name = 'property/property_update.html'
+    template_name = 'hotels/edit_hotels.html'
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse_lazy('account:user_profile', kwargs={'pk': self.object.author.id})
 
     def get_form_kwargs(self):
+        data = Address.objects.get(id=self.object.Address.id)
+        room = Room.objects.get(id=self.object.room_type.id)
         kwargs = super(propertyUpdateView, self).get_form_kwargs()
+        if self.request.method == 'POST':
+            dd = kwargs.get('instance')
+        city = self.request.POST.get('city')
+        street = self.request.POST.get('street')
+        state = self.request.POST.get('state')
+        country = self.request.POST.get('country')
+        zip_code = self.request.POST.get('zip_code')
+        room_type = self.request.POST.get('room_type')
+        if city:
+            data.city = city
+        if street:
+            data.street = street
+        if state:
+            data.state = state
+        if country:
+            data.country = country
+        if zip_code:
+            data.zip_code = zip_code
+        if room_type:
+            room.room_type_name = room_type
+            room.save()
+        if self.request.FILES:
+            kwargs['instance'].image = self.request.FILES['myFile']
+        data.save()
+        kwargs['instance'].Address = data
+        kwargs['instance'].room_type = room
         kwargs.update()
         return kwargs
 
@@ -310,7 +342,9 @@ class propertyDeleteView(DeleteView):
     """
     model = Property
     template_name = 'property/property_delete.html'
-    success_url = '/'
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse_lazy('account:user_profile', kwargs={'pk': self.object.author.id})
 
 
 class propertyDetailView(DetailView):
