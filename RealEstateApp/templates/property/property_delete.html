@@ -1,16 +1,44 @@
-{% extends 'base.html' %}
-{% block content %}
-
-<div class="container pt-5 d-flex justify-content-center ">
+{% extends 'home/basehome.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
+<link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .navbar{
+    border:1px solid;
+  }
+ .btn{
+   background-color:#7166f0;
+   color:#fff;
+ }
+ .deletepage{
+   margin-left:10%;
+   width: 80vw;
+ }
+  </style>
+{% endblock %}
+{% block homecontent %}
+   {% include 'home/navbar.html' %}
+   <br>
+   <br>
+   <br>
+   <div class="row mt-5 deletepage">
+   <div class="col-sm-3"></div>
+  <div class="col-sm-5 ms-5 card ">
+  
+<div class="container pt-5 d-flex justify-content-center">
     <form method="post" novalidate action="">
         {% csrf_token %}    
              <p class="text-center">Are you sure you want to delete "{{ property }}"?</p>
              
         <div>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <a href="{% url 'realestateapp:home' %}" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn">Submit</button>
+            <a href="{% url 'account:user_profile' pk=request.user.id %}" class="btn btn-default float-end mb-5">Cancel</a>
         </div>
     </form>
 </div>
-
+</div>
+</div>
 {% endblock %}

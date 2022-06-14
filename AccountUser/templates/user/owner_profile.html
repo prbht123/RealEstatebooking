@@ -58,7 +58,7 @@
   </div>
   <div class="col-sm-8 mt-4">
    {% if userprofile.user.first_name %}
-     <span class="h2 username"> {{userprofile.user.first_name}} <a class="btn btn-outline-primary ms-2">Edit</a></span>
+     <span class="h2 username"> {{userprofile.user.first_name}} <a class="btn btn-outline-primary ms-2" href="{% url 'account:user_profile_view' pk=request.user.id  %}">View</a></span>
      <br>
      <p>User ID - {{userprofile.user.id}}</p>
      
@@ -96,12 +96,12 @@
         <td><br>{{item.property.property_status}}</td>
         <td></br>{{item.property.Address.street}} {{item.property.Address.city}} {{item.property.Address.state}} {{item.Address.country}}</td>
         <td><a class="btn ratinganchor mt-2" disabled>{{item.rating}}<span class="fa fa-star ms-1 mt-2"></span></a></td>
-        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a class="mt-2"><i class="fa fa-trash ms-2 deleteicon"></i></a></td>
+        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a class="mt-3" href="{% url 'realestateapp:delete_property' slug=item.property.slug %}"><i class="fa fa-trash ms-2 deleteicon"></i></a></td>
       </tr>
       {% endfor %}
-    
-    </tbody>
+      </tbody>
   </table>
+
   </div>
   {% else %}
      <div class="row container imagefield mt-1 ">

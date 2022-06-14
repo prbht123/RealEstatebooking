@@ -38,10 +38,21 @@ def register(request):
 
 
 def homeView(request):
-    user = UserProfile.objects.filter(user=request.user)
+    user = UserProfile.objects.filter(user__id=request.user.id)
     print(request.user)
     return redirect('/')
     # return render(request, 'user/user_profile.html', {'user': user})
+
+
+class UserProfileDetailView(ListView):
+    model = UserProfile
+    template_name = 'user/user_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['userprofile'] = UserProfile.objects.get(
+            user__id=self.request.user.id)
+        return context
 
 
 def UserProfileView(request, pk):
@@ -139,9 +150,6 @@ class UpdateProfileView(UpdateView):
         address.zip_code = self.request.POST.get('zip_code')
         address.save()
         user = User.objects.get(id=kwargs['instance'].user.id)
-        # user.first_name = self.request.POST.get('first_name')
-        # user.last_name = self.request.POST.get('last_name')
-        # user.save()
         kwargs['instance'].user = user
         kwargs['instance'].address = address
         if self.request.FILES:

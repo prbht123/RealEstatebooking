@@ -4,6 +4,27 @@
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/newHome/navbar.css' %}" />
 <link rel="stylesheet" href="{% static 'css/newHome/footer.css' %}" />
+{% comment %} <style>
+.search_hotels_name{
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1);  
+}
+
+.search_hotels_name inputfeedback{
+  height: 60px;
+  width:100%;
+  text-indent: 25px;
+  border: 2px solid #d6d4d4;
+}
+.search_hotels_name button{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 50px;
+        width: 110px;
+
+       }
+       </style> {% endcomment %}
 {% endblock %}
 {% block homecontent %}
 <div style="height:100vh;width:100%;background-image: url({{property.image.url}});
@@ -150,7 +171,10 @@
     {% for field in feedbackform.visible_fields %}
   <div class="form-group mt-2">
     {% render_field field class="form-control ms-2" rows="2" placeholder="Write Reviews" %}
-   
+    {% comment %} <div class="search search_hotels_name">
+      {% render_field field class="form-control ms-2 inputfeedback" rows="2" placeholder="Write Reviews" %}
+        <button><img src="{% static 'images/hotel_detail/send.png' %}"></button>
+      </div> {% endcomment %}
     {% for error in field.errors %}
       <span class="help-block">{{ error }}</span>
     {% endfor %}
@@ -158,7 +182,7 @@
 {% endfor %}
 </div>
 <div class="col-sm-2">
-  <button type="submit" class="btn mt-2 mb-2 ms-0"> <img src="{% static 'images/hotel_detail/send.png' %}"></button>
+  <button type="submit" class="btn btn-outline-primary mt-2 mb-2"> <img src="{% static 'images/hotel_detail/send.png' %}"></button>
   </div>
   </div>
   </form>
@@ -187,6 +211,7 @@
     </div>
 </div>
  
+
 
 
 <hr>
