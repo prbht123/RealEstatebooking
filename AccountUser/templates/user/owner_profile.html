@@ -40,6 +40,14 @@
   height:500px;
   width:550px;
 }
+ .btn-outline-primary:hover{
+    background-color: #7166f0 !important;
+    border-color: #7166f0;
+}
+ .btn-outline-primary{
+  border-color: #7166f0;
+  color:#7166f0;
+ }
 </style>
 {% endblock %}
 {% block homecontent %}
@@ -96,7 +104,7 @@
         <td><br>{{item.property.property_status}}</td>
         <td></br>{{item.property.Address.street}} {{item.property.Address.city}} {{item.property.Address.state}} {{item.Address.country}}</td>
         <td><a class="btn ratinganchor mt-2" disabled>{{item.rating}}<span class="fa fa-star ms-1 mt-2"></span></a></td>
-        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a class="mt-3" href="{% url 'realestateapp:delete_property' slug=item.property.slug %}"><i class="fa fa-trash ms-2 deleteicon"></i></a></td>
+        <td><a class="btn btn-outline-primary mt-2" href="{% url 'realestateapp:Update_property' slug=item.property.slug %}">Edit</a><a class="mt-3" href="{% url 'realestateapp:delete_property' slug=item.property.slug %}"><i class="fa fa-trash ms-2 deleteicon" style="font-size:30px;"></i></a></td>
       </tr>
       {% endfor %}
       </tbody>
